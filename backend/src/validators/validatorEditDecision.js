@@ -4,7 +4,7 @@ const Joi = require("joi");
 const decisionEditSchema = Joi.object({
   title: Joi.string().min(3).max(255).required(),
   content: Joi.string().required(),
-  date_decision_conflict: Joi.date(),
+  date_decision_final: Joi.date(),
   date_decision_close: Joi.date(),
   status_decision: Joi.string().min(3).max(45).required(),
   user_id: Joi.number().integer().required(),
@@ -17,7 +17,7 @@ const validatorEditDecision = (req, res, next) => {
   const {
     title,
     content,
-    date_decision_conflict,
+    date_decision_final,
     date_decision_close,
     status_decision,
     user_id,
@@ -29,7 +29,7 @@ const validatorEditDecision = (req, res, next) => {
     {
       title,
       content,
-      date_decision_conflict,
+      date_decision_final,
       date_decision_close,
       status_decision,
       user_id,

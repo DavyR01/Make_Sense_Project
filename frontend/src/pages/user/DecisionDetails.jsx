@@ -117,7 +117,7 @@ export default function DecisionDetails() {
                   </p>
                   <p className="text-xs font-thin text-left text-gray-500 mb-3">
                     {t("Fin de conflit le")} :{" "}
-                    {valuesDetailsDecision?.date_decision_conflict
+                    {valuesDetailsDecision?.date_decision_final
                       ?.slice(0, 10)
                       .split("-")
                       .reverse()
