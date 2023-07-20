@@ -99,8 +99,8 @@ export default function EditDecision() {
         setValueImpactOfDecision(result.impact);
         setValueBenefitsOfDecision(result.benefits);
         setValueRiskOfDecision(result.risk);
-        setValueDefaultDateOfConflict(result.date_decision_conflict);
-        setStartDateConflictOfDecision(new Date(result.date_decision_conflict));
+        setValueDefaultDateOfConflict(result.date_decision_final);
+        setStartDateConflictOfDecision(new Date(result.date_decision_final));
         setValueDefaultStatusOfDecision(result.status_decision);
         setStatusOfDecision(result.status_decision);
         setChoosePersonExpert(
@@ -135,7 +135,7 @@ export default function EditDecision() {
       risk,
       benefits,
       status_decision,
-      date_decision_conflict: dateConvertedToSqlFormat(dateDecisionConflict),
+      date_decision_final: dateConvertedToSqlFormat(dateDecisionConflict),
       user_id: user.id,
       person_expert: choosePersonExpert,
       person_concern: choosePersonConcern,

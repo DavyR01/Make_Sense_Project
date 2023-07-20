@@ -51,7 +51,7 @@ export default function TimeStepperHome() {
             </div>
             <div className="flex flex-col col-span-3">
               <div className="text-sm text-gray-500 text-left ">
-                {dateFormat(data.date_decision_conflict)}
+                {dateFormat(data.date_decision_final)}
               </div>
               <p
                 className={`text-sm   ${

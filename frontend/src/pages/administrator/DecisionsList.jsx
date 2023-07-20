@@ -235,7 +235,7 @@ export default function DecisionsList() {
                 {convertDate(decision.date_decision_creation)}
               </td>
               <td className="w-auto p-2 border-b-2 border-gray-400">
-                {convertDate(decision.date_decision_conflict)}
+                {convertDate(decision.date_decision_final)}
               </td>
               <td className="w-auto p-2 border-b-2 border-gray-400">
                 {decision.status_decision}

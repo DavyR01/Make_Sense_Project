@@ -90,7 +90,7 @@ export default function CreateDecision() {
       risk,
       benefits,
       date_decision_creation: dateConvertedToSqlFormat(Date.now()),
-      date_decision_conflict: dateConvertedToSqlFormat(date_Decision_Conflict),
+      date_decision_final: dateConvertedToSqlFormat(date_Decision_Conflict),
       status_decision: "En cours",
       user_id: user.id,
       person_expert: choosePersonExpert,

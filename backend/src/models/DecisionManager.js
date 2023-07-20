@@ -7,7 +7,7 @@ class DecisionManager extends AbstractManager {
 
   insert(decision) {
     return this.connection.query(
-      `insert into ${this.table} (title, content, impact, risk, benefits, date_decision_creation, date_decision_conflict, date_decision_close, status_decision, user_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      `insert into ${this.table} (title, content, impact, risk, benefits, date_decision_creation, date_decision_final, date_decision_close, status_decision, user_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         decision.title,
         decision.content,
@@ -15,7 +15,7 @@ class DecisionManager extends AbstractManager {
         decision.risk,
         decision.benefits,
         decision.date_decision_creation,
-        decision.date_decision_conflict,
+        decision.date_decision_final,
         decision.date_decision_close,
         decision.status_decision,
         decision.user_id,
@@ -32,7 +32,7 @@ class DecisionManager extends AbstractManager {
 
   updateById(decision) {
     return this.connection.query(
-      `update ${this.table} set title = ?, content = ?, impact = ?, risk = ?, benefits = ?, status_decision = ?, date_decision_conflict = ? where id = ?`,
+      `update ${this.table} set title = ?, content = ?, impact = ?, risk = ?, benefits = ?, status_decision = ?, date_decision_final = ? where id = ?`,
       [
         decision.title,
         decision.content,
@@ -40,7 +40,7 @@ class DecisionManager extends AbstractManager {
         decision.risk,
         decision.benefits,
         decision.status_decision,
-        decision.date_decision_conflict,
+        decision.date_decision_final,
         decision.id,
       ]
     );
@@ -48,7 +48,7 @@ class DecisionManager extends AbstractManager {
 
   findAllWithUserId() {
     return this.connection.query(
-      `SELECT ${this.table}.id, title, content, impact, risk, benefits, date_decision_creation, date_decision_conflict,
+      `SELECT ${this.table}.id, title, content, impact, risk, benefits, date_decision_creation, date_decision_final,
     date_decision_close, status_decision, user_id, firstname, lastname, avatar
     FROM ${this.table}
     LEFT JOIN user on ${this.table}.user_id = user.id
@@ -58,7 +58,7 @@ class DecisionManager extends AbstractManager {
 
   findAllByIdWithUserId(id) {
     return this.connection.query(
-      `SELECT ${this.table}.id, title, content, impact, risk, benefits, date_decision_creation, date_decision_conflict,
+      `SELECT ${this.table}.id, title, content, impact, risk, benefits, date_decision_creation, date_decision_final,
     date_decision_close, status_decision, ${this.table}.user_id
     FROM ${this.table} 
     WHERE ${this.table}.id = ?`,
@@ -68,7 +68,7 @@ class DecisionManager extends AbstractManager {
 
   find(id) {
     return this.connection.query(
-      `SELECT ${this.table}.id, title, content, impact, risk, benefits, date_decision_creation, date_decision_conflict,
+      `SELECT ${this.table}.id, title, content, impact, risk, benefits, date_decision_creation, date_decision_final,
     date_decision_close, status_decision, ${this.table}.user_id, firstname, lastname, avatar
     FROM ${this.table} 
     LEFT JOIN user ON ${this.table}.user_id = user.id
@@ -79,7 +79,7 @@ class DecisionManager extends AbstractManager {
 
   findByUserId(id) {
     return this.connection.query(
-      `SELECT ${this.table}.id, title, date_decision_creation, date_decision_conflict, status_decision, user_id, firstname, lastname, avatar 
+      `SELECT ${this.table}.id, title, date_decision_creation, date_decision_final, status_decision, user_id, firstname, lastname, avatar 
     FROM ${this.table}
     JOIN user on ${this.table}.user_id = user.id
     WHERE user_id = ?`,
@@ -89,10 +89,10 @@ class DecisionManager extends AbstractManager {
 
   findLastdecision() {
     return this.connection.query(
-      `SELECT date_decision_conflict, title, status_decision FROM ${this.table}
+      `SELECT date_decision_final, title, status_decision FROM ${this.table}
       WHERE status_decision = "En cours" 
       OR status_decision = "En conflit"
-      ORDER BY date_decision_conflict DESC LIMIT 0,5;`
+      ORDER BY date_decision_final DESC LIMIT 0,5;`
     );
   }
 
@@ -151,7 +151,7 @@ class DecisionManager extends AbstractManager {
     return this.connection.query(
       `UPDATE ${this.table}
       SET status_decision = 'Terminee'
-      WHERE date_decision_conflict <= NOW()
+      WHERE date_decision_final <= NOW()
       AND status_decision = 'En cours'`
     );
   }
@@ -160,7 +160,7 @@ class DecisionManager extends AbstractManager {
     return this.connection.query(
       `UPDATE ${this.table}
       SET status_decision = 'Non aboutie'
-      WHERE date_decision_conflict <= NOW()
+      WHERE date_decision_final <= NOW()
       AND status_decision = 'En conflit'`
     );
   }
@@ -205,11 +205,11 @@ class DecisionManager extends AbstractManager {
 
   findByPageAndFilter(limit, offset, status) {
     return this.connection.query(
-      `SELECT ${this.table}.id, title, date_decision_creation, date_decision_conflict, status_decision, user_id, firstname, lastname, avatar
+      `SELECT ${this.table}.id, title, date_decision_creation, date_decision_final, status_decision, user_id, firstname, lastname, avatar
       FROM ${this.table}
       JOIN user on ${this.table}.user_id = user.id
       WHERE (status_decision = '${status}' or '${status}' = 'all')
-      ORDER BY date_decision_conflict ASC
+      ORDER BY date_decision_final ASC
       LIMIT ${limit} OFFSET ${offset}`
     );
   }
@@ -224,7 +224,7 @@ class DecisionManager extends AbstractManager {
   findAllByPageAndFilter(limit, offset) {
     return this.connection.query(
       `SELECT ${this.table}.title, ${this.table}.date_decision_creation,
-      ${this.table}.date_decision_conflict, ${this.table}.status_decision,
+      ${this.table}.date_decision_final, ${this.table}.status_decision,
       ${this.table}.id as decisionId,
        u.id as userId, u.firstname, u.lastname,
        concerned.id as concernedId, experted.id as expertedId,

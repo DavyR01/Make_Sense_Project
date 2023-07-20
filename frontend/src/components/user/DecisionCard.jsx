@@ -161,7 +161,7 @@ export default function DecisionCard({
           </p>
           <p className="text-xs font-thin text-left text-gray-500">
             {t("Fin de conflit le")} :{" "}
-            {convertDateFromApi(valueDetailsDecision.date_decision_conflict)}
+            {convertDateFromApi(valueDetailsDecision.date_decision_final)}
           </p>
         </div>
       </NavLink>
