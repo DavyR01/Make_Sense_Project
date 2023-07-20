@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+  font-family: Arial, Helvetica, Montserrat;
+}
+
+html,
+body,
+#root {
+  height: auto;
+  width: auto;
+}
+@media (max-width: 1024px) {
+  html,
+  body,
+  #root {
+    height: 100vh;
+    width: auto;
+  }
+}

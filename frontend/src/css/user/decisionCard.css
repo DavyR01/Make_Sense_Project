@@ -1,0 +1,39 @@
+.encours {
+  width: 60px;
+  height: 15px;
+  border: 1px solid #186c84;
+  border-radius: 25px;
+  background-color: #186c84;
+}
+
+.enconflit {
+  width: 60px;
+  height: 15px;
+  border: 1px solid #f3976b;
+  border-radius: 25px;
+  background-color: #f3976b;
+}
+
+.terminee {
+  width: 60px;
+  height: 15px;
+  border: 1px solid #82b99e;
+  border-radius: 25px;
+  background-color: #82b99e;
+}
+
+.nonaboutie {
+  width: 60px;
+  height: 15px;
+  border: 1px solid #e36164;
+  border-radius: 25px;
+  background-color: #e36164;
+}
+
+.wrapForHide .spanhidden {
+  visibility: hidden;
+}
+
+.wrapForHide:hover .spanhidden {
+  visibility: visible;
+}

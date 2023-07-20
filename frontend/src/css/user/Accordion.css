@@ -1,0 +1,6 @@
+/* activate toggle */
+
+.answer_wrapper {
+  overflow: hidden;
+  transition: height ease 0.2s;
+}

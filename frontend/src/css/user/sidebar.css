@@ -1,0 +1,44 @@
+.yellow-point {
+  width: 12px;
+  height: 12px;
+  background-color: #fff30d;
+  border-radius: 0 50px 50px 0;
+}
+
+.round-form {
+  width: 250px;
+  height: 150px;
+  border-top: 1px solid #e36164;
+  border-right: 1px solid #e36164;
+  border-bottom: 1px solid #e36164;
+  border-radius: 0 100px 100px 0;
+  rotate: -45deg;
+}
+
+.block-color {
+  width: 130px;
+  height: 30px;
+  border: 1px solid #e36164;
+  border-radius: 50px 50px 50px 50px;
+  background-color: #e36164;
+  rotate: -45deg;
+}
+
+.yellow-point:hover {
+  background-color: #ffffff;
+}
+
+.shake {
+  animation: shake 1s;
+}
+@keyframes shake {
+  0% {
+    transform: translateX(-300px);
+    opacity: 0;
+    z-index: 0;
+  }
+  100% {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}

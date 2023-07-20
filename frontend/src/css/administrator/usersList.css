@@ -1,0 +1,11 @@
+.ioAddCircle {
+  width: 60px;
+  height: auto;
+  background-color: white;
+  color: #e36164;
+}
+
+.usersListBoardCol {
+  background: rgb(228, 228, 228);
+  padding: 10px;
+}

@@ -1,0 +1,14 @@
+.circle_add {
+  width: 146px;
+  height: 146px;
+  border: 1px dashed #e36164;
+  border-radius: 50%;
+}
+
+.add {
+  rotate: 45deg;
+  position: absolute;
+  top: 50%;
+  left: 41%;
+  transform: translate(-50%, -50%);
+}
