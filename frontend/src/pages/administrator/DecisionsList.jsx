@@ -98,7 +98,7 @@ export default function DecisionsList() {
         }),
         {
           loading: "Suppression en cours",
-          success: "La supression a bien été transmise",
+          success: "La suppression a bien été transmise",
           error:
             "Une erreur sur le serveur est survenue lors de la suppression",
         }

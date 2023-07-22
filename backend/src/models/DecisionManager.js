@@ -105,7 +105,7 @@ class DecisionManager extends AbstractManager {
       FROM comment
       JOIN decision ON decision.id = comment.decision_id
       WHERE comment.date_creation = (SELECT MAX(date_creation))
-      AND comment.date_creation <= DATE_SUB(NOW(), INTERVAL 3 MONTH)
+      AND comment.date_creation <= DATE_SUB(NOW(), INTERVAL 10 MONTH)
       GROUP BY decision_id
       HAVING nbVoteContre = 0;`
     );
@@ -130,7 +130,7 @@ class DecisionManager extends AbstractManager {
       FROM comment
       JOIN decision ON decision.id = comment.decision_id
       WHERE comment.date_creation = (SELECT MAX(date_creation))
-      AND comment.date_creation <= DATE_SUB(NOW(), INTERVAL 3 MONTH)
+      AND comment.date_creation <= DATE_SUB(NOW(), INTERVAL 10 MONTH)
       GROUP BY decision_id
       HAVING nbVoteContre > 0;`
     );
