@@ -91,7 +91,7 @@ CREATE TABLE person_expert (
   FOREIGN KEY (decision_id) REFERENCES decision(id)
 );
 
-INSERT INTO person_expert (user_id, decision_id) VALUES ("3", "12"), ("3", "12"), ("3", "12"), ("3", "12"), ("3", "12");
+INSERT INTO person_expert (user_id, decision_id) VALUES ("3", "12"), ("1", "5"), ("6", "15"), ("7", "4"), ("8", "13"), ("4", "15"), ("7", "9"), ("5", "12"), ("7", "12"), ("6", "10");
 
 
 DROP TABLE IF EXISTS person_concern;
@@ -102,6 +102,8 @@ CREATE TABLE person_concern (
   FOREIGN KEY (user_id) REFERENCES user(id),
   FOREIGN KEY (decision_id) REFERENCES decision(id)
 );
+
+INSERT INTO person_concern (user_id, decision_id) VALUES ("5", "7"), ("4", "8"), ("1", "3"), ("2", "14"), ("8", "10"), ("5", "6"), ("2", "11"), ("1", "12"), ("2", "12"), ("3", "12"), ("5", "8"), ("3", "2"), ("4", "12");
 
 DROP TABLE IF EXISTS message_help;
 
