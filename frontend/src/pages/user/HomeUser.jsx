@@ -131,7 +131,7 @@ export default function Home() {
 
         <div className="box col-start-1 col-end-4 z-0 ">
           <h2 className="md:text-3xl text-xl text-red-pink font-extrabold p-3 ml-5 z-0">
-            {t("Décisions en cours")} :{" "}
+            {t("Toutes les décisions")} :{" "}
           </h2>
         </div>
         <div className="box col-start-1 col-end-4 md:ml-10 md:justify-start flex justify-center items-center z-0 md:w-screen">

@@ -45,6 +45,10 @@ export default function Help() {
       .then((response) => {
         if (response.status === 201) {
           console.warn("ok");
+          setUsername("");
+          setEmail("");
+          setObjet("");
+          setContent("");
         } else {
           notify();
         }
