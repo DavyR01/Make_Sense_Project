@@ -41,7 +41,9 @@ export default function DecisionDetails() {
   }, [updateDecision]);
 
   useEffect(() => {
-    fetch(`${backEnd}/avatar/${valuesDetailsDecision.avatar}`)
+    const avatarId = valuesDetailsDecision.avatar ?? "randomuser.jpg";
+
+    fetch(`${backEnd}/avatar/${avatarId}`)
       .then((response) => setAvatarStatus(response))
       .catch((error) => console.warn(error));
   }, [valuesDetailsDecision]);
