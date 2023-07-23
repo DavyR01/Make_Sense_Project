@@ -112,7 +112,7 @@ export default function DecisionsList() {
         }),
         {
           loading: "Suppression en cours",
-          success: "La suppression a bien été transmise",
+          success: "La suppression de la décision a bien été transmise",
           error:
             "Une erreur sur le serveur est survenue lors de la suppression",
         }
@@ -177,6 +177,9 @@ export default function DecisionsList() {
           )}
         </div>
       </div>
+
+      {/* CREATION COLUMNS */}
+
       <table className="mt-12 mx-auto">
         <thead>
           <tr
@@ -212,7 +215,10 @@ export default function DecisionsList() {
                     }`
               }
             >
-              <td className="w-auto border-b-2 border-gray-400 text-center ">
+              <td
+                key={`col-${decision.decisionId}-1`}
+                className="w-auto border-b-2 border-gray-400 text-center "
+              >
                 <button
                   type="button"
                   className="pt-1"
@@ -224,10 +230,16 @@ export default function DecisionsList() {
                   <BsTrash className="w-12 h-5" />
                 </button>
               </td>
-              <td className="w-auto p-2 border-b-2 border-gray-400">
+              <td
+                key={`col-${decision.decisionId}-2`}
+                className="w-auto p-2 border-b-2 border-gray-400"
+              >
                 {decision.firstname} {decision.lastname}
               </td>
-              <td className="w-auto p-2 border-b-2 border-gray-400">
+              <td
+                key={`col-${decision.decisionId}-3`}
+                className="w-auto p-2 border-b-2 border-gray-400"
+              >
                 {decision.personConcerne.map((pconcerne) => (
                   <div key={pconcerne}>
                     {pconcerne.firstname} {pconcerne.lastname}
@@ -235,7 +247,10 @@ export default function DecisionsList() {
                   </div>
                 ))}
               </td>
-              <td className="w-auto p-2 border-b-2 border-gray-400">
+              <td
+                key={`col-${decision.decisionId}-4`}
+                className="w-auto p-2 border-b-2 border-gray-400"
+              >
                 {decision.personExpert.map((pexpert) => (
                   <div key={pexpert}>
                     {pexpert.firstname} {pexpert.lastname}
@@ -243,16 +258,28 @@ export default function DecisionsList() {
                   </div>
                 ))}
               </td>
-              <td className="w-auto p-2 border-b-2 border-gray-400">
+              <td
+                key={`col-${decision.decisionId}-5`}
+                className="w-auto p-2 border-b-2 border-gray-400"
+              >
                 {decision.title}
               </td>
-              <td className="w-auto p-2 border-b-2 border-gray-400">
+              <td
+                key={`col-${decision.decisionId}-6`}
+                className="w-auto p-2 border-b-2 border-gray-400"
+              >
                 {convertDate(decision.date_decision_creation)}
               </td>
-              <td className="w-auto p-2 border-b-2 border-gray-400">
+              <td
+                key={`col-${decision.decisionId}-7`}
+                className="w-auto p-2 border-b-2 border-gray-400"
+              >
                 {convertDate(decision.date_decision_final)}
               </td>
-              <td className="w-auto p-2 border-b-2 border-gray-400">
+              <td
+                key={`col-${decision.decisionId}-8`}
+                className="w-auto p-2 border-b-2 border-gray-400"
+              >
                 {decision.status_decision}
               </td>
             </tr>
