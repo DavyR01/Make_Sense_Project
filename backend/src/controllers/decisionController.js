@@ -259,7 +259,7 @@ const autoUpdateStatusTDecisionTermineeByDateAndVote = (req, res) => {
 };
 
 // execute function 2 minutes
-setInterval(autoUpdateStatusTDecisionTermineeByDateAndVote, 1000 * 30);
+setInterval(autoUpdateStatusTDecisionTermineeByDateAndVote, 1000 * 60 * 8);
 
 // Put every decision_id from result in an array to pass to manager
 const idsDecisionsContre = (result) => {
@@ -298,7 +298,7 @@ const autoUpdateStatusTDecisionNonAboutieByDateAndVote = (req, res) => {
 // la fonction autoUpdateStatusTDecisionNonAboutieByDateAndVote exécute une requête SQL pour récupérer les identifiants des décisions ayant reçu des votes "Contre" dans les trois derniers mois. Ensuite, elle utilise ces identifiants pour mettre à jour le statut de ces décisions en tant que "Non aboutie" dans la base de données.
 
 // execute function 2 minutes
-setInterval(autoUpdateStatusTDecisionNonAboutieByDateAndVote, 1000 * 30);
+setInterval(autoUpdateStatusTDecisionNonAboutieByDateAndVote, 1000 * 60 * 8);
 
 // ****************************************************************************************************************************************************************
 
@@ -320,7 +320,7 @@ const autoUpdateStatusTermineeWithDateConflict = (req, res) => {
 };
 
 // execute function 2 minutes
-setInterval(autoUpdateStatusTermineeWithDateConflict, 1000 * 30);
+setInterval(autoUpdateStatusTermineeWithDateConflict, 1000 * 60 * 8);
 
 // update status decision to "non aboutie" depending on date_conflict (end of decision)
 const autoUpdateStatusNonAboutieWithDateConflict = (req, res) => {
@@ -340,7 +340,7 @@ const autoUpdateStatusNonAboutieWithDateConflict = (req, res) => {
 };
 
 // execute function 2 minutes
-setInterval(autoUpdateStatusNonAboutieWithDateConflict, 1000 * 30);
+setInterval(autoUpdateStatusNonAboutieWithDateConflict, 1000 * 60 * 8);
 
 // ****************************************************************************************************************************************************************
 
