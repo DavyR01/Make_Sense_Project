@@ -72,7 +72,7 @@ export default function DecisionsList() {
       .then((response) => response.json())
       .then((result) => {
         setValuesDetailsDecisions(result.rows);
-        setTotalDecisions(result.nbDecision.nbDecision);
+        setTotalDecisions(result.nbDecision);
         console.warn(result);
       })
       .catch((error) => console.warn("error", error));
@@ -88,8 +88,16 @@ export default function DecisionsList() {
   const updateArrayDecisionsAfterDelete = (idDecisions) => {
     setValuesDetailsDecisions((prevDecisions) =>
       prevDecisions.filter((decision) => decision.decisionId !== idDecisions)
-    );
+    ); // Ici, nous mettons à jour l'état 'valueDetailsDecision' en filtrant les décisions dont l'ID ne correspond pas à idDecisions
   };
+  /** **** IDEM *********** */
+  // const updateArrayDecisionsAfterDelete = (idDecisions) => {
+  //   setValuesDetailsDecisions(
+  //     valuesDetailsDecisions.filter(
+  //       (decision) => decision.decisionId !== idDecisions
+  //     )
+  //   );
+  // };
 
   const handleDeleteDecision = () => {
     const myHeaders = new Headers();

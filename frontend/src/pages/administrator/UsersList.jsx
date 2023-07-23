@@ -19,7 +19,7 @@ export default function UsersList() {
   // Gestion modal et suppression décision
   const [openModalAlertDelete, setOpenModalAlertDelete] = useState(false);
   const [deleteIsConfirm, setDeleteIsConfirm] = useState(false);
-  const [id, setIdUser] = useState();
+  const [idUserToDelete, setIdUserToDelete] = useState();
 
   // extra
   const { dark } = useCurrentDarkContext();
@@ -31,10 +31,12 @@ export default function UsersList() {
       "Une erreure est survenue, veuillez recommencer ou contacter l'administrateur du site"
     );
 
-  // function to update the array of users after delete one user
-  const updateArrayUsersAfterDelete = (id) => {
-    setUsers((prevUsers) => prevUsers.filter((user) => user.id !== id));
-  };
+  // // function to update the array of users after delete one user
+  // const updateArrayUsersAfterDelete = (idUserToDelete) => {
+  //   setUsers((prevUsers) =>
+  //     prevUsers.filter((user) => user.id !== idUserToDelete)
+  //   );
+  // };
 
   useEffect(() => {
     const myHeader = new Headers();
@@ -57,9 +59,9 @@ export default function UsersList() {
 
     toast
       .promise(
-        fetch(`${backEnd}/admin/user/${id}`, {
-          method: "DELETE",
-          // redirect: "follow",
+        fetch(`${backEnd}/user/${idUserToDelete}`, {
+          method: "delete",
+          redirect: "follow",
           headers: myHeaders,
         }),
         {
@@ -74,7 +76,7 @@ export default function UsersList() {
       //   method: "DELETE",
       //   headers: myHeaders,
       // };
-      // fetch(`${backEnd}/admin/user/${id}`, requestOptions)
+      // fetch(`${backEnd}/admin/user/${id}`, requestOptions) // route admin de trop ?
       .then((response) => {
         if (response.status !== 204) {
           console.warn("error", response.status);
@@ -82,8 +84,10 @@ export default function UsersList() {
         }
       })
       .then(() => {
-        // setUsers(users.filter((user) => user.id !== id));
-        updateArrayUsersAfterDelete(id);
+        setUsers(users.filter((user) => user.id !== idUserToDelete)); // similaire à ce qui suit sauf que l'on n'utilise pas de callback.
+        // setUsers((prevUsers) =>
+        //   prevUsers.filter((user) => user.id !== idUserToDelete)
+        // );
       })
       .catch((err) => console.error(err));
   };
@@ -169,7 +173,7 @@ export default function UsersList() {
               type="button"
               onClick={() => {
                 setOpenModalAlertDelete(true);
-                setIdUser(user.id);
+                setIdUserToDelete(user.id);
               }}
             >
               <BsTrash className="w-12 h-5" />
