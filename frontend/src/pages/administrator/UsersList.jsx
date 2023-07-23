@@ -1,7 +1,7 @@
 /* eslint-disable no-shadow */
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { toast } from "react-hot-toast";
+import { Toaster, toast } from "react-hot-toast";
 import { BsTrash } from "react-icons/bs";
 import Logo from "../../assets/logo-makesense.png";
 import LogoWhite from "../../assets/make_sense_white.png";
@@ -66,7 +66,7 @@ export default function UsersList() {
         }),
         {
           loading: "Suppression en cours",
-          success: "La suppression a bien été transmise",
+          success: "La suppression de l'utilisateur a bien été transmise",
           error:
             "Une erreur sur le serveur est survenue lors de la suppression",
         }
@@ -101,12 +101,14 @@ export default function UsersList() {
       setDeleteIsConfirm(false);
     }
   }, [deleteIsConfirm]);
+
   return (
     <div
       className={`w-screen z-0${
         dark ? "text-black" : "text-white bg-dark-header"
       }`}
     >
+      <Toaster position="top-center" reverseOrder={false} />
       <AlertDeleteDecision
         openModalAlertDelete={openModalAlertDelete}
         setOpenModalAlertDelete={setOpenModalAlertDelete}
@@ -137,6 +139,8 @@ export default function UsersList() {
           )}
         </div>
       </div>
+
+      {/* CREATION COLUMNS */}
 
       <div
         className={`md:w-[95%] m-auto h-auto ${
