@@ -133,7 +133,7 @@ function Comment({
             {comment.firstname} {comment.lastname}
           </p>
 
-          <p className="text-sm text-slate-500 mx-4 flex flex-row">
+          <div className="text-sm text-slate-500 mx-4 flex flex-row">
             {dateComment(comment.date_creation)} &nbsp;
             {hourComment(comment.date_creation)}&nbsp;
             <p
@@ -154,7 +154,7 @@ function Comment({
             ) : (
               ""
             )}
-          </p>
+          </div>
         </div>
       </div>
       {modifyComment ? (
