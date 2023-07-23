@@ -248,7 +248,7 @@ export default function Decisions({ open }) {
           {isOpenUnfinished ? (
             <img src={ChevronDown} alt="fleche vers le bas" />
           ) : null}
-          {t("Non abouties")}
+          {t("Non_abouties")}
         </button>
         <button
           onClick={() => navigate("/create-decision")}
