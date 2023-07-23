@@ -18,9 +18,10 @@ function TimelineStepperDecision({
     <div className="w-60 h-fit border border-red-pink p-4 rounded-xl flex justify-center flex-col">
       <p className="mt-5">{t("Personnes expertes")}</p>
       <div className="flex -space-x-2 overflow-hidden my-5">
-        {valuesDetailsDecision.experts?.map((expert) => (
+        {valuesDetailsDecision.experts?.map((expert, index) => (
           <img
-            key={expert.id}
+            key={index}
+            // key={expert.id}
             className="inline-block h-8 w-8 rounded-full ring-2 ring-white"
             src={
               urlAvatarStatus?.status === 200
@@ -33,9 +34,10 @@ function TimelineStepperDecision({
       </div>
       <p>{t("Personnes impactées")}</p>
       <div className="flex -space-x-2 overflow-hidden my-5">
-        {valuesDetailsDecision.concerns?.map((concern) => (
+        {valuesDetailsDecision.concerns?.map((concern, index) => (
           <img
-            key={concern.id}
+            key={index}
+            // key={concern.id}
             className="inline-block h-8 w-8 rounded-full ring-2 ring-white"
             src={
               urlAvatarStatus?.status === 200
