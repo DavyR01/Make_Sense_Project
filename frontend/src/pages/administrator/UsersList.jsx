@@ -1,6 +1,7 @@
 /* eslint-disable no-shadow */
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-hot-toast";
 import { BsTrash } from "react-icons/bs";
 import Logo from "../../assets/logo-makesense.png";
 import LogoWhite from "../../assets/make_sense_white.png";
@@ -14,11 +15,26 @@ const backEnd = import.meta.env.VITE_BACKEND_URL;
 export default function UsersList() {
   const { user, token } = useCurrentUserContext();
   const [users, setUsers] = useState([]);
+
+  // Gestion modal et suppression décision
   const [openModalAlertDelete, setOpenModalAlertDelete] = useState(false);
   const [deleteIsConfirm, setDeleteIsConfirm] = useState(false);
-  const [id, setId] = useState();
-  const { t } = useTranslation();
+  const [id, setIdUser] = useState();
+
+  // extra
   const { dark } = useCurrentDarkContext();
+  const { t } = useTranslation();
+
+  // for alert notification error delete user after submit
+  const notify = () =>
+    toast.error(
+      "Une erreure est survenue, veuillez recommencer ou contacter l'administrateur du site"
+    );
+
+  // function to update the array of users after delete one user
+  const updateArrayUsersAfterDelete = (id) => {
+    setUsers((prevUsers) => prevUsers.filter((user) => user.id !== id));
+  };
 
   useEffect(() => {
     const myHeader = new Headers();
@@ -35,17 +51,39 @@ export default function UsersList() {
       .catch((err) => console.error(err));
   }, [token]);
 
-  const deleteUser = () => {
-    const myHeader = new Headers();
-    myHeader.append("Authorization", `Bearer ${token}`);
+  const handleDeleteUser = () => {
+    const myHeaders = new Headers();
+    myHeaders.append("Authorization", `Bearer ${token}`);
 
-    const requestOptions = {
-      method: "DELETE",
-      headers: myHeader,
-    };
-    fetch(`${backEnd}/admin/user/${id}`, requestOptions)
+    toast
+      .promise(
+        fetch(`${backEnd}/admin/user/${id}`, {
+          method: "DELETE",
+          // redirect: "follow",
+          headers: myHeaders,
+        }),
+        {
+          loading: "Suppression en cours",
+          success: "La suppression a bien été transmise",
+          error:
+            "Une erreur sur le serveur est survenue lors de la suppression",
+        }
+      )
+
+      // const requestOptions = {
+      //   method: "DELETE",
+      //   headers: myHeaders,
+      // };
+      // fetch(`${backEnd}/admin/user/${id}`, requestOptions)
+      .then((response) => {
+        if (response.status !== 204) {
+          console.warn("error", response.status);
+          notify();
+        }
+      })
       .then(() => {
-        setUsers(users.filter((user) => user.id !== id));
+        // setUsers(users.filter((user) => user.id !== id));
+        updateArrayUsersAfterDelete(id);
       })
       .catch((err) => console.error(err));
   };
@@ -53,7 +91,7 @@ export default function UsersList() {
   useEffect(() => {
     if (deleteIsConfirm) {
       setOpenModalAlertDelete(false);
-      deleteUser();
+      handleDeleteUser();
       setDeleteIsConfirm(false);
     } else {
       setDeleteIsConfirm(false);
@@ -131,7 +169,7 @@ export default function UsersList() {
               type="button"
               onClick={() => {
                 setOpenModalAlertDelete(true);
-                setId(user.id);
+                setIdUser(user.id);
               }}
             >
               <BsTrash className="w-12 h-5" />

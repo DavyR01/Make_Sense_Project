@@ -21,7 +21,7 @@ INSERT INTO user (firstname, lastname, email, city, phone, avatar, hashedPasswor
 ('Julia', 'Leclerc', 'julia@gmail.com', 'Lyon', '0603265147', 'avatar3.jpeg', '$argon2id$v=19$m=65536,t=5,p=1$w74Il7Z5LSbJeNQQPo031w$19FI3i4qKtfenAJXJNqWcc8wgHFkMyZ97ar6m8wmIeI', '0', '2022-10-13 12:12:23'),
 ('Adrien', 'Roussel', 'adrien@gmail.com', 'Katmandu', '0632147894', 'avatar10.jpeg', '$argon2id$v=19$m=65536,t=5,p=1$cHKCeWcTAbFAoQip2FBoSQ$YEwzjtbjy/r88czZmo+Ess3AGPYvhonN2HTureWf3NY', '0', '2022-10-13 12:12:23'),
 ('Daniel', 'Blanchard', 'daniel@gmail.com', 'Oslo', '0691320590', 'avatar5.jpeg', '$argon2id$v=19$m=65536,t=5,p=1$w74Il7Z5LSbJeNQQPo031w$19FI3i4qKtfenAJXJNqWcc8wgHFkMyZ97ar6m8wmIeI', '0', '2022-10-13 12:12:23'),
-('Georges', 'Harrison', 'georges@hotmail.fr', 'Liverpool', '07987654321', 'georges-harrison.jpg', '$argon2id$v=19$m=65536,t=5,p=1$w74Il7Z5LSbJeNQQPo031w$19FI3i4qKtfenAJXJNqWcc8wgHFkMyZ97ar6m8wmIeI', '0', '2022-10-13 12:12:23');
+('Georges', 'Harrison', 'georges@hotmail.fr', 'Liverpool', null, 'georges-harrison.jpg', '$argon2id$v=19$m=65536,t=5,p=1$w74Il7Z5LSbJeNQQPo031w$19FI3i4qKtfenAJXJNqWcc8wgHFkMyZ97ar6m8wmIeI', '0', '2022-10-13 12:12:23');
 
 DROP TABLE IF EXISTS decision;
 

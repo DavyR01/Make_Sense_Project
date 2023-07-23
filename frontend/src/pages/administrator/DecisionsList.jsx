@@ -15,11 +15,17 @@ const backEnd = import.meta.env.VITE_BACKEND_URL;
 export default function DecisionsList() {
   const { user, token } = useCurrentUserContext();
   const [valuesDetailsDecisions, setValuesDetailsDecisions] = useState([]);
+
+  // Gestion pagination
   const [currentPage, setCurrentPage] = useState(1);
   const [totalDecisions, setTotalDecisions] = useState();
+
+  // Gestion modal et suppression décision
   const [openModalAlertDelete, setOpenModalAlertDelete] = useState(false);
   const [deleteIsConfirm, setdeleteIsConfirm] = useState(false);
   const [idDecisionToDelete, setIdDecisionToDelete] = useState();
+
+  // extra
   const { dark } = useCurrentDarkContext();
   const { t } = useTranslation();
 
@@ -119,6 +125,7 @@ export default function DecisionsList() {
     if (deleteIsConfirm) {
       setOpenModalAlertDelete(false);
       handleDeleteDecision();
+      setdeleteIsConfirm(false);
     } else {
       setdeleteIsConfirm(false);
     }
