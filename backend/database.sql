@@ -37,8 +37,7 @@ CREATE TABLE decision (
   date_decision_close DATETIME,
   status_decision varchar(45) NOT NULL DEFAULT 'En cours',
   user_id int,
-  FOREIGN KEY (user_id) REFERENCES user(id)
-  -- ON DELETE CASCADE
+  CONSTRAINT decision_ibfk_1 FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
 );
 
 INSERT INTO decision (title, content, impact, risk, benefits, date_decision_creation, date_decision_final, date_decision_close, status_decision, user_id) VALUES 
@@ -81,15 +80,13 @@ Exemple : l’agence en conseil de communication, Globale Couleur Citron, a dév
 ("L’animation du réseau des prestataires", "La mise en œuvre d’un projet de communication suppose la mobilisation de compétences, ressources matérielles et techniques diverses. Pour répondre à ces besoins, annonceurs et agences conseils en communication ont souvent recours à des ressources extérieures, des entreprises spécialisées. L’ensemble de ces prestataires constitue un réseau qui s’entretient et s’enrichit au fil des projets.","Un prestataire fournit à l’annonceur ou à l’agence un service, une expertise qu’ils ne sont pas en mesure d’apporter eux-mêmes pour des raisons de manque de compétences, de temps ou de moyens matériels. La réflexion sur la nécessité de faire appel a des compétences externes et la sélection des prestataires sont des étapes clés dans la mise en œuvre d’un projet de communication. La responsabilité en incombe au chef de projet ou à l’un de ses assistants, qui sera alors en position d’acheteur. Très nombreux, les prestataires interviennent dans différents secteurs d’activité.","Un prestataire fournit à l’annonceur ou à l’agence un service, une expertise qu’ils ne sont pas en mesure d’apporter eux-mêmes pour des raisons de manque de compétences, de temps ou de moyens matériels. La réflexion sur la nécessité de faire appel a des compétences externes et la sélection des prestataires sont des étapes clés dans la mise en œuvre d’un projet de communication. La responsabilité en incombe au chef de projet ou à l’un de ses assistants, qui sera alors en position d’acheteur. Très nombreux, les prestataires interviennent dans différents secteurs d’activité.","La recherche et l’identification des prestataires consistent à mettre en place une veille informationnelle (sourcing) ayant pour objectif de repérer les prestataires qui collaboreront au projet de communication. Diverses sources sont consultées : les annuaires professionnels, les sites Internet, la presse spécialisée, les salons professionnels, les recommandations d’autres professionnels du secteur, l’étude des offres spontanées de prestataires.",'2022-10-13 12:12:23', '2024-08-13 23:14:53', '2022-11-01 15:42:23', 'Terminee','4');
 
 
-
-
 DROP TABLE IF EXISTS person_expert;
 
 CREATE TABLE person_expert (
   user_id int,
   decision_id int,
-  FOREIGN KEY (user_id) REFERENCES user(id),
-  FOREIGN KEY (decision_id) REFERENCES decision(id)
+  CONSTRAINT person_expert_ibfk_1 FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE,
+  CONSTRAINT person_expert_ibfk_2 FOREIGN KEY (decision_id) REFERENCES decision(id) ON DELETE CASCADE
 );
 
 INSERT INTO person_expert (user_id, decision_id) VALUES ("3", "12"), ("1", "5"), ("6", "15"), ("7", "4"), ("8", "13"), ("4", "15"), ("7", "9"), ("5", "12"), ("7", "12"), ("6", "10");
@@ -100,8 +97,8 @@ DROP TABLE IF EXISTS person_concern;
 CREATE TABLE person_concern (
   user_id int,
   decision_id int,
-  FOREIGN KEY (user_id) REFERENCES user(id),
-  FOREIGN KEY (decision_id) REFERENCES decision(id)
+  CONSTRAINT person_concern_ibfk_1 FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE,
+  CONSTRAINT person_concern_ibfk_2 FOREIGN KEY (decision_id) REFERENCES decision(id) ON DELETE CASCADE
 );
 
 INSERT INTO person_concern (user_id, decision_id) VALUES ("5", "7"), ("4", "8"), ("1", "3"), ("2", "14"), ("8", "10"), ("5", "6"), ("2", "11"), ("1", "12"), ("2", "12"), ("3", "12"), ("5", "8"), ("3", "2"), ("4", "12");
@@ -135,8 +132,8 @@ CREATE TABLE comment (
   date_creation DATETIME NOT NULL DEFAULT NOW(),
   user_id int,
   decision_id int,
-  FOREIGN KEY (user_id) REFERENCES user(id),
-  FOREIGN KEY (decision_id) REFERENCES decision(id)
+  CONSTRAINT `comment_ibfk_1` FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE,
+  CONSTRAINT `comment_ibfk_2` FOREIGN KEY (decision_id) REFERENCES decision(id) ON DELETE CASCADE
 );
 
 INSERT INTO comment (content, vote, date_creation, decision_id, user_id) 
@@ -154,9 +151,9 @@ CREATE TABLE notification (
   user_id int,
   decision_id int, 
   comment_id int,
-  FOREIGN KEY (user_id) REFERENCES user(id),
-  FOREIGN KEY (decision_id) REFERENCES decision(id),
-  FOREIGN KEY (comment_id) REFERENCES comment(id)
+  CONSTRAINT notification_ibfk_1 FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE,
+  CONSTRAINT notification_ibfk_2 FOREIGN KEY (decision_id) REFERENCES decision(id) ON DELETE CASCADE,
+  CONSTRAINT notification_ibfk_3 FOREIGN KEY (comment_id) REFERENCES comment(id) ON DELETE CASCADE
 );
 
 -- Permet de passer une décision en statut 'en conflit' si au moins un commentaire en vote 'contre' est présent. 
