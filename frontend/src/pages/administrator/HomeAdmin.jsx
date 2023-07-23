@@ -96,7 +96,7 @@ export default function HomeAdmin({ open }) {
             {t("Conflits")} : {stats.conflict}
           </li>
           <li className="font-extralight list-none text-center md:m-3 row-start-4 row-end-5 col-start-3 col-end-5">
-            {t("Non abouties")} : {stats.unresolved}
+            {t("Non_abouties")} : {stats.unresolved}
           </li>
         </div>
         <div

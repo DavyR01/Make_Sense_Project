@@ -237,7 +237,7 @@ export default function EditDecision() {
         <div className="col-span-2 ...">
           <div className="mt-14 mb-6">
             <label htmlFor="title-input" className="block mb-2">
-              {t("Titre de la décision")} :
+              {t("Titre_décision")} :
             </label>
             <input
               onChange={(e) => setTitleDecision(e.target.value)}
@@ -315,7 +315,7 @@ export default function EditDecision() {
               <option value="En cours">{t("En cours")}</option>
               <option value="En conflit">{t("Conflits filter")}</option>
               <option value="Terminee">{t("Terminées filter")}</option>
-              <option value="Non aboutie">{t("Non abouties")}</option>
+              <option value="Non aboutie">{t("Non_abouties")}</option>
             </select>
           </div>
           <div className="mt-8">

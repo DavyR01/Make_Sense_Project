@@ -197,7 +197,7 @@ export default function CreateDecision() {
           <div className="col-span-2">
             <div className="mt-14 mb-6">
               <label htmlFor="title-input" className="block mb-2">
-                {t("Titre de la décision")}{" "}
+                {t("Titre_décision")}{" "}
               </label>
               <input
                 onChange={(e) => setTitleDecision(e.target.value)}

@@ -188,7 +188,7 @@ export default function DecisionsList() {
             <th className="w-auto p-2">{t("Auteur")}</th>
             <th className="w-auto p-2">{t("Concerné")}</th>
             <th className="w-auto p-2">{t("Expert")}</th>
-            <th className="w-auto p-2">{t("Titre de la décision")}</th>
+            <th className="w-auto p-2">{t("Titre_décision")}</th>
             <th className="w-auto p-2">{t("Date de création")}</th>
             <th className="w-auto p-2">{t("Date de finalisation")}</th>
             <th className="w-auto p-2">{t("Status")}</th>

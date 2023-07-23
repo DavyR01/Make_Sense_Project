@@ -140,7 +140,7 @@ const resources = {
       Utilisateurs: "Utilisateurs",
       Decisions: "Decisions",
       Terminées: "Terminées",
-      "Non abouties": "Non abouties",
+      Non_abouties: "Non abouties",
       conflits: "En conflits",
 
       // message admin
@@ -156,7 +156,7 @@ const resources = {
       Auteur: "Auteur",
       Concerné: "Concerné",
       Expert: "Expert",
-      "Titre de la décision": "Titre de la décision",
+      // "Titre de la décision": "Titre de la décision",
       "Date de création": "Date de création",
       "Date de finalisation": "Date de finalisation",
       Status: "Statut",
@@ -285,7 +285,7 @@ const resources = {
       // decision card
       "Supprimer btn": "Delete",
       "Voir le profil de": "See the profile of",
-      "Créer le": "Created on",
+      "Crée le": "Created on",
       "Fin de conflit le": "Ends on",
 
       // page Accueil admin
@@ -294,7 +294,7 @@ const resources = {
       Utilisateurs: "Users",
       Decisions: "Decisions",
       Terminées: "Finished",
-      "Non abouties": "Not achieved",
+      Non_abouties: "Not achieved",
       Conflits: "Conflicts",
 
       // message admin
@@ -310,7 +310,7 @@ const resources = {
       Auteur: "Autor",
       Concerné: "Concerned",
       Expert: "Expert",
-      "Titre de la décision": "Decision's title",
+      // "Titre de la décision": "Decision's title",
       "Date de création": "Creation date",
       "Date de finalisation": "Finalization date",
       Status: "Status",
@@ -439,7 +439,7 @@ const resources = {
       // decision card
       "Supprimer btn": "Eliminar",
       "Voir le profil de ": "Ver el perfil de ",
-      "Créer le": "Creado el",
+      "Crée le": "Creado el",
       "Fin de conflit le": "Termina el",
 
       // page Accueil admin
@@ -448,7 +448,7 @@ const resources = {
       Utilisateurs: "Usuarios",
       Decisions: "Decisiones",
       Terminées: "Completado",
-      "Non abouties": "No abouties",
+      Non_abouties: "No abouties",
       Conflits: "Conflictos",
 
       // message admin
@@ -459,15 +459,12 @@ const resources = {
       "Liste utilisateurs": "Lista de usuarios",
 
       // liste decisions
-      "Liste des décisions": "Lista de decisiones",
-
-      // liste decisions
       "Liste des décisions": "lista de decisiones",
       Supprimer: "Borrar",
       Auteur: "Autor",
       Concerné: "Preocupado",
       Expert: "Experto",
-      "Titre de la décision": "Titulo de la decision",
+      // "Titre de la décision": "Titulo de la decision",
       "Date de création": "Fecha de creacion",
       "Date de finalisation": "Fecha de finalizacion",
       Status: "Estado",
