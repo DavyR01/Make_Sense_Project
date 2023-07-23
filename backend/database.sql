@@ -38,6 +38,7 @@ CREATE TABLE decision (
   status_decision varchar(45) NOT NULL DEFAULT 'En cours',
   user_id int,
   FOREIGN KEY (user_id) REFERENCES user(id)
+  -- ON DELETE CASCADE
 );
 
 INSERT INTO decision (title, content, impact, risk, benefits, date_decision_creation, date_decision_final, date_decision_close, status_decision, user_id) VALUES 
