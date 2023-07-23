@@ -27,7 +27,7 @@ export default function CreateDecision() {
   const [impact, setValueImpactOfDecision] = useState("");
   const [benefits, setValueBenefitsOfDecision] = useState("");
   const [risk, setValueRiskOfDecision] = useState("");
-  const [date_Decision_Conflict, setStartDateConflictOfDecision] = useState(
+  const [dateDecisionFinal, setStartDateConflictOfDecision] = useState(
     new Date()
   );
   const [personImpactedDecision, setPersonImpactedDecision] = useState([]);
@@ -90,7 +90,7 @@ export default function CreateDecision() {
       risk,
       benefits,
       date_decision_creation: dateConvertedToSqlFormat(Date.now()),
-      date_decision_final: dateConvertedToSqlFormat(date_Decision_Conflict),
+      date_decision_final: dateConvertedToSqlFormat(dateDecisionFinal),
       status_decision: "En cours",
       user_id: user.id,
       person_expert: choosePersonExpert,
@@ -305,7 +305,7 @@ export default function CreateDecision() {
             <div className="flex items-center max-xl:flex-col xl:justify-between max-xl:gap-y-8 xl p-2 ">
               <div className=" z-20">
                 <DatePicker
-                  selected={date_Decision_Conflict}
+                  selected={dateDecisionFinal}
                   onChange={(date) => setStartDateConflictOfDecision(date)}
                   disabledKeyboardNavigation
                   placeholderText="Donner son avis"

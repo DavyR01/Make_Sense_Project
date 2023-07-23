@@ -7,7 +7,7 @@ class DecisionManager extends AbstractManager {
 
   insert(decision) {
     return this.connection.query(
-      `insert into ${this.table} (title, content, impact, risk, benefits, date_decision_creation, date_decision_final, date_decision_close, status_decision, user_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      `insert into ${this.table} (title, content, impact, risk, benefits, date_decision_creation, date_decision_final, status_decision, user_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
         decision.title,
         decision.content,
@@ -16,7 +16,6 @@ class DecisionManager extends AbstractManager {
         decision.benefits,
         decision.date_decision_creation,
         decision.date_decision_final,
-        decision.date_decision_close,
         decision.status_decision,
         decision.user_id,
       ]
@@ -48,8 +47,7 @@ class DecisionManager extends AbstractManager {
 
   findAllWithUserId() {
     return this.connection.query(
-      `SELECT ${this.table}.id, title, content, impact, risk, benefits, date_decision_creation, date_decision_final,
-    date_decision_close, status_decision, user_id, firstname, lastname, avatar
+      `SELECT ${this.table}.id, title, content, impact, risk, benefits, date_decision_creation, date_decision_final, status_decision, user_id, firstname, lastname, avatar
     FROM ${this.table}
     LEFT JOIN user on ${this.table}.user_id = user.id
     ORDER BY date_decision_creation ASC`
@@ -58,8 +56,7 @@ class DecisionManager extends AbstractManager {
 
   findAllByIdWithUserId(id) {
     return this.connection.query(
-      `SELECT ${this.table}.id, title, content, impact, risk, benefits, date_decision_creation, date_decision_final,
-    date_decision_close, status_decision, ${this.table}.user_id
+      `SELECT ${this.table}.id, title, content, impact, risk, benefits, date_decision_creation, date_decision_final,status_decision, ${this.table}.user_id
     FROM ${this.table} 
     WHERE ${this.table}.id = ?`,
       [id]
@@ -68,8 +65,7 @@ class DecisionManager extends AbstractManager {
 
   find(id) {
     return this.connection.query(
-      `SELECT ${this.table}.id, title, content, impact, risk, benefits, date_decision_creation, date_decision_final,
-    date_decision_close, status_decision, ${this.table}.user_id, firstname, lastname, avatar
+      `SELECT ${this.table}.id, title, content, impact, risk, benefits, date_decision_creation, date_decision_final, status_decision, ${this.table}.user_id, firstname, lastname, avatar
     FROM ${this.table} 
     LEFT JOIN user ON ${this.table}.user_id = user.id
     WHERE ${this.table}.id = ?`,
