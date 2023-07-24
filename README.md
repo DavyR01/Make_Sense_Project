@@ -21,13 +21,21 @@ Student project by :
 
 ### Project Initialization
 
-- In VSCode, install plugins **Prettier - Code formatter** and **ESLint** and configure them
+- Optional : In VSCode, install plugins **Prettier - Code formatter** and **ESLint** and configure them
 - Clone this repo, enter it
 - Check your node version with command `node -v` otherwise install it.
 - Run command `npm run setup` to install packages needed for the project.
-- create .env files for the frontend and backend
-- Run command `npm run migrate` to download datas from mySQL
-  _NB: To launch the backend server, you'll need an environment file with database credentials. You'll find a template one in `backend/.env.sample`_
+- You need to create and fill .env files in the folders frontend and backend.
+  You will find templates in `backend/.env.sample` and `frontend/.env.sample` as an example.
+  _NB: To launch the backend server, you'll need an environment file with database credentials._
+- Run command `npm run migrate` to download datas from SQL.
+- Once all the steps have been completed, you can login.
+
+### ID Connexion
+
+- Here are 2 counts to connect at the application with differents access rights :
+  - mail : admin@gmail.com, password : Test123!
+  - mail : user@gmail.com, password : Test123!
 
 ### Available Commands
 
