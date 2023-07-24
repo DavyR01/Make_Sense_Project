@@ -120,6 +120,8 @@ export default function DecisionCard({
       ) : (
         <div className="flex justify-between items-center">
           <div className={statusForClassname()} />
+          {/* Permet d'afficher les
+          couleurs des status sur les décisions. */}
           <button
             type="button"
             onClick={() =>
