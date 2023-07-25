@@ -36,7 +36,7 @@ export default function DecisionsList() {
   };
 
   // decision per page fix for now
-  const decisionPerPage = 15;
+  const decisionPerPage = 10;
 
   // Get current page depending of paginate component
   const paginate = (pageNumber) => {
@@ -72,7 +72,7 @@ export default function DecisionsList() {
       .then((response) => response.json())
       .then((result) => {
         setValuesDetailsDecisions(result.rows);
-        setTotalDecisions(result.nbDecision);
+        setTotalDecisions(result.nbDecision.nbDecision); // Permet d'afficher la pagination et le nomdre de décisions défini par page.
         console.warn(result);
       })
       .catch((error) => console.warn("error", error));

@@ -381,8 +381,8 @@ const browseByPageAndFilter = (req, res) => {
 
 // search all decision for admin
 const browseAllByPageAndFilter = (req, res) => {
-  const page = parseInt(req.query.currentPageAd, 10);
-  const limit = parseInt(req.query.decisionPerPageAd, 10);
+  const page = parseInt(req.query.currentPageAd, 20);
+  const limit = parseInt(req.query.decisionPerPageAd, 20);
   const offset = (page - 1) * limit;
 
   models.decision
