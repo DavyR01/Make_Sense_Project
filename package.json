@@ -18,6 +18,8 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^7.0.0",
-    "husky": "^7.0.0"
+    "eslint": "^8.45.0",
+    "husky": "^7.0.0",
+    "prettier": "^3.0.0"
   }
 }
