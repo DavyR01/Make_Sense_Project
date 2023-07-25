@@ -105,6 +105,10 @@ export default function Decisions({ open }) {
     )
       .then((response) => response.json())
       .then((result) => {
+        console.warn("result : ", result);
+        console.warn("valuesDetailsDecisions :", valuesDetailsDecisions); // pareil que         console.warn(result.rows);
+        console.warn("totalDecisions :", totalDecisions);
+
         setValuesDetailsDecisions(result.rows);
         setTotalDecisions(result.nbDecision.nbDecision);
       })
