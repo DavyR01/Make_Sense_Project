@@ -5,7 +5,7 @@ const browse = (req, res) => {
     .findNotificationByUserId(req.params.id)
     .then(([result]) => {
       models.user
-        .getUserByName()
+        .findUserByName()
         .then(() => {
           res.send(result);
         })

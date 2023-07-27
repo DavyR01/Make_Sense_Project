@@ -118,7 +118,7 @@ export default function DecisionDetails() {
                       .join("/")}
                   </p>
                   <p className="text-xs font-thin text-left text-gray-500 mb-3">
-                    {t("Fin de conflit le")} :{" "}
+                    {t("Prend fin le")} :{" "}
                     {valuesDetailsDecision?.date_decision_final
                       ?.slice(0, 10)
                       .split("-")

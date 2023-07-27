@@ -132,7 +132,7 @@ const resources = {
       "Supprimer btn": "Supprimer",
       "Voir le profil de": "Voir le profil de",
       "Crée le": "Crée le",
-      "Fin de conflit le": "Prend fin le",
+      "Prend fin le": "Prend fin le",
 
       // page Accueil admin
       Administrateur: "Administrateur",
@@ -286,7 +286,7 @@ const resources = {
       "Supprimer btn": "Delete",
       "Voir le profil de": "See the profile of",
       "Crée le": "Created on",
-      "Fin de conflit le": "Ends on",
+      "Prend fin le": "Ends on",
 
       // page Accueil admin
       Administrateur: "Administrator",
@@ -440,7 +440,7 @@ const resources = {
       "Supprimer btn": "Eliminar",
       "Voir le profil de ": "Ver el perfil de ",
       "Crée le": "Creado el",
-      "Fin de conflit le": "Termina el",
+      "Prend fin le": "Termina el",
 
       // page Accueil admin
       Administrateur: "Administrador",

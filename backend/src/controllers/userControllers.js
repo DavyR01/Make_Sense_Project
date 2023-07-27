@@ -15,9 +15,9 @@ const browse = (req, res) => {
     });
 };
 
-const browseByName = (req, res) => {
+const readName = (req, res) => {
   models.user
-    .getUserByName()
+    .findUserByName()
     .then(([rows]) => {
       res.send(rows);
     })
@@ -45,7 +45,7 @@ const read = (req, res) => {
 };
 
 /* function that retrieves data with "get" by token */
-const findByToken = (req, res) => {
+const readByToken = (req, res) => {
   const id = req.payload.sub;
   models.user
     .find(id)
@@ -155,12 +155,12 @@ const updateAvatar = (req, res) => {
 
 module.exports = {
   browse,
-  browseByName,
+  readName,
   read,
   edit,
   add,
   destroy,
   updateAvatar,
-  findByToken,
+  readByToken,
   editPassword,
 };

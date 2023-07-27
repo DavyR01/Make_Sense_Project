@@ -15,7 +15,7 @@ const { verifyEmail } = require("./middlewares/verifyEmail");
 // call controller ******************************************
 const authControllers = require("./controllers/authController");
 const userControllers = require("./controllers/userControllers");
-const decisionControllers = require("./controllers/decisionController");
+const decisionController = require("./controllers/decisionController");
 const fileControllers = require("./controllers/fileController");
 const forgottenPassword = require("./controllers/forgottenPassword");
 const mailController = require("./controllers/mailController");
@@ -38,10 +38,12 @@ const {
 
 // routes for user ******************************************
 router.get("/user", verifyToken, userControllers.browse);
-router.get("/user/bytoken", verifyToken, userControllers.findByToken);
-router.get("/user/byname", userControllers.browseByName);
+router.get("/user/bytoken", verifyToken, userControllers.readByToken);
+
+// Permet d'afficher les personnes expertes et impactées lors de la création ou de l'édition d'une décision
+router.get("/user/byname", userControllers.readName);
 router.get("/user/:id", verifyToken, userControllers.read);
-router.put("/user/:id", verifyToken, validatorProfile, userControllers.edit);
+
 router.post(
   "/user",
   validateUserInscription,
@@ -49,6 +51,9 @@ router.post(
   hashPassword,
   userControllers.add
 );
+
+router.put("/user/:id", verifyToken, validatorProfile, userControllers.edit);
+
 router.delete("/user/:id", userControllers.destroy);
 
 // Route for login ******************************************
@@ -75,41 +80,54 @@ router.post(
 );
 
 // Routes for decision ***************************************
-router.get("/decision", verifyToken, decisionControllers.browse);
+
+// Affichage sur la page Accueil
+router.get("/decision", verifyToken, decisionController.readAll);
+
+// Affichage sur la page Décisions
 router.get(
   "/decision/page",
   verifyToken,
-  decisionControllers.browseByPageAndFilter
+  decisionController.readAllByPageAndFilter
 );
+
 router.get(
   "/decision/listadminbypage",
   verifyToken,
-  decisionControllers.browseAllByPageAndFilter
+  decisionController.browseAllByPageAndFilter
 );
-router.get("/decision/last", verifyToken, decisionControllers.readByLast);
-router.get("/decision/:id", verifyToken, decisionControllers.read);
+
+// Affichage sur Stepper Timeline sur page Accueil et Décisions
+router.get("/decision/last", verifyToken, decisionController.readByLast);
+
+router.get("/decision/:id", verifyToken, decisionController.read);
 
 // Sert à afficher les décisions d'un user sur son profil
 router.get(
   "/decision-byuser/:id",
   verifyToken,
-  decisionControllers.readDecisionByUserId
+  decisionController.readDecisionByUserId
 );
-router.put(
-  "/decision/:id",
-  verifyToken,
-  validatorEditDecision,
-  decisionControllers.editById
-);
+
 router.post(
   "/decision",
   verifyToken,
   validatorDecision,
-  decisionControllers.add
+  decisionController.add
 );
-router.delete("/decision/:id", verifyToken, decisionControllers.destroy);
+
+router.put(
+  "/decision/:id",
+  verifyToken,
+  validatorEditDecision,
+  decisionController.edit
+);
+
+router.delete("/decision/:id", verifyToken, decisionController.destroy);
 
 // Routes for update avatar **********************************
+router.get("/avatar/:fileName", fileControllers.sendAvatar);
+
 router.post(
   "/avatar",
   verifyToken,
@@ -117,16 +135,17 @@ router.post(
   fileControllers.renameAvatar,
   userControllers.updateAvatar
 );
-router.get("/avatar/:fileName", fileControllers.sendAvatar);
 
-// the following routes are used to add/update/delete comment from a chosen decision
-router.put("/decision/:id/comments/:id", verifyToken, commentControllers.edit);
+// the following routes are used to add/update/delete comments from a chosen decision
+
 router.post(
   "/decision/:id/comments",
   verifyToken,
   validatorComment,
   commentControllers.add
 );
+
+router.put("/decision/:id/comments/:id", verifyToken, commentControllers.edit);
 
 // Route for notification *********************************************
 router.get("/notification/:id", verifyToken, notificationControllers.browse);

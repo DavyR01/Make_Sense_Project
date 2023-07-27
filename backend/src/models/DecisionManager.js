@@ -7,21 +7,13 @@ class DecisionManager extends AbstractManager {
 
   // *************************************************** GET *******************************************************************
 
-  findAllWithUserId() {
+  // Utilisé pour afficher les décisions sur la page d'accueil
+  findAll() {
     return this.connection.query(
       `SELECT ${this.table}.id, title, content, impact, risk, benefits, date_decision_creation, date_decision_final, status_decision, user_id, firstname, lastname, avatar
     FROM ${this.table}
     LEFT JOIN user on ${this.table}.user_id = user.id
     ORDER BY date_decision_creation ASC`
-    );
-  }
-
-  findAllByIdWithUserId(id) {
-    return this.connection.query(
-      `SELECT ${this.table}.id, title, content, impact, risk, benefits, date_decision_creation, date_decision_final,status_decision, ${this.table}.user_id
-    FROM ${this.table} 
-    WHERE ${this.table}.id = ?`,
-      [id]
     );
   }
 
@@ -35,7 +27,7 @@ class DecisionManager extends AbstractManager {
     );
   }
 
-  // Permet d'afficher les données d'un décision selon l'ID
+  // Permet d'afficher les données d'une décision selon l'ID (utilisé sur le profil d'un user)
   findByUserId(id) {
     return this.connection.query(
       `SELECT ${this.table}.id, title, date_decision_creation, date_decision_final, status_decision, user_id, firstname, lastname, avatar 
@@ -46,7 +38,7 @@ class DecisionManager extends AbstractManager {
     );
   }
 
-  findLastdecision() {
+  findLast() {
     return this.connection.query(
       `SELECT date_decision_final, title, status_decision FROM ${this.table}
       WHERE status_decision = "En cours" 
@@ -85,31 +77,31 @@ class DecisionManager extends AbstractManager {
     );
   }
 
-  getNumberOfDecision() {
+  getNumber() {
     return this.connection.query(
       `SELECT COUNT(id) as decisions FROM ${this.table}`
     );
   }
 
-  getNumberOfDecisionAccepted() {
+  getNumberAccepted() {
     return this.connection.query(
       `SELECT COUNT(status_decision) as decisionsAccepted FROM ${this.table} where status_decision = 'Terminee'`
     );
   }
 
-  getNumberOfDecisionInProgress() {
+  getNumberInProgress() {
     return this.connection.query(
       `SELECT COUNT(status_decision) as decisionsInProgress FROM ${this.table} where status_decision = 'En cours'`
     );
   }
 
-  getNumberOfDecisionConflict() {
+  getNumberConflict() {
     return this.connection.query(
       `SELECT COUNT(status_decision) as decisionsconflict FROM ${this.table} where status_decision = 'En conflit'`
     );
   }
 
-  getNumberOfDecisionUnresolved() {
+  getNumberUnresolved() {
     return this.connection.query(
       `SELECT COUNT(status_decision) as decisionsunresolved FROM ${this.table} where status_decision = 'Non aboutie'`
     );
@@ -183,13 +175,6 @@ class DecisionManager extends AbstractManager {
 
   update(decision) {
     return this.connection.query(
-      `update ${this.table} set title = ? where id = ?`,
-      [decision.title, decision.id]
-    );
-  }
-
-  updateById(decision) {
-    return this.connection.query(
       `update ${this.table} set title = ?, content = ?, impact = ?, risk = ?, benefits = ?, status_decision = ?, date_decision_final = ? where id = ?`,
       [
         decision.title,
@@ -203,6 +188,8 @@ class DecisionManager extends AbstractManager {
       ]
     );
   }
+
+  // Les méthodes qui suivent sont utilisées pour l'update auto des status
 
   updateStatusTerminee(ids) {
     return this.connection.query(

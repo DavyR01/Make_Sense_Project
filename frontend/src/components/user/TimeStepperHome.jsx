@@ -13,8 +13,14 @@ export default function TimeStepperHome() {
   const { dark } = useCurrentDarkContext();
   const [decisions, setDecisions] = useState([]);
   const dateFormat = (date) => {
-    return date.slice(2, 10);
+    return date.slice(0, 10).split("-").reverse().join("-");
   };
+
+  // {valuesDetailsDecision?.date_decision_final
+  //   ?.slice(0, 10)
+  //   .split("-")
+  //   .reverse()
+  //   .join("/")}
 
   useEffect(() => {
     const myHeader = new Headers();

@@ -162,7 +162,7 @@ export default function DecisionCard({
             {convertDateFromApi(valueDetailsDecision.date_decision_creation)}
           </p>
           <p className="text-xs font-thin text-left text-gray-500">
-            {t("Fin de conflit le")} :{" "}
+            {t("Prend fin le")} :{" "}
             {convertDateFromApi(valueDetailsDecision.date_decision_final)}
           </p>
         </div>

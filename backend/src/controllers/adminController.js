@@ -12,24 +12,24 @@ const browseCount = (req, res) => {
       const stat = result[0];
 
       models.decision
-        .getNumberOfDecision()
+        .getNumber()
         .then(([resultdecision]) => {
           stat.decision = resultdecision[0].decisions;
 
           models.decision
-            .getNumberOfDecisionAccepted()
+            .getNumberAccepted()
             .then(([resultdecisionfinished]) => {
               stat.finished = resultdecisionfinished[0].decisionsAccepted;
               models.decision
-                .getNumberOfDecisionInProgress()
+                .getNumberInProgress()
                 .then(([resultprogress]) => {
                   stat.inprogress = resultprogress[0].decisionsInProgress;
                   models.decision
-                    .getNumberOfDecisionConflict()
+                    .getNumberConflict()
                     .then(([resultconflict]) => {
                       stat.conflict = resultconflict[0].decisionsconflict;
                       models.decision
-                        .getNumberOfDecisionUnresolved()
+                        .getNumberUnresolved()
                         .then(([resultunresolved]) => {
                           stat.unresolved =
                             resultunresolved[0].decisionsunresolved;
