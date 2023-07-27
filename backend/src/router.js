@@ -88,6 +88,8 @@ router.get(
 );
 router.get("/decision/last", verifyToken, decisionControllers.readByLast);
 router.get("/decision/:id", verifyToken, decisionControllers.read);
+
+// Sert à afficher les décisions d'un user sur son profil
 router.get(
   "/decision-byuser/:id",
   verifyToken,

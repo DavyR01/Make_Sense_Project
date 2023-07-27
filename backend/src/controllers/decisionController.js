@@ -1,6 +1,8 @@
 /* eslint-disable prefer-destructuring */
 const models = require("../models");
 
+// *************************************************** GET *******************************************************************
+
 const browse = async (req, res) => {
   try {
     const [rows] = await models.decision.findAllWithUserId();
@@ -62,6 +64,68 @@ const readByLast = async (req, res) => {
     res.sendStatus(500);
   }
 };
+
+const readDecisionByUserId = (req, res) => {
+  models.decision
+    .findByUserId(req.params.id)
+    .then(([rows]) => {
+      if (rows[0] == null) {
+        res.sendStatus(404);
+      } else {
+        res.send(rows);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+// *************************************************** POST *******************************************************************
+
+const add = (req, res) => {
+  const decision = req.body;
+  const experts = req.body.person_expert;
+  const concerns = req.body.person_concern;
+  const notif = req.body.notif;
+
+  // TODO validations (length, format...)
+  models.decision
+    .insert(decision)
+    .then(([result]) => {
+      models.person_expert
+        .insert(result.insertId, experts)
+        .then(() => {
+          models.person_concern
+            .insert(result.insertId, concerns)
+            .then(() => {
+              models.notification
+                .insert(result.insertId, notif)
+                .then(() => {
+                  res.location(`/decision/${result.insertId}`).sendStatus(201);
+                })
+                .catch((err) => {
+                  console.error(err);
+                  res.sendStatus(500);
+                });
+            })
+            .catch((err) => {
+              console.error(err);
+              res.sendStatus(500);
+            });
+        })
+        .catch((err) => {
+          console.error(err);
+          res.sendStatus(500);
+        });
+    })
+    .catch((err) => {
+      console.error(err);
+      res.sendStatus(500);
+    });
+};
+
+// *************************************************** PUT *******************************************************************
 
 const edit = (req, res) => {
   const decision = req.body;
@@ -131,47 +195,7 @@ const editById = (req, res) => {
     });
 };
 
-const add = (req, res) => {
-  const decision = req.body;
-  const experts = req.body.person_expert;
-  const concerns = req.body.person_concern;
-  const notif = req.body.notif;
-
-  // TODO validations (length, format...)
-  models.decision
-    .insert(decision)
-    .then(([result]) => {
-      models.person_expert
-        .insert(result.insertId, experts)
-        .then(() => {
-          models.person_concern
-            .insert(result.insertId, concerns)
-            .then(() => {
-              models.notification
-                .insert(result.insertId, notif)
-                .then(() => {
-                  res.location(`/decision/${result.insertId}`).sendStatus(201);
-                })
-                .catch((err) => {
-                  console.error(err);
-                  res.sendStatus(500);
-                });
-            })
-            .catch((err) => {
-              console.error(err);
-              res.sendStatus(500);
-            });
-        })
-        .catch((err) => {
-          console.error(err);
-          res.sendStatus(500);
-        });
-    })
-    .catch((err) => {
-      console.error(err);
-      res.sendStatus(500);
-    });
-};
+// *************************************************** DELETE *******************************************************************
 
 const destroy = (req, res) => {
   const decisionId = parseInt(req.params.id, 10);
@@ -206,21 +230,7 @@ const destroy = (req, res) => {
   });
 };
 
-const readDecisionByUserId = (req, res) => {
-  models.decision
-    .findByUserId(req.params.id)
-    .then(([rows]) => {
-      if (rows[0] == null) {
-        res.sendStatus(404);
-      } else {
-        res.send(rows);
-      }
-    })
-    .catch((err) => {
-      console.error(err);
-      res.sendStatus(500);
-    });
-};
+// ******************************************************** GESTION AUTOUPDATE STATUS *************************************************************************************************************
 
 // Put every decision_id from result in an array to pass to manager
 const idsDecisionsOnlyPour = (result) => {
@@ -230,8 +240,6 @@ const idsDecisionsOnlyPour = (result) => {
   }
   return ids;
 };
-
-// *********************************************************************************************************************************************************************
 
 // update status decision to "terminee depending on date and vote"
 const autoUpdateStatusTDecisionTermineeByDateAndVote = (req, res) => {
@@ -342,7 +350,7 @@ const autoUpdateStatusNonAboutieWithDateConflict = (req, res) => {
 // execute function 2 minutes
 setInterval(autoUpdateStatusNonAboutieWithDateConflict, 1000 * 60 * 8);
 
-// ****************************************************************************************************************************************************************
+// *********************************************************** GESTION PAGINATION *****************************************************************************************************
 
 // search decision by page (in front)
 const browseByPageAndFilter = (req, res) => {

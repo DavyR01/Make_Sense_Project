@@ -5,45 +5,7 @@ class DecisionManager extends AbstractManager {
     super({ table: "decision" });
   }
 
-  insert(decision) {
-    return this.connection.query(
-      `insert into ${this.table} (title, content, impact, risk, benefits, date_decision_creation, date_decision_final, status_decision, user_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-      [
-        decision.title,
-        decision.content,
-        decision.impact,
-        decision.risk,
-        decision.benefits,
-        decision.date_decision_creation,
-        decision.date_decision_final,
-        decision.status_decision,
-        decision.user_id,
-      ]
-    );
-  }
-
-  update(decision) {
-    return this.connection.query(
-      `update ${this.table} set title = ? where id = ?`,
-      [decision.title, decision.id]
-    );
-  }
-
-  updateById(decision) {
-    return this.connection.query(
-      `update ${this.table} set title = ?, content = ?, impact = ?, risk = ?, benefits = ?, status_decision = ?, date_decision_final = ? where id = ?`,
-      [
-        decision.title,
-        decision.content,
-        decision.impact,
-        decision.risk,
-        decision.benefits,
-        decision.status_decision,
-        decision.date_decision_final,
-        decision.id,
-      ]
-    );
-  }
+  // *************************************************** GET *******************************************************************
 
   findAllWithUserId() {
     return this.connection.query(
@@ -73,6 +35,7 @@ class DecisionManager extends AbstractManager {
     );
   }
 
+  // Permet d'afficher les données d'un décision selon l'ID
   findByUserId(id) {
     return this.connection.query(
       `SELECT ${this.table}.id, title, date_decision_creation, date_decision_final, status_decision, user_id, firstname, lastname, avatar 
@@ -107,57 +70,18 @@ class DecisionManager extends AbstractManager {
     );
   }
 
-  updateStatusTerminee(ids) {
-    return this.connection.query(
-      `UPDATE ${this.table}
-      SET status_decision = 'Terminee'
-      WHERE decision.id IN (?)
-      AND status_decision = 'En cours'`,
-      [ids]
-    );
-  }
-
   // A voir
   findIdByVoteAndDateDecisionContre() {
     return this.connection.query(
       `SELECT comment.decision_id,
-      SUM(case when comment.vote = 'Pour' then 1 else 0 end) AS nbVotePour,
-      SUM(case when comment.vote = 'Contre' then 1 else 0 end) AS nbVoteContre
-      FROM comment
-      JOIN decision ON decision.id = comment.decision_id
-      WHERE comment.date_creation = (SELECT MAX(date_creation))
-      AND comment.date_creation <= DATE_SUB(NOW(), INTERVAL 10 MONTH)
-      GROUP BY decision_id
-      HAVING nbVoteContre > 0;`
-    );
-  }
-
-  updateStatusNonAboutie(ids) {
-    return this.connection.query(
-      `UPDATE ${this.table}
-      SET status_decision = 'Non aboutie'
-      WHERE decision.id IN (?)
-      AND status_decision = 'En cours'`,
-      [ids]
-    );
-  }
-  // decision.id IN (?) : cette condition vérifie si l'identifiant de la décision se trouve dans le tableau ids passé en tant qu'argument.
-
-  updateStatusTermineeByDateConflict() {
-    return this.connection.query(
-      `UPDATE ${this.table}
-      SET status_decision = 'Terminee'
-      WHERE date_decision_final <= NOW()
-      AND status_decision = 'En cours'`
-    );
-  }
-
-  updateStatusNonAboutieByDateConflict() {
-    return this.connection.query(
-      `UPDATE ${this.table}
-      SET status_decision = 'Non aboutie'
-      WHERE date_decision_final <= NOW()
-      AND status_decision = 'En conflit'`
+        SUM(case when comment.vote = 'Pour' then 1 else 0 end) AS nbVotePour,
+        SUM(case when comment.vote = 'Contre' then 1 else 0 end) AS nbVoteContre
+        FROM comment
+        JOIN decision ON decision.id = comment.decision_id
+        WHERE comment.date_creation = (SELECT MAX(date_creation))
+        AND comment.date_creation <= DATE_SUB(NOW(), INTERVAL 10 MONTH)
+        GROUP BY decision_id
+        HAVING nbVoteContre > 0;`
     );
   }
 
@@ -235,6 +159,91 @@ class DecisionManager extends AbstractManager {
        LIMIT ${limit} OFFSET ${offset}`
     );
   }
+
+  // *************************************************** POST *******************************************************************
+
+  insert(decision) {
+    return this.connection.query(
+      `insert into ${this.table} (title, content, impact, risk, benefits, date_decision_creation, date_decision_final, status_decision, user_id) values (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [
+        decision.title,
+        decision.content,
+        decision.impact,
+        decision.risk,
+        decision.benefits,
+        decision.date_decision_creation,
+        decision.date_decision_final,
+        decision.status_decision,
+        decision.user_id,
+      ]
+    );
+  }
+
+  // *************************************************** PUT *******************************************************************
+
+  update(decision) {
+    return this.connection.query(
+      `update ${this.table} set title = ? where id = ?`,
+      [decision.title, decision.id]
+    );
+  }
+
+  updateById(decision) {
+    return this.connection.query(
+      `update ${this.table} set title = ?, content = ?, impact = ?, risk = ?, benefits = ?, status_decision = ?, date_decision_final = ? where id = ?`,
+      [
+        decision.title,
+        decision.content,
+        decision.impact,
+        decision.risk,
+        decision.benefits,
+        decision.status_decision,
+        decision.date_decision_final,
+        decision.id,
+      ]
+    );
+  }
+
+  updateStatusTerminee(ids) {
+    return this.connection.query(
+      `UPDATE ${this.table}
+      SET status_decision = 'Terminee'
+      WHERE decision.id IN (?)
+      AND status_decision = 'En cours'`,
+      [ids]
+    );
+  }
+
+  updateStatusNonAboutie(ids) {
+    return this.connection.query(
+      `UPDATE ${this.table}
+      SET status_decision = 'Non aboutie'
+      WHERE decision.id IN (?)
+      AND status_decision = 'En cours'`,
+      [ids]
+    );
+  }
+  // decision.id IN (?) : cette condition vérifie si l'identifiant de la décision se trouve dans le tableau ids passé en tant qu'argument.
+
+  updateStatusTermineeByDateConflict() {
+    return this.connection.query(
+      `UPDATE ${this.table}
+      SET status_decision = 'Terminee'
+      WHERE date_decision_final <= NOW()
+      AND status_decision = 'En cours'`
+    );
+  }
+
+  updateStatusNonAboutieByDateConflict() {
+    return this.connection.query(
+      `UPDATE ${this.table}
+      SET status_decision = 'Non aboutie'
+      WHERE date_decision_final <= NOW()
+      AND status_decision = 'En conflit'`
+    );
+  }
+
+  // *************************************************** DELETE *******************************************************************
 }
 
 module.exports = DecisionManager;
