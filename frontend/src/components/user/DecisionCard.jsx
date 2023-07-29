@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../../css/user/decisionCard.css";
 import { NavLink, useNavigate } from "react-router-dom";
-import toast, { Toaster } from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 import iconTrash from "../../assets/icons/trash-orange.svg";
 import { useCurrentDarkContext } from "../../context/DarkContext";
@@ -31,12 +30,6 @@ export default function DecisionCard({
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  // for alert notification error delete decision after submit
-  const notify = () =>
-    toast.error(
-      "Une erreure est survenue, veuillez recommencer ou contacter l'administrateur du site"
-    );
-
   // function to convert status of decision from API to class name
   const statusForClassname = () => {
     if (valueDetailsDecision.status_decision) {
@@ -51,24 +44,14 @@ export default function DecisionCard({
     const myHeaders = new Headers();
     myHeaders.append("Authorization", `Bearer ${token}`);
 
-    toast
-      .promise(
-        fetch(`${backEnd}/decision/${valueDetailsDecision.id}`, {
-          method: "delete",
-          redirect: "follow",
-          headers: myHeaders,
-        }),
-        {
-          loading: "Suppression en cours",
-          success: "La supression a bien été transmise",
-          error:
-            "Une erreur sur le serveur est survenue lors de la suppression",
-        }
-      )
+    fetch(`${backEnd}/decision/${valueDetailsDecision.id}`, {
+      method: "delete",
+      redirect: "follow",
+      headers: myHeaders,
+    })
       .then((response) => {
         if (response.status !== 204) {
           console.warn("error", response.status);
-          notify();
         }
       })
       .then(() => {
@@ -99,7 +82,6 @@ export default function DecisionCard({
         dark ? "" : "bg-dark-bg"
       }`}
     >
-      <Toaster position="top-center" reverseOrder={false} />
       <AlertDeleteDecision
         openModalAlertDelete={openModalAlertDelete}
         setOpenModalAlertDelete={setOpenModalAlertDelete}
@@ -107,7 +89,9 @@ export default function DecisionCard({
       />
       {valueDetailsDecision.user_id === user.id ? (
         <div className="flex justify-between">
-          <div className={statusForClassname()} />
+          <NavLink to={`/decision/${valueDetailsDecision.id}`}>
+            <div className={statusForClassname()} />
+          </NavLink>{" "}
           <button type="button" onClick={() => setOpenModalAlertDelete(true)}>
             <div className="wrapForHide flex justify-center flex-row items-center group-hover:opacity-50">
               <span className="spanhidden text-xs text-slate-400">
@@ -119,7 +103,9 @@ export default function DecisionCard({
         </div>
       ) : (
         <div className="flex justify-between items-center">
-          <div className={statusForClassname()} />
+          <NavLink to={`/decision/${valueDetailsDecision.id}`}>
+            <div className={statusForClassname()} />
+          </NavLink>{" "}
           {/* Permet d'afficher les
           couleurs des status sur les décisions. */}
           <button

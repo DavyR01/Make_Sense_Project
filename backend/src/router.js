@@ -100,7 +100,8 @@ router.get(
 // Affichage sur Stepper Timeline sur page Accueil et Décisions
 router.get("/decision/last", verifyToken, decisionController.readByLast);
 
-router.get("/decision/:id", verifyToken, decisionController.read);
+// Affichage d'une décision avec ID
+router.get("/decision/:id", verifyToken, decisionController.readOne);
 
 // Sert à afficher les décisions d'un user sur son profil
 router.get(

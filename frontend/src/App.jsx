@@ -98,10 +98,11 @@ function App() {
         <Routes>
           <Route path="/help" element={<Help />} />
           <Route path="/legal-notice" element={<LegalNotice />} />
-          <Route
+          <Route path="/home" element={<HomeUser />} />
+          {/*           <Route
             path="/home"
             element={<HomeUser open={open} setOpen={setOpen} />}
-          />
+          /> */}
           <Route path="/" element={<Authentification />} />
           <Route path="/create-decision" element={<CreateDecision />} />
           <Route path="/my-profile" element={<MyProfile />} />
@@ -115,10 +116,14 @@ function App() {
             path="/decision/:id/comments/:id"
             element={<DecisionDetails />}
           />
-          <Route
+
+          <Route path="/edit-decision/:id" element={<EditDecision />} />
+
+          {/* <Route
             path="/edit-decision/:id"
             element={<EditDecision valuesDetailsDecisions />}
-          />
+          /> */}
+
           {/*  route admin */}
           <Route
             path="/homeadmin"

@@ -101,6 +101,7 @@ export default function Home() {
         </div>
         <div className="md:grid md:col-start-1 md:col-end-4 md:ml-10 md:justify-start flex justify-center items-center md:w-screen">
           <div className="md:grid md:grid-cols-3 xl:grid-cols-4 grid-rows-2 gap-4">
+            {/* Affiche uniquement ses décisions */}
             {valuesDetailsDecisions.map((valueDetailsDecision) => {
               if (valueDetailsDecision.user_id === user.id) {
                 return (
@@ -137,9 +138,12 @@ export default function Home() {
         <div className="box col-start-1 col-end-4 md:ml-10 md:justify-start flex justify-center items-center z-0 md:w-screen">
           <div className="md:grid md:mb-5 md:grid-cols-3 xl:grid-cols-4 gap-4 z-0">
             {valuesDetailsDecisions.slice(0, 9).map((valueDetailsDecision) => {
+              // Affiche uniquement les décisions en cours et en conflit dans 'toutes les décisions'
               if (
                 valueDetailsDecision.status_decision === "En cours" ||
                 valueDetailsDecision.status_decision === "En conflit"
+                // valueDetailsDecision.status_decision === "Terminee" ||
+                // valueDetailsDecision.status_decision === "Non aboutie"
               ) {
                 return (
                   <DecisionCard

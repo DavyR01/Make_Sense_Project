@@ -14,7 +14,8 @@ const readAll = async (req, res) => {
   }
 };
 
-const read = (req, res) => {
+// Affichage d'une décision avec ID
+const readOne = (req, res) => {
   models.decision
     .find(req.params.id)
     .then(([result]) => {
@@ -340,7 +341,7 @@ const browseAllByPageAndFilter = (req, res) => {
 
 module.exports = {
   readAll,
-  read,
+  readOne,
   add,
   destroy,
   edit,
