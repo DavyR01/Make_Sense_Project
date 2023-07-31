@@ -32,7 +32,7 @@ import Messages from "./pages/administrator/Messages";
 import Error from "./pages/Error";
 
 function App() {
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false); // Notifications
   const [email, setEmail] = useState();
   const [open, setOpen] = useState(true);
   const [openMobile, setOpenMobile] = useState(false);
@@ -40,10 +40,10 @@ function App() {
   const { token } = useCurrentUserContext();
   const navigate = useNavigate();
 
-  const [checked, setChecked] = useState(true);
-  const handleChecked = () => {
-    setChecked(!checked);
-    if (!checked) {
+  const [userStatut, setUserStatut] = useState(true);
+  const handleCheckedUserStatut = () => {
+    setUserStatut(!userStatut);
+    if (!userStatut) {
       navigate("/home");
     } else {
       navigate("/homeadmin");
@@ -67,9 +67,9 @@ function App() {
               setShowModal={setShowModal}
               open={open}
               setOpen={setOpen}
-              checked={checked}
-              setChecked={setChecked}
-              handleChecked={handleChecked}
+              userStatut={userStatut}
+              setUserStatut={setUserStatut}
+              handleCheckedUserStatut={handleCheckedUserStatut}
             />
           </aside>
           <div className="w-screen lg:hidden fixed bottom-0 left-0 right-0 z-50">
@@ -78,15 +78,17 @@ function App() {
               setShowModal={setShowModal}
               open={open}
               setOpen={setOpen}
-              checked={checked}
-              setChecked={setChecked}
-              handleChecked={handleChecked}
+              userStatut={userStatut}
+              setUserStatut={setUserStatut}
+              handleCheckedUserStatut={handleCheckedUserStatut}
               openMobile={openMobile}
               setOpenMobile={setOpenMobile}
             />
           </div>
         </div>
       )}
+
+      {/* Gestion modal Notifications :  */}
       {showModal ? (
         <NotificationModal
           showModal={showModal}
@@ -96,8 +98,8 @@ function App() {
       ) : null}
       {token ? (
         <Routes>
-          <Route path="/help" element={<Help />} />
-          <Route path="/legal-notice" element={<LegalNotice />} />
+          {/* <Route path="/help" element={<Help />} />
+          <Route path="/legal-notice" element={<LegalNotice />} /> */}
           <Route path="/home" element={<HomeUser />} />
           {/*           <Route
             path="/home"
@@ -131,9 +133,9 @@ function App() {
               <HomeAdmin
                 open={open}
                 setOpen={setOpen}
-                checked={checked}
-                setChecked={setChecked}
-                handleChecked={handleChecked}
+                userStatut={userStatut}
+                setUserStatut={setUserStatut}
+                handleCheckedUserStatut={handleCheckedUserStatut}
               />
             }
           />

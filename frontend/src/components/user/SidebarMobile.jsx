@@ -13,8 +13,8 @@ export default function SidebarMobile({
   setShowModal,
   openMobile,
   setOpenMobile,
-  checked,
-  handleChecked,
+  userStatut,
+  handleCheckedUserStatut,
 }) {
   const { user, setUser } = useCurrentUserContext();
   const { lang, toggleLang } = useCurrentLangContext();
@@ -59,8 +59,8 @@ export default function SidebarMobile({
                 <Switch
                   id="amber"
                   color="amber"
-                  value={checked}
-                  onClick={handleChecked}
+                  value={userStatut}
+                  onClick={handleCheckedUserStatut}
                 />{" "}
                 <p className={`${openMobile ? "text-l mt-1 ml-3" : ""}`}>
                   Admin ?
@@ -79,7 +79,7 @@ export default function SidebarMobile({
               </p>
             </div>
           </div>
-          {checked ? (
+          {userStatut ? (
             <div className="mt-[20px] ">
               <NavLink
                 to="/home"

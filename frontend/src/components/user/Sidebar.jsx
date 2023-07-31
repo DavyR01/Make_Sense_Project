@@ -13,8 +13,8 @@ export default function Sidebar({
   setOpen,
   showModal,
   setShowModal,
-  checked,
-  handleChecked,
+  userStatut,
+  handleCheckedUserStatut,
 }) {
   const { user, setUser } = useCurrentUserContext();
   const { t } = useTranslation();
@@ -60,13 +60,13 @@ export default function Sidebar({
           <Switch
             id="amber"
             color="amber"
-            value={checked}
-            onClick={handleChecked}
+            value={userStatut}
+            onClick={handleCheckedUserStatut}
           />{" "}
           <p className={`${open ? "text-l mt-1 pl-3" : "hidden"}`}>Admin ?</p>
         </div>
       ) : null}
-      {checked ? (
+      {userStatut ? (
         <>
           {" "}
           <svg

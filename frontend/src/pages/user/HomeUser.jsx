@@ -28,6 +28,7 @@ export default function Home() {
   };
 
   // fetch all datas with LEFT JOIN on user_id of decisions from API
+
   useEffect(() => {
     const myHeader = new Headers();
     myHeader.append("Authorization", `Bearer ${token}`);
@@ -40,7 +41,7 @@ export default function Home() {
       .then((response) => response.json())
       .then((result) => setValuesDetailsDecisions(result))
       .catch((error) => console.warn("error", error));
-  }, [token]);
+  }, [token, valuesDetailsDecisions]);
 
   return (
     <div
