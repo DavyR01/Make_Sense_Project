@@ -1,6 +1,6 @@
 const models = require("../models");
 
-const getUserByEmailWithPasswordAndPassToNext = (req, res, next) => {
+const checkMailUser = (req, res, next) => {
   const { email } = req.body;
 
   models.user
@@ -19,5 +19,5 @@ const getUserByEmailWithPasswordAndPassToNext = (req, res, next) => {
 };
 
 module.exports = {
-  getUserByEmailWithPasswordAndPassToNext,
+  checkMailUser,
 };

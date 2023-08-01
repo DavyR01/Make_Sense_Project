@@ -1,8 +1,11 @@
 const Joi = require("joi");
 
 const decisionSchema = Joi.object({
-  title: Joi.string().min(3).max(255).required(),
+  title: Joi.string().min(3).max(255),
   content: Joi.string().required(),
+  impact: Joi.string().required(),
+  // risk: Joi.string().required(), // Non présent dans le formulaire
+  benefits: Joi.string().required(),
   date_decision_final: Joi.date(),
   status_decision: Joi.string().min(3).max(45).required(),
   user_id: Joi.number().integer().required(),
@@ -15,6 +18,9 @@ const validatorDecision = (req, res, next) => {
   const {
     title,
     content,
+    impact,
+    // risk, // Non présent dans le formulaire
+    benefits,
     date_decision_final,
     status_decision,
     user_id,
@@ -26,6 +32,9 @@ const validatorDecision = (req, res, next) => {
     {
       title,
       content,
+      impact,
+      // risk, // Non présent dans le formulaire
+      benefits,
       date_decision_final,
       status_decision,
       user_id,

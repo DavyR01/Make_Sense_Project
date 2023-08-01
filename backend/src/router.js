@@ -57,10 +57,11 @@ router.put("/user/:id", verifyToken, validatorProfile, userControllers.edit);
 router.delete("/user/:id", userControllers.destroy);
 
 // Route for login ******************************************
+
 router.post(
   "/login",
   validateUserConnexion,
-  authControllers.getUserByEmailWithPasswordAndPassToNext,
+  authControllers.checkMailUser,
   verifyPassword
 );
 
