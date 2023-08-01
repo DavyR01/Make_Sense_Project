@@ -105,6 +105,8 @@ export default function CreateDecision() {
       headers: myHeaders,
     })
       .then((response) => {
+        response.json();
+
         if (response.status === 201) {
           success();
           setTimeout(() => {
