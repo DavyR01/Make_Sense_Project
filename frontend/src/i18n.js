@@ -117,6 +117,7 @@ const resources = {
       "Statut de la décision": "Statut de la décision",
       "Actuel statut": "Actuel",
       "Cliquer pour changer de statut": "Cliquer pour changer de statut",
+      // "Deadline pour décision finale": "essai",
 
       // page user
       "Profile de": "Profile de",

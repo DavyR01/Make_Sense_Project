@@ -155,7 +155,7 @@ export default function EditDecision() {
         }
       )
       .then((response) => {
-        // response.json();
+        response.json();
 
         if (response.status === 201) {
           setTimeout(() => {
@@ -278,7 +278,7 @@ export default function EditDecision() {
             modules={modules}
           />
           <h2 className="mt-8 mb-3">
-            {`Deadline pour rentrer en conflit (Actuel : ${dateConvertedToDisplayDateFormat(
+            {`Deadline pour décision finale (Actuel : ${dateConvertedToDisplayDateFormat(
               valueDefaultDateOfConflict
             )})
             :`}
