@@ -18,13 +18,15 @@ export default function Home() {
   const [valuesDetailsDecisions, setValuesDetailsDecisions] = useState([]);
   const { token } = useCurrentUserContext();
   const { dark } = useCurrentDarkContext();
+
   // function to update the array of decisions after delete one decision
   const updateArrayDecisionsAfterDelete = (id) => {
     const indexOfValueDecision = valuesDetailsDecisions.findIndex(
       (obj) => obj.id === id
     );
-    valuesDetailsDecisions.splice(indexOfValueDecision, 1);
-    setValuesDetailsDecisions([...valuesDetailsDecisions]);
+    const newValuesDetailsDecisions = [...valuesDetailsDecisions];
+    newValuesDetailsDecisions.splice(indexOfValueDecision, 1);
+    setValuesDetailsDecisions([newValuesDetailsDecisions]);
   };
 
   // fetch all datas with LEFT JOIN on user_id of decisions from API
@@ -42,6 +44,8 @@ export default function Home() {
       .then((result) => setValuesDetailsDecisions(result))
       .catch((error) => console.warn("error", error));
   }, [token, valuesDetailsDecisions]);
+
+  // console.log(token);
 
   return (
     <div
