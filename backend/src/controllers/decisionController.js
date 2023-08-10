@@ -62,7 +62,7 @@ const readDecisionByUserId = (req, res) => {
 
 // *************************************************** POST *******************************************************************
 
-const add = (req, res) => {
+/* const add = (req, res) => {
   const decision = req.body;
 
   models.decision
@@ -74,43 +74,84 @@ const add = (req, res) => {
       console.error(err);
       res.sendStatus(500);
     });
+}; */
+
+const add = async (req, res) => {
+  const decision = req.body;
+
+  try {
+    const [result] = await models.decision.insert(decision);
+    res.location(`/decision/${result.insertId}`).sendStatus(201);
+  } catch (err) {
+    console.error(err);
+    res.sendStatus(500);
+  }
 };
 
 // *************************************************** PUT *******************************************************************
 
-const edit = (req, res) => {
+// const edit = (req, res) => {
+//   const decision = req.body;
+//   decision.id = parseInt(req.params.id, 10);
+
+//   models.decision
+//     .update(decision)
+//     .then(([result]) => {
+//       if (result.affectedRows === 0) {
+//         res.sendStatus(404);
+//       } else {
+//         res.location(`/decision/${decision.insertId}`).sendStatus(201);
+//       }
+//     })
+//     .catch((err) => {
+//       console.error(err);
+//       res.sendStatus(500);
+//     });
+// };
+
+const edit = async (req, res) => {
   const decision = req.body;
   decision.id = parseInt(req.params.id, 10);
 
-  models.decision
-    .update(decision)
-    .then(([result]) => {
-      if (result.affectedRows === 0) {
-        res.sendStatus(404);
-      } else {
-        res.location(`/decision/${decision.insertId}`).sendStatus(201);
-      }
-    })
-    .catch((err) => {
-      console.error(err);
-      res.sendStatus(500);
-    });
+  try {
+    const [result] = await models.decision.update(decision);
+    if (result.affectedRows === 0) {
+      res.sendStatus(404);
+    } else {
+      res.location(`/decision/${decision.insertId}`).sendStatus(201);
+    }
+  } catch (err) {
+    console.error(err);
+    res.sendStatus(500);
+  }
 };
 
 // *************************************************** DELETE *******************************************************************
 
 // Dans cette fonction, on utilise la méthode delete directement sans passer par le fichier manager
-const destroy = (req, res) => {
+// const destroy = (req, res) => {
+//   const decisionId = parseInt(req.params.id, 10);
+//   models.decision
+//     .delete(decisionId)
+//     .then(() => {
+//       res.sendStatus(204);
+//     })
+//     .catch((err) => {
+//       console.error(err);
+//       res.sendStatus(500);
+//     });
+// };
+
+const destroy = async (req, res) => {
   const decisionId = parseInt(req.params.id, 10);
-  models.decision
-    .delete(decisionId)
-    .then(() => {
-      res.sendStatus(204);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.sendStatus(500);
-    });
+
+  try {
+    await models.decision.delete(decisionId);
+    res.sendStatus(204);
+  } catch (err) {
+    console.error(err);
+    res.sendStatus(500);
+  }
 };
 
 // ******************************************************** GESTION AUTOUPDATE STATUS *************************************************************************************************************
