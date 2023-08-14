@@ -31,7 +31,16 @@ import DecisionsList from "./pages/administrator/DecisionsList";
 import Messages from "./pages/administrator/Messages";
 import Error from "./pages/Error";
 
-function App() {
+// Exemple utilisation extension BetterComments
+/**
+ * todo Refactor this method
+ * * Important information
+ * ? Should this method be used ?
+ * ! Deprecated method, don't use it
+ * @returns
+ */
+
+export default function App() {
   const [showModal, setShowModal] = useState(false); // Notifications
   const [email, setEmail] = useState();
   const [open, setOpen] = useState(true);
@@ -52,6 +61,7 @@ function App() {
 
   return (
     <div className="flex flex-col md:flex-row h-full ">
+      {/* Gestion affichage barre de navigation selon l'URL sur laquelle on se trouve. */}
       {location.pathname === "/" ||
       location.pathname === "/inscription" ||
       location.pathname === "/motdepasseoublie" ||
@@ -88,7 +98,7 @@ function App() {
         </div>
       )}
 
-      {/* Gestion modal Notifications :  */}
+      {/* Gestion affichage modal notifications :  */}
       {showModal ? (
         <NotificationModal
           showModal={showModal}
@@ -96,11 +106,20 @@ function App() {
           setShowModal={setShowModal}
         />
       ) : null}
+
+      {/* Gestion affichage routes selon si on est connecté ou non, donc si il y a
+      présence ou non d'un token dans le local storage (token importé grâce au
+      Context) */}
       {token ? (
         <Routes>
           {/* <Route path="/help" element={<Help />} />
           <Route path="/legal-notice" element={<LegalNotice />} /> */}
+
           <Route path="/home" element={<HomeUser />} />
+
+          {/* <Route path="/" element={<Navigate to="/home" replace />} />
+          <Route path="/home" element={<HomeUser />} /> */}
+
           {/*           <Route
             path="/home"
             element={<HomeUser open={open} setOpen={setOpen} />}
@@ -169,5 +188,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

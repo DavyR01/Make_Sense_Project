@@ -124,7 +124,7 @@ export default function DecisionsList() {
         }
       })
       .then(() => {
-        updateArrayDecisionsAfterDelete(idDecisionToDelete);
+        updateArrayDecisionsAfterDelete(idDecisionToDelete); // Permet de mettre à jour le composant autmatiquement au moment de la suppression
       })
       .catch((error) => console.warn("error", error));
   };
