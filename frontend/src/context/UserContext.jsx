@@ -32,3 +32,4 @@ export function CurrentUserContextProvider({ children }) {
 }
 
 export const useCurrentUserContext = () => useContext(CurrentUserContext);
+// en utilisant une fonction intermédiaire, vous encapsulez l'appel à useContext(CurrentUserContext) dans une fonction personnalisée (contrairement à l'appel direct). Nous aurons donc plus de flexibilité pour gérer les opérations personnalisées et les modifications futures du hook.

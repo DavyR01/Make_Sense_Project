@@ -104,7 +104,7 @@ CREATE TABLE person_concern (
   CONSTRAINT person_concern_ibfk_2 FOREIGN KEY (decision_id) REFERENCES decision(id) ON DELETE CASCADE
 );
 
-INSERT INTO person_concern (user_id, decision_id) VALUES ("5", "7"), ("4", "8"), ("1", "3"), ("2", "14"), ("8", "10"), ("5", "6"), ("2", "11"), ("1", "12"), ("2", "12"), ("3", "12"), ("5", "8"), ("3", "2"), ("4", "12");
+INSERT INTO person_concern (user_id, decision_id) VALUES ("5", "7"), ("4", "8"), ("1", "3"), ("2", "14"), ("8", "10"), ("5", "6"), ("2", "11"), ("1", "12"), ("2", "12"), ("3", "12"), ("5", "8"), ("3", "2"), ("4", "12"), ("8", "15");
 
 DROP TABLE IF EXISTS message_help;
 
