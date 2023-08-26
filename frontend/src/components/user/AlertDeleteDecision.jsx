@@ -8,7 +8,7 @@ function AlertDeleteDecision({
   setOpenModalAlertDelete,
   openModalAlertDelete,
 }) {
-  const cancelButtonRef = useRef(null);
+  const cancelButtonRef = useRef(null); // Va permettre d'initialiser le focus sur "Annuler" lors de l'ouverture de la fenêtre de dialogue.
   const { t } = useTranslation();
 
   return (
