@@ -155,7 +155,7 @@ export default function EditDecision() {
         }
       )
       .then((response) => {
-        response.json();
+        // response.json();
 
         if (response.status === 201) {
           setTimeout(() => {
