@@ -2,7 +2,7 @@ require("dotenv").config();
 const argon2 = require("argon2");
 const jwt = require("jsonwebtoken");
 
-const { JWT_SECRET } = process.env;
+const { JWT_SECRET, JWT_TIMING } = process.env;
 
 const hashingOptions = {
   type: argon2.argon2id,
@@ -36,7 +36,7 @@ const verifyPassword = async (req, res) => {
 
       const token = jwt.sign(payload, JWT_SECRET, {
         algorithm: "HS512",
-        expiresIn: "12h",
+        expiresIn: JWT_TIMING,
       });
 
       delete req.user.hashedPassword;

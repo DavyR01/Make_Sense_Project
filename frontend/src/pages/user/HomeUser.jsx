@@ -43,7 +43,7 @@ export default function Home() {
       .then((response) => response.json())
       .then((result) => setValuesDetailsDecisions(result))
       .catch((error) => console.warn("error", error));
-  }, [token, valuesDetailsDecisions]);
+  }, [token]);
 
   return (
     <div
