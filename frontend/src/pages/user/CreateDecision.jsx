@@ -22,7 +22,7 @@ export default function CreateDecision() {
   const { t } = useTranslation();
   const { user, token } = useCurrentUserContext();
   const { dark } = useCurrentDarkContext();
-  const [title, setTitleDecision] = useState("");
+  const [titleee, setTitleDecision] = useState("");
   const [content, setValueDecision] = useState("");
   const [impact, setValueImpactOfDecision] = useState("");
   const [benefits, setValueBenefitsOfDecision] = useState("");
@@ -84,7 +84,7 @@ export default function CreateDecision() {
     myHeaders.append("Content-Type", "application/json");
 
     const raw = JSON.stringify({
-      title,
+      title: titleee,
       content,
       impact,
       risk,
@@ -101,10 +101,12 @@ export default function CreateDecision() {
     fetch(`${backEnd}/decision`, {
       method: "POST",
       redirect: "follow",
-      body: raw,
+      body: raw, // * Dans body se situe les champs de la base de données directement. On doit faire correspondre le nom du state et du champs. Voir exemple title.
       headers: myHeaders,
     })
       .then((response) => {
+        // response.json(); // A voir
+
         if (response.status === 201) {
           success();
           setTimeout(() => {
@@ -202,7 +204,7 @@ export default function CreateDecision() {
               <input
                 onChange={(e) => setTitleDecision(e.target.value)}
                 type="text"
-                value={title}
+                value={titleee}
                 id="title-input"
                 className={`border border-gray-300  text-sm rounded-xl block w-full p-2.5 ${
                   dark ? "text-gray-900" : "bg-dark-bg text-white"

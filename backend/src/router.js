@@ -55,7 +55,7 @@ router.delete("/user/:id", userControllers.destroy);
 router.post(
   "/login",
   validateUserConnexion,
-  authControllers.getUserByEmailWithPasswordAndPassToNext,
+  authControllers.checkMailUser,
   verifyPassword
 );
 

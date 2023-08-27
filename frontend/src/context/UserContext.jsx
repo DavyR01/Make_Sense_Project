@@ -7,7 +7,7 @@ export default CurrentUserContext;
 
 export function CurrentUserContextProvider({ children }) {
   const [user, setUser] = useState({});
-  const [token, setToken] = useLocalStorage("token", "");
+  const [token, setToken] = useLocalStorage("tokeeen", "");
   const backEnd = import.meta.env.VITE_BACKEND_URL;
 
   useEffect(() => {

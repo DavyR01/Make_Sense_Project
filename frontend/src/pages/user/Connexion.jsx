@@ -44,7 +44,7 @@ function Connexion() {
         if (result.token) {
           setUser(result.user);
           setToken(result.token);
-          localStorage.setItem("token", result.token);
+          localStorage.setItem("tokeeen", result.token);
           navigate("/home");
         } else {
           notify();
