@@ -95,11 +95,12 @@ router.get(
   verifyToken,
   decisionControllers.readDecisionByUserId
 );
+
 router.put(
   "/decision/:id",
   verifyToken,
   validatorEditDecision,
-  decisionControllers.editById
+  decisionControllers.edit
 );
 router.post(
   "/decision",

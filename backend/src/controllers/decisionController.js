@@ -54,6 +54,37 @@ const read = (req, res) => {
     });
 };
 
+/* const read = async (req, res) => {
+  try {
+    const [result] = await models.decision.find(req.params.id);
+
+    if (!result) {
+      res.sendStatus(404);
+      return;
+    }
+
+    const decision = result;
+
+    const [decisionExpert] = await models.person_expert.getExpertUser(
+      req.params.id
+    );
+    decision.experts = decisionExpert;
+
+    const [decisionConcern] = await models.person_concern.getConcernUser(
+      req.params.id
+    );
+    decision.concerns = decisionConcern;
+
+    const [decisionComments] = await models.comment.getComments(req.params.id);
+    decision.comments = decisionComments;
+
+    res.send(decision);
+  } catch (err) {
+    console.error(err);
+    res.sendStatus(500);
+  }
+};
+ */
 const readByLast = async (req, res) => {
   try {
     const [result] = await models.decision.findLastdecision();
@@ -83,7 +114,26 @@ const readDecisionByUserId = (req, res) => {
 
 // *************************************************** POST *******************************************************************
 
-const add = (req, res) => {
+const add = async (req, res) => {
+  const decision = req.body;
+  const experts = req.body.person_expert;
+  const concerns = req.body.person_concern;
+  const notif = req.body.notif;
+
+  try {
+    const [result] = await models.decision.insert(decision);
+    await models.person_expert.insert(result.insertId, experts);
+    await models.person_concern.insert(result.insertId, concerns);
+    await models.notification.insert(result.insertId, notif);
+
+    res.location(`/decision/${result.insertId}`).sendStatus(201);
+  } catch (err) {
+    console.error(err);
+    res.sendStatus(500);
+  }
+};
+
+/* const add = (req, res) => {
   const decision = req.body;
   const experts = req.body.person_expert;
   const concerns = req.body.person_concern;
@@ -123,112 +173,89 @@ const add = (req, res) => {
       console.error(err);
       res.sendStatus(500);
     });
-};
+}; */
 
 // *************************************************** PUT *******************************************************************
 
-const edit = (req, res) => {
-  const decision = req.body;
+const edit = async (req, res) => {
+  try {
+    const decision = req.body;
+    const expert = req.body.person_expert;
+    const concern = req.body.person_concern;
 
-  // TODO validations (length, format...)
+    decision.id = parseInt(req.params.id, 10);
 
-  decision.id = parseInt(req.params.id, 10);
+    const [result] = await models.decision.updateById(decision);
 
-  models.decision
-    .update(decision)
-    .then(([result]) => {
-      if (result.affectedRows === 0) {
-        res.sendStatus(404);
-      } else {
-        res.sendStatus(204);
-      }
-    })
-    .catch((err) => {
-      console.error(err);
-      res.sendStatus(500);
-    });
-};
+    await models.person_expert.deleteExpert(decision.id);
+    await models.person_concern.deleteConcern(decision.id);
 
-const editById = (req, res) => {
-  const decision = req.body;
-  const expert = req.body.person_expert;
-  const concern = req.body.person_concern;
-  // TODO validations (length, format...)
-  decision.id = parseInt(req.params.id, 10);
+    if (result.affectedRows === 0) {
+      res.sendStatus(404);
+      return;
+    }
 
-  models.decision
-    .updateById(decision)
-    .then(([result]) => {
-      // delete person_expert before insert new person
-      models.person_expert
-        .deleteExpert(decision.id)
-        .then(() => {
-          models.person_concern.deleteConcern(decision.id).then(() => {
-            if (result.affectedRows === 0) {
-              res.sendStatus(404);
-            } else {
-              models.person_expert.insert(decision.id, expert).then(() => {
-                models.person_concern
-                  .insert(decision.id, concern)
-                  .then(() => {
-                    res
-                      .location(`/decision/${decision.insertId}`)
-                      .sendStatus(201);
-                  })
-                  .catch((err) => {
-                    console.error(err);
-                    res.sendStatus(500);
-                  });
-              });
-            }
-          });
-        })
+    await models.person_expert.insert(decision.id, expert);
+    await models.person_concern.insert(decision.id, concern);
 
-        .catch((err) => {
-          console.error(err);
-          res.sendStatus(500);
-        });
-    })
-    .catch((err) => {
-      console.error(err);
-      res.sendStatus(500);
-    });
+    res.location(`/decision/${decision.insertId}`).sendStatus(201);
+  } catch (err) {
+    console.error(err);
+    res.sendStatus(500);
+  }
 };
 
 // *************************************************** DELETE *******************************************************************
 
-const destroy = (req, res) => {
-  const decisionId = parseInt(req.params.id, 10);
-  models.person_concern.deleteConcern(decisionId).then(() => {
-    models.person_expert.deleteExpert(decisionId).then(() => {
-      models.comment
-        .deleteCommentByDecisionId(decisionId)
-        .then(() => {
-          models.notification
-            .deleteNotificationByDecisionId(decisionId)
-            .then(() => {
-              models.decision
-                .delete(decisionId)
-                .then(() => {
-                  res.sendStatus(204);
-                })
-                .catch((err) => {
-                  console.error(err);
-                  res.sendStatus(500);
-                });
-            })
-            .catch((err) => {
-              console.error(err);
-              res.sendStatus(500);
-            });
-        })
-        .catch((err) => {
-          console.error(err);
-          res.sendStatus(500);
-        });
-    });
-  });
+const destroy = async (req, res) => {
+  try {
+    const decisionId = parseInt(req.params.id, 10);
+
+    await models.person_concern.deleteConcern(decisionId);
+    await models.person_expert.deleteExpert(decisionId);
+    await models.comment.deleteCommentByDecisionId(decisionId);
+    await models.notification.deleteNotificationByDecisionId(decisionId);
+    await models.decision.delete(decisionId);
+
+    res.sendStatus(204);
+  } catch (err) {
+    console.error(err);
+    res.sendStatus(500);
+  }
 };
+
+// const destroy = (req, res) => {
+//   const decisionId = parseInt(req.params.id, 10);
+//   models.person_concern.deleteConcern(decisionId).then(() => {
+//     models.person_expert.deleteExpert(decisionId).then(() => {
+//       models.comment
+//         .deleteCommentByDecisionId(decisionId)
+//         .then(() => {
+//           models.notification
+//             .deleteNotificationByDecisionId(decisionId)
+//             .then(() => {
+//               models.decision
+//                 .delete(decisionId)
+//                 .then(() => {
+//                   res.sendStatus(204);
+//                 })
+//                 .catch((err) => {
+//                   console.error(err);
+//                   res.sendStatus(500);
+//                 });
+//             })
+//             .catch((err) => {
+//               console.error(err);
+//               res.sendStatus(500);
+//             });
+//         })
+//         .catch((err) => {
+//           console.error(err);
+//           res.sendStatus(500);
+//         });
+//     });
+//   });
+// };
 
 // ******************************************************** GESTION AUTOUPDATE STATUS *************************************************************************************************************
 
@@ -265,6 +292,23 @@ const autoUpdateStatusTDecisionTermineeByDateAndVote = (req, res) => {
       });
   });
 };
+
+// const autoUpdateStatusTDecisionTermineeByDateAndVote = async (req, res) => {
+//   try {
+//     const [result] = await models.decision.findIdByVoteAndDateDecisionPour();
+//     await models.decision.updateStatusTerminee(idsDecisionsOnlyPour(result));
+
+//     if (res) {
+//       res.sendStatus(204);
+//     }
+//   } catch (err) {
+//     console.error(err);
+
+//     if (res) {
+//       res.sendStatus(500);
+//     }
+//   }
+// };
 
 // execute function 2 minutes
 setInterval(autoUpdateStatusTDecisionTermineeByDateAndVote, 1000 * 60 * 5);
@@ -460,10 +504,9 @@ const browseAllByPageAndFilter = (req, res) => {
 module.exports = {
   browse,
   read,
-  edit,
   add,
   destroy,
-  editById,
+  edit,
   readDecisionByUserId,
   readByLast,
   autoUpdateStatusTDecisionTermineeByDateAndVote,
