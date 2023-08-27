@@ -23,8 +23,11 @@ export default function Home() {
     const indexOfValueDecision = valuesDetailsDecisions.findIndex(
       (obj) => obj.id === id
     );
-    valuesDetailsDecisions.splice(indexOfValueDecision, 1);
-    setValuesDetailsDecisions([...valuesDetailsDecisions]);
+    const newValuesDetailsDecisions = [...valuesDetailsDecisions];
+    newValuesDetailsDecisions.splice(indexOfValueDecision, 1);
+    setValuesDetailsDecisions([newValuesDetailsDecisions]);
+    // valuesDetailsDecisions.splice(indexOfValueDecision, 1);
+    // setValuesDetailsDecisions([...valuesDetailsDecisions]);
   };
 
   // fetch all datas with LEFT JOIN on user_id of decisions from API
