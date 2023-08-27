@@ -12,8 +12,16 @@ export default function TimeStepperHome() {
   const { token } = useCurrentUserContext();
   const { dark } = useCurrentDarkContext();
   const [decisions, setDecisions] = useState([]);
+  // const dateFormat = (date) => {
+  //   return date.slice(0, 10);
+  // };
   const dateFormat = (date) => {
-    return date.slice(2, 10);
+    const dateArray = date.split("-");
+    const year = dateArray[0];
+    const month = dateArray[1];
+    const day = dateArray[2].split("T")[0];
+
+    return `${day}/${month}/${year}`;
   };
 
   useEffect(() => {

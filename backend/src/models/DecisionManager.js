@@ -51,7 +51,7 @@ class DecisionManager extends AbstractManager {
       `SELECT date_decision_final, title, status_decision FROM ${this.table}
       WHERE status_decision = "En cours" 
       OR status_decision = "En conflit"
-      ORDER BY date_decision_final DESC LIMIT 0,5;`
+      ORDER BY date_decision_final ASC LIMIT 0,5;`
     );
   }
 
