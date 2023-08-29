@@ -23,9 +23,11 @@ export default function Home() {
     const indexOfValueDecision = valuesDetailsDecisions.findIndex(
       (obj) => obj.id === id
     );
-    const newValuesDetailsDecisions = [...valuesDetailsDecisions];
-    newValuesDetailsDecisions.splice(indexOfValueDecision, 1);
-    setValuesDetailsDecisions([newValuesDetailsDecisions]);
+
+    const updatedDecisions = [...valuesDetailsDecisions];
+    updatedDecisions.splice(indexOfValueDecision, 1);
+    setValuesDetailsDecisions(updatedDecisions);
+
     // valuesDetailsDecisions.splice(indexOfValueDecision, 1);
     // setValuesDetailsDecisions([...valuesDetailsDecisions]);
   };
