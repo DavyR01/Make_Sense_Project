@@ -1,13 +1,13 @@
 import { React, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import "../../css/user/homeUser.css";
-import DecisionCard from "../../components/user/DecisionCard";
-import TimeStepperHome from "../../components/user/TimeStepperHome";
+import { useNavigate } from "react-router-dom";
 import Logo from "../../assets/logo-makesense.png";
 import LogoWhite from "../../assets/make_sense_white.png";
-import { useCurrentUserContext } from "../../context/UserContext";
+import DecisionCard from "../../components/user/DecisionCard";
+import TimeStepperHome from "../../components/user/TimeStepperHome";
 import { useCurrentDarkContext } from "../../context/DarkContext";
+import { useCurrentUserContext } from "../../context/UserContext";
+import "../../css/user/homeUser.css";
 
 const backEnd = import.meta.env.VITE_BACKEND_URL;
 
@@ -18,8 +18,26 @@ export default function Home() {
   const [valuesDetailsDecisions, setValuesDetailsDecisions] = useState([]);
   const { token } = useCurrentUserContext();
   const { dark } = useCurrentDarkContext();
-  // function to update the array of decisions after delete one decision
-  const updateArrayDecisionsAfterDelete = (id) => {
+
+  // ? function to update the array of decisions after delete one decision. 2 solutions : with splice or filter. Here, we use filter method.
+
+  // * GOOD PRACTICE : Création d'une copie de tableau
+
+  const updateArrayDecisionsAfterDelete = (idDecisions) => {
+    const newValuesDetailsDecisions = valuesDetailsDecisions.filter(
+      (decision) => decision.id !== idDecisions
+    );
+    setValuesDetailsDecisions(newValuesDetailsDecisions);
+    // ? Ici, nous mettons à jour l'état 'valueDetailsDecision' en filtrant les décisions dont l'ID ne correspond pas à idDecisions
+  };
+
+  // const updateArrayDecisionsAfterDelete = (idDecisions) => {
+  //   const newValuesDetailsDecisions = (prevDecisions) =>
+  //     prevDecisions.filter((decision) => decision.id !== idDecisions);
+  //   setValuesDetailsDecisions(newValuesDetailsDecisions);
+  // };
+
+  /*   const updateArrayDecisionsAfterDelete = (id) => {
     const indexOfValueDecision = valuesDetailsDecisions.findIndex(
       (obj) => obj.id === id
     );
@@ -27,12 +45,19 @@ export default function Home() {
     const updatedDecisions = [...valuesDetailsDecisions];
     updatedDecisions.splice(indexOfValueDecision, 1);
     setValuesDetailsDecisions(updatedDecisions);
+  }; */
 
-    // valuesDetailsDecisions.splice(indexOfValueDecision, 1);
-    // setValuesDetailsDecisions([...valuesDetailsDecisions]);
-  };
+  // ! BAD PRACTICE : Modification directe du tableau
 
-  // fetch all datas with LEFT JOIN on user_id of decisions from API
+  /*   const updateArrayDecisionsAfterDelete = (id) => {
+    const indexOfValueDecision = valuesDetailsDecisions.findIndex(
+      (obj) => obj.id === id
+    );
+    valuesDetailsDecisions.splice(indexOfValueDecision, 1);
+    setValuesDetailsDecisions([...valuesDetailsDecisions]);
+  }; */
+
+  // ? fetch all datas with LEFT JOIN on user_id of decisions from API
   useEffect(() => {
     const myHeader = new Headers();
     myHeader.append("Authorization", `Bearer ${token}`);
