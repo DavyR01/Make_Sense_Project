@@ -211,11 +211,11 @@ const destroy = async (req, res) => {
   try {
     const decisionId = parseInt(req.params.id, 10);
 
+    await models.decision.delete(decisionId);
     await models.person_concern.deleteConcern(decisionId);
     await models.person_expert.deleteExpert(decisionId);
     await models.comment.deleteCommentByDecisionId(decisionId);
     await models.notification.deleteNotificationByDecisionId(decisionId);
-    await models.decision.delete(decisionId);
 
     res.sendStatus(204);
   } catch (err) {

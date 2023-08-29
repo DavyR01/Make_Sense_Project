@@ -31,7 +31,7 @@ import DecisionsList from "./pages/administrator/DecisionsList";
 import Messages from "./pages/administrator/Messages";
 import Error from "./pages/Error";
 
-function App() {
+export default function App() {
   const [showModal, setShowModal] = useState(false);
   const [email, setEmail] = useState();
   const [open, setOpen] = useState(true);
@@ -52,6 +52,7 @@ function App() {
 
   return (
     <div className="flex flex-col md:flex-row h-full ">
+      {/* <div className="flex"> */}
       {location.pathname === "/" ||
       location.pathname === "/inscription" ||
       location.pathname === "/motdepasseoublie" ||
@@ -162,5 +163,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
