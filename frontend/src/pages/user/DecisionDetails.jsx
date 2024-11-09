@@ -147,12 +147,13 @@ export default function DecisionDetails() {
                     valuesDetailsDecision.status_decision === "En cours"
                       ? "text-light-blue "
                       : valuesDetailsDecision.status_decision === "En conflit"
-                      ? "text-light-orange"
-                      : valuesDetailsDecision.status_decision === "Non aboutie"
-                      ? "text-red-pink "
-                      : valuesDetailsDecision.status_decision === "Terminee"
-                      ? "text-light-green"
-                      : " "
+                        ? "text-light-orange"
+                        : valuesDetailsDecision.status_decision ===
+                            "Non aboutie"
+                          ? "text-red-pink "
+                          : valuesDetailsDecision.status_decision === "Terminee"
+                            ? "text-light-green"
+                            : " "
                   }`}
                 >
                   &nbsp; {valuesDetailsDecision.status_decision}

@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
-import ReactQuill from "react-quill";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useCurrentUserContext } from "../../context/UserContext";
-import userimg from "../../assets/icons/user.png";
+import ReactQuill from "react-quill";
+import { useNavigate, useParams } from "react-router-dom";
 import edit from "../../assets/icons/edit.svg";
+import userimg from "../../assets/icons/user.png";
+import { useCurrentUserContext } from "../../context/UserContext";
 
 const backEnd = import.meta.env.VITE_BACKEND_URL;
 
@@ -149,7 +149,7 @@ function Comment({
             </p>
             {comment.user_id === user.id ? (
               <button type="button" onClick={handleCommentEdit}>
-                <img src={edit} alt="" className="h-4 mx-2" />
+                <img src={edit} alt="commentedit" className="h-4 mx-2" />
               </button>
             ) : (
               ""
