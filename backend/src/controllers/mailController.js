@@ -16,8 +16,8 @@ const sendForgottenPassword = (req) => {
     {
       to: req.user.email,
       subject: "Réinitialisation de votre mot de passe.",
-      text: "Vous souhaitez réinitialiser votre mot de passe ? http://localhost:3000",
-      html: `<a href="http://localhost:3000/reviewpassword/${req.user.passwordToken}">Cliquez ici</a>`,
+      text: "Vous souhaitez réinitialiser votre mot de passe ? http://localhost:5173",
+      html: `<a href="http://localhost:5173/reviewpassword/${req.user.passwordToken}">Cliquez ici</a>`,
     },
     (err) => {
       if (err) console.error(err);
