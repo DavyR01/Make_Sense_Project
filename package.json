@@ -9,13 +9,13 @@
     "dev": "concurrently -n front,back -c green,yellow -t \"HH:mm:ss\" -p \"{name} {time}\" \"npm --prefix ./frontend run dev\" \"npm --prefix ./backend run dev\"",
     "dev-front": "npm --prefix ./frontend run dev",
     "dev-back": "npm --prefix ./backend run dev",
-    "lint": "npm --prefix ./frontend run lint && npm --prefix ./backend run lint",
+    "test": "npm --prefix ./frontend run test && npm --prefix ./backend run test",
     "fix": "npm --prefix ./frontend run fix && npm --prefix ./backend run fix",
     "go": "git add . && git commit -m ",
     "delete": "rm -rf node_modules package-lock.json && cd frontend && rm -rf node_modules package-lock.json && cd ../backend && rm -rf node_modules package-lock.json",
     "update": "npx npm-check-updates -u",
-    "prepare": "husky",
-    "test": "npm --prefix ./frontend run test && npm --prefix ./backend run test"
+    "update2": "ncu -u",
+    "prepare": "husky"
   },
   "keywords": [],
   "author": "Wild Code School",

@@ -141,8 +141,8 @@ function Comment({
                 comment.vote === "Pour"
                   ? "text-light-green"
                   : comment.vote === "Contre"
-                  ? "text-red-pink"
-                  : "text-light-blue"
+                    ? "text-red-pink"
+                    : "text-light-blue"
               } `}
             >
               - {comment.vote}
