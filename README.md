@@ -26,8 +26,8 @@ Student project by :
 - Check your node version with command `node -v` otherwise install it.
 - Run command `npm run setup` to install packages needed for the project.
 - You need to create and fill .env files in the folders frontend and backend.
-  You will find templates in `backend/.env.sample` and `frontend/.env.sample` as an example.
-  _NB: To launch the backend server, you'll need an environment file with database credentials._
+  You will find templates in `backend/.env.sample` and `frontend/.env.sample` as an example. 
+  _NB: To launch the backend server, you'll need an environment file with database credentials. An environment file with connection data for a valid DB is therefore required.
 - Run command `npm run migrate` to download datas from SQL.
 - Once all the steps have been completed, you can login.
 
@@ -44,5 +44,18 @@ Student project by :
 - `dev` : Starts both servers (frontend + backend) in one terminal
 - `dev-front` : Starts the React frontend server
 - `dev-back` : Starts the Express backend server
-- `lint` : Runs validation tools, and refuses unclean code (will be executed on every _commit_)
-- `fix` : Fixes linter errors (run it if `lint` growls on your code !)
+- `test` : Runs validation tools, and refuses unclean code (will be executed on every _commit_)
+- `fix` : Fixes linter errors (run it if `test` growls on your code !)
+
+## FAQ
+
+### Tools
+
+- _Concurrently_ : Allows for several commands to run concurrently in the same CLI
+- _Husky_ : Allows to execute specific commands that trigger on _git_ events
+- _Vite_ : Alternative to _Create-React-App_, packaging less tools for a more fluid experience
+- _ESLint_ : "Quality of code" tool, ensures chosen rules will be enforced
+- _Prettier_ : "Quality of code" tool as well, focuses on the styleguide
+- _ Airbnb Standard_ : One of the most known "standards", even though it's not officially linked to ES/JS
+- _Nodemon_ : Allows to restart the server everytime a .js file is udated
+
