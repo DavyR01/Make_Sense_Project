@@ -24,3 +24,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+backend/public/uploads
+# uploads // fonctionne aussi avec seulement uploads
+# **/uploads
