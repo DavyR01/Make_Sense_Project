@@ -117,13 +117,7 @@ export default function Decisions({ open }) {
         setTotalDecisions(result.nbDecision.nbDecision);
       })
       .catch((error) => console.warn("error", error));
-  }, [
-    token,
-    currentPage,
-    filterByStatus,
-    decisionPerPage,
-    valuesDetailsDecisions,
-  ]);
+  }, [token, currentPage, filterByStatus, decisionPerPage]);
 
   const handleChevrondownAllDecisions = () => {
     setIsOpenAllDecisions(!isOpenAllDecisions);
