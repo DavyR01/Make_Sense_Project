@@ -5,7 +5,7 @@ class DecisionManager extends AbstractManager {
     super({ table: "decision" });
   }
 
-  // *************************************************** GET *******************************************************************
+  // **************** GET ******************
 
   findAllWithUserId() {
     return this.connection.query(
@@ -160,7 +160,7 @@ class DecisionManager extends AbstractManager {
     );
   }
 
-  // *************************************************** POST *******************************************************************
+  // ***************** POST ***********************
 
   insert(decision) {
     return this.connection.query(
@@ -179,7 +179,7 @@ class DecisionManager extends AbstractManager {
     );
   }
 
-  // *************************************************** PUT *******************************************************************
+  // ***************** PUT *********************
 
   update(decision) {
     return this.connection.query(
@@ -243,7 +243,7 @@ class DecisionManager extends AbstractManager {
     );
   }
 
-  // *************************************************** DELETE *******************************************************************
+  // ***************** DELETE ********************
 }
 
 module.exports = DecisionManager;

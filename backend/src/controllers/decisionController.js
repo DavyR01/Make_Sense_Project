@@ -1,7 +1,7 @@
 /* eslint-disable prefer-destructuring */
 const models = require("../models");
 
-// *************************************************** GET *******************************************************************
+// **************** GET ******************
 
 const browse = async (req, res) => {
   try {
@@ -112,7 +112,7 @@ const readDecisionByUserId = (req, res) => {
     });
 };
 
-// *************************************************** POST *******************************************************************
+// **************** POST ******************
 
 const add = async (req, res) => {
   const decision = req.body;
@@ -175,7 +175,7 @@ const add = async (req, res) => {
     });
 }; */
 
-// *************************************************** PUT *******************************************************************
+// **************** PUT ******************
 
 const edit = async (req, res) => {
   try {
@@ -205,7 +205,7 @@ const edit = async (req, res) => {
   }
 };
 
-// *************************************************** DELETE *******************************************************************
+// **************** DELETE ******************
 
 const destroy = async (req, res) => {
   try {
@@ -257,7 +257,7 @@ const destroy = async (req, res) => {
 //   });
 // };
 
-// ******************************************************** GESTION AUTOUPDATE STATUS *************************************************************************************************************
+// ***************** GESTION AUTOUPDATE STATUS ****************
 
 // Put every decision_id from result in an array to pass to manager
 const idsDecisionsOnlyPour = (result) => {
@@ -310,9 +310,6 @@ const autoUpdateStatusTDecisionTermineeByDateAndVote = (req, res) => {
 //   }
 // };
 
-// execute function 2 minutes
-setInterval(autoUpdateStatusTDecisionTermineeByDateAndVote, 1000 * 60 * 5);
-
 // Put every decision_id from result in an array to pass to manager
 const idsDecisionsContre = (result) => {
   const ids = [];
@@ -349,9 +346,6 @@ const autoUpdateStatusTDecisionNonAboutieByDateAndVote = (req, res) => {
 
 // la fonction autoUpdateStatusTDecisionNonAboutieByDateAndVote exécute une requête SQL pour récupérer les identifiants des décisions ayant reçu des votes "Contre" dans les trois derniers mois. Ensuite, elle utilise ces identifiants pour mettre à jour le statut de ces décisions en tant que "Non aboutie" dans la base de données.
 
-// execute function 2 minutes
-setInterval(autoUpdateStatusTDecisionNonAboutieByDateAndVote, 1000 * 60 * 5);
-
 // ****************************************************************************************************************************************************************
 
 // update status decision to "terminee" depending on date_conflict (end of decision)
@@ -371,9 +365,6 @@ const autoUpdateStatusTermineeWithDateConflict = (req, res) => {
     });
 };
 
-// execute function 2 minutes
-setInterval(autoUpdateStatusTermineeWithDateConflict, 1000 * 60 * 5);
-
 // update status decision to "non aboutie" depending on date_conflict (end of decision)
 const autoUpdateStatusNonAboutieWithDateConflict = (req, res) => {
   models.decision
@@ -391,10 +382,13 @@ const autoUpdateStatusNonAboutieWithDateConflict = (req, res) => {
     });
 };
 
-// execute function 2 minutes
-setInterval(autoUpdateStatusNonAboutieWithDateConflict, 1000 * 60 * 5);
+// execute functions every X minutes
+setInterval(autoUpdateStatusNonAboutieWithDateConflict, 1000 * 30);
+setInterval(autoUpdateStatusTermineeWithDateConflict, 1000 * 30);
+setInterval(autoUpdateStatusTDecisionNonAboutieByDateAndVote, 1000 * 30);
+setInterval(autoUpdateStatusTDecisionTermineeByDateAndVote, 1000 * 30);
 
-// *********************************************************** GESTION PAGINATION *****************************************************************************************************
+// ******************* GESTION PAGINATION ***********************
 
 // search decision by page (in front)
 const browseByPageAndFilter = (req, res) => {
