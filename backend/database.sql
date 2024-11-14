@@ -143,10 +143,10 @@ INSERT INTO comment (content, vote, date_creation, decision_id, user_id)
 VALUES 
 ('Je valide, très bonne intiative !', 'Pour', '2023-01-03 18:12:23', '1', '2'),
 ("C'est une idée qui mérite réflexion...", 'Neutre', '2022-06-13 17:12:20', '2', '6'),
-('Je reste dubitative...', 'Neutre', '2023-02-13 15:03:23','8', '1' ),
+('Je reste dubitative...', 'Neutre', '2023-08-13 15:03:23','8', '1' ),
 ("Je ne suis pas convaincue par cette démarche...", 'Contre', '2022-08-13 14:55:33','4', '5'),
-("Pourquoi pas essayer !", 'Neutre', '2022-08-13 14:55:33','12', '8'),
-("Je suis persuadé que cela peut être bénéfique pour la suite", 'Pour', '2022-08-13 14:55:33','12', '6'),
+("Pourquoi pas essayer !", 'Neutre', '2023-07-13 15:03:23','12', '6'),
+("Je suis persuadé que cela peut être bénéfique pour la suite", 'Pour', '2023-07-14 15:03:23','12', '8'),
 ("Je ne pense que ce soit la priorité pour le moment...", 'Contre', '2022-08-13 14:55:33','9', '7');
 
 DROP TABLE IF EXISTS notification;
