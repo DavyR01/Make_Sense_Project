@@ -53,7 +53,7 @@ const resources = {
       "Décisions en cours": "Décisions en cours",
 
       // timeStepperHome
-      "Prochaines décisions": "Prochaines décisions ",
+      "Prochaines décisions": "Décisions tardives",
 
       // page Décisions
       "Toutes les décisions": "Toutes les décisions",
@@ -208,7 +208,7 @@ const resources = {
       "Décisions en cours": "Decisions in progress",
 
       // timeStepperHome
-      "Prochaines décisions": "Next decisions",
+      "Prochaines décisions": "late decisions",
 
       // page Décisions
       "Toutes les décisions": "All decisions",
@@ -362,7 +362,7 @@ const resources = {
       "Décisions en cours": "Decisiones en curso",
 
       // timeStepperHome
-      "Prochaines décisions": "Próximas decisiones",
+      "Prochaines décisions": "Decisiones tardías",
 
       // page Décisions
       "Toutes les décisions": "Todas las decisiones",
