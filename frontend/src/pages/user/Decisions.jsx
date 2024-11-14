@@ -201,6 +201,9 @@ export default function Decisions({ open }) {
           )}
         </div>
       </div>
+
+      {/* Gestion des boutons de filtres (barre déroulante) et de création de décision en mode Responsive */}
+
       <div className="lg:flex hidden">
         <div className="md:flex">
           <button
@@ -266,6 +269,9 @@ export default function Decisions({ open }) {
           + {t("Créer une décision")}
         </button>
       </div>
+
+      {/* Gestion des boutons de filtres (barre déroulante) et de création de décision en mode Responsive */}
+
       <Menu
         as="div"
         className="relative flex justify-center md:items-start items-center text-left mt-3 lg:hidden md:ml-10 flex-col"
