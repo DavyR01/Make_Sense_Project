@@ -383,10 +383,10 @@ const autoUpdateStatusNonAboutieWithDateConflict = (req, res) => {
 };
 
 // execute functions every X minutes
-setInterval(autoUpdateStatusNonAboutieWithDateConflict, 1000 * 30);
-setInterval(autoUpdateStatusTermineeWithDateConflict, 1000 * 30);
-setInterval(autoUpdateStatusTDecisionNonAboutieByDateAndVote, 1000 * 30);
-setInterval(autoUpdateStatusTDecisionTermineeByDateAndVote, 1000 * 30);
+setInterval(autoUpdateStatusNonAboutieWithDateConflict, 5000 * 60);
+setInterval(autoUpdateStatusTermineeWithDateConflict, 5000 * 60);
+setInterval(autoUpdateStatusTDecisionNonAboutieByDateAndVote, 5000 * 60);
+setInterval(autoUpdateStatusTDecisionTermineeByDateAndVote, 5000 * 60);
 
 // ******************* GESTION PAGINATION ***********************
 
