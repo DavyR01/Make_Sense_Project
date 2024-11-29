@@ -13,8 +13,9 @@
     "fix": "npm --prefix ./frontend run fix && npm --prefix ./backend run fix",
     "go": "git add . && git commit -m ",
     "delete": "rm -rf node_modules package-lock.json && cd frontend && rm -rf node_modules package-lock.json && cd ../backend && rm -rf node_modules package-lock.json",
-    "update": "npx npm-check-updates -u",
-    "update2": "ncu -u",
+    "update": "concurrently -n current,backend,frontend -c green,yellow,blue \"ncu -u\" \"cd backend && ncu -u\" \"cd frontend && ncu -u\"",
+    "update2": "npx npm-check-updates -u",
+    "update3": "ncu -u",
     "prepare": "husky"
   },
   "keywords": [],
@@ -22,8 +23,8 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^9.1.0",
-    "eslint": "^9.14.0",
-    "husky": "^9.1.6",
-    "prettier": "^3.3.3"
+    "eslint": "^9.15.0",
+    "husky": "^9.1.7",
+    "prettier": "^3.4.1"
   }
 }
