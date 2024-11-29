@@ -1,12 +1,12 @@
 import { React, useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 import toast, { Toaster } from "react-hot-toast";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import Logo from "../../assets/logo-makesense.png";
 import LogoWhite from "../../assets/make_sense_white.png";
-import "../../css/user/myprofile.css";
-import { useCurrentUserContext } from "../../context/UserContext";
 import { useCurrentDarkContext } from "../../context/DarkContext";
+import { useCurrentUserContext } from "../../context/UserContext";
+import "../../css/user/myprofile.css";
 
 const backEnd = import.meta.env.VITE_BACKEND_URL;
 
@@ -144,6 +144,7 @@ export default function MyProfile() {
         reverseOrder={false}
         toastOptions={{ duration: 1000 }}
       />
+
       <div
         className={`flex flex-row items-center justify-between bg-light-grey pr-16 pl-10
           ${
@@ -175,9 +176,10 @@ export default function MyProfile() {
           )}
         </div>
       </div>
-      <div className="w-5/6 ml-5 md:m-auto md:flex md:flex-row items-end">
-        <div className="flex flex-wrap justify-start md:justify-center items-center justify-items-center content-center">
-          <div className="circle_add mt-10 md:mt-[80px]">
+
+      <div className="myProfilContent md-max:flex flex-wrap flex-col items-center">
+        <div className="myProfilImage md:w-5/6 ml-5 md:m-auto flex md:flex-row md-max:flex-col md-max:m-auto md:items-end">
+          <div className="circle_add mt-10 flex md-max:m-auto md-max:mt-10">
             {urlAvatarStatus.status === 200 ? (
               <img
                 className="shadow rounded-full w-40 h-36 align-middle border-none hover:opacity-25 transition ease-in-out delay-50 "
@@ -186,100 +188,105 @@ export default function MyProfile() {
               />
             ) : null}
           </div>
-        </div>
-        <div className="flex flex-col">
-          <p className=" mt-6 md:mt-[125px] md:ml-5">{t("Ajoute une photo")}</p>
-          <form
-            className="flex flex-col items-start md:ml-5"
-            encType="multipart/form-data"
-            onSubmit={handleSubmit}
-          >
-            <input type="file" ref={avatarRef} />
-            <button
-              className=" bg-red-pink hover:bg-red-500 text-white font-bold py-2 px-4 rounded-xl mt-2"
-              type="submit"
+          <div className="flex flex-col px-4">
+            <p className=" mt-6 md:mt-[125px] md:ml-5">
+              {t("Ajoute une photo")}
+            </p>
+            <form
+              className="flex flex-col items-start md:ml-5 md-max:items-stretch"
+              encType="multipart/form-data"
+              onSubmit={handleSubmit}
             >
-              {t("Envoyer btn")}
-            </button>
-          </form>
-        </div>
-      </div>
-      <form className="flex flex-col md:m-auto pt-8 items-start md:items-center justify-center">
-        <div className="md:grid md:w-2/3 ml-5 overflow-hidden md:grid-cols-2 md:grid-rows-4 md:gap-3 md:pt-5">
-          <div className="md:box mt-3 md:col-start-1 md:col-end-2 ">
-            <label className="flex flex-col text font-light">
-              {t("Prénom input")} :
-              <input
-                className="mt-3 md:w-[200px] mb-5 md:mb-0 border-2 rounded-xl h-10 px-2"
-                type="text"
-                name="name"
-                onChange={(e) => setFirstname(e.target.value)}
-                placeholder={user.firstname}
-              />
-            </label>
-          </div>
-          <div className="box col-start-2 col-end-3">
-            <label className="flex flex-col text font-light">
-              {t("Nom input")} :
-              <input
-                className="mt-3 mb-5 md:mb-0 md:w-[200px] border-2 rounded-xl h-10 px-2"
-                type="text"
-                name="name"
-                onChange={(e) => setLastname(e.target.value)}
-                placeholder={user.lastname}
-              />
-            </label>
-          </div>
-          <div className="box col-start-1 col-end-2">
-            <label className="flex flex-col text font-light">
-              {t("Localisation input")} :
-              <input
-                className="mt-3 md:w-[200px] mb-5 md:mb-0 border-2 rounded-xl h-10 px-2"
-                type="text"
-                name="name"
-                onChange={(e) => setCity(e.target.value)}
-                placeholder={user.city}
-              />
-            </label>
-          </div>
-          <div className="box col-start-2 col-end-3">
-            <label className="flex flex-col text font-light">
-              Email :
-              <input
-                className="mt-3 md:w-[200px] border-2 mb-5 md:mb-0 rounded-xl h-10 px-2"
-                type="text"
-                name="name"
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder={user.email}
-              />
-            </label>
-          </div>
-          <div className="box col-start-1 col-end-2">
-            <label className="flex flex-col text font-light">
-              {t("Téléphone input")} :
-              <input
-                className="mt-3 md:w-[200px] border-2 rounded-xl h-10 px-2"
-                type="text"
-                name="name"
-                onChange={(e) => setPhone(e.target.value)}
-                placeholder={user.phone}
-              />
-            </label>
-          </div>
-          <div className="box pt-[32px] col-start-2 col-end-3">
-            <div className="flex mb-10 md:pl-[56px]">
+              <input type="file" ref={avatarRef} />
               <button
-                type="button"
-                onClick={sendUserInformations}
-                id="buttonEnvoyerDecision"
-                className="flex mb-8 bg-red-pink hover:bg-red-500 text-white font-bold py-2 px-4 rounded-xl"
+                className=" bg-red-pink hover:bg-red-500 text-white font-bold py-2 px-4 rounded-xl mt-2"
+                type="submit"
               >
                 {t("Envoyer btn")}
               </button>
-            </div>
+            </form>
           </div>
         </div>
-      </form>
+
+        <div className="myProfilForm">
+          <form className="flex flex-col m-auto pt-8 items-start md:items-center justify-center">
+            <div className="md:grid md:w-2/3 ml-5 overflow-hidden md:grid-cols-2 md:grid-rows-4 md:gap-3 md:pt-5">
+              <div className="md:box mt-3 md:col-start-1 md:col-end-2 ">
+                <label className="flex flex-col text font-light">
+                  {t("Prénom input")} :
+                  <input
+                    className="mt-3 md:w-[200px] mb-5 md:mb-0 border-2 rounded-xl h-10 px-2"
+                    type="text"
+                    name="name"
+                    onChange={(e) => setFirstname(e.target.value)}
+                    placeholder={user.firstname}
+                  />
+                </label>
+              </div>
+              <div className="box col-start-2 col-end-3">
+                <label className="flex flex-col text font-light">
+                  {t("Nom input")} :
+                  <input
+                    className="mt-3 mb-5 md:mb-0 md:w-[200px] border-2 rounded-xl h-10 px-2"
+                    type="text"
+                    name="name"
+                    onChange={(e) => setLastname(e.target.value)}
+                    placeholder={user.lastname}
+                  />
+                </label>
+              </div>
+              <div className="box col-start-1 col-end-2">
+                <label className="flex flex-col text font-light">
+                  {t("Localisation input")} :
+                  <input
+                    className="mt-3 md:w-[200px] mb-5 md:mb-0 border-2 rounded-xl h-10 px-2"
+                    type="text"
+                    name="name"
+                    onChange={(e) => setCity(e.target.value)}
+                    placeholder={user.city}
+                  />
+                </label>
+              </div>
+              <div className="box col-start-2 col-end-3">
+                <label className="flex flex-col text font-light">
+                  Email :
+                  <input
+                    className="mt-3 md:w-[200px] border-2 mb-5 md:mb-0 rounded-xl h-10 px-2"
+                    type="text"
+                    name="name"
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder={user.email}
+                  />
+                </label>
+              </div>
+              <div className="box col-start-1 col-end-2">
+                <label className="flex flex-col text font-light">
+                  {t("Téléphone input")} :
+                  <input
+                    className="mt-3 md:w-[200px] border-2 rounded-xl h-10 px-2"
+                    type="text"
+                    name="name"
+                    onChange={(e) => setPhone(e.target.value)}
+                    placeholder={user.phone}
+                  />
+                </label>
+              </div>
+              <div className="box pt-[32px] col-start-2 col-end-3">
+                <div className="flex mb-10 md:pl-[56px]">
+                  <button
+                    type="button"
+                    onClick={sendUserInformations}
+                    id="buttonEnvoyerDecision"
+                    className="flex mb-8 bg-red-pink hover:bg-red-500 text-white font-bold py-2 px-4 rounded-xl"
+                  >
+                    {t("Envoyer btn")}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }
