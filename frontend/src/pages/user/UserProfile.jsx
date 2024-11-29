@@ -1,13 +1,12 @@
-import { React, useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import "../../css/user/Profile.css";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import Randomuser from "../../assets/randomuser.jpg";
+import { useNavigate, useParams } from "react-router-dom";
 import Logo from "../../assets/logo-makesense.png";
 import LogoWhite from "../../assets/make_sense_white.png";
+import Randomuser from "../../assets/randomuser.jpg";
 import DecisionCard from "../../components/user/DecisionCard";
-import { useCurrentUserContext } from "../../context/UserContext";
 import { useCurrentDarkContext } from "../../context/DarkContext";
+import { useCurrentUserContext } from "../../context/UserContext";
 
 const backEnd = import.meta.env.VITE_BACKEND_URL;
 

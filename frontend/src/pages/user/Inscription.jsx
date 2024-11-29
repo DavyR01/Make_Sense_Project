@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import "../../css/user/Inscription.css";
-import { useTranslation } from "react-i18next";
 import toast, { Toaster } from "react-hot-toast";
-import peoplepicture from "../../assets/peoplepicture.png";
+import { useTranslation } from "react-i18next";
+import { NavLink, useNavigate } from "react-router-dom";
 import "../../assets/logo-makesense.png";
+import peoplepicture from "../../assets/peoplepicture.png";
 import HeaderCountryChoice from "../../components/user/HeaderCountryChoice";
 
 const backEnd = import.meta.env.VITE_BACKEND_URL;

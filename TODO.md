@@ -15,5 +15,6 @@ Vérifications:
 - fonctionnement avec yarn/pnpm
 
 Axes d'améliorations :
-1) Déterminer une length max des titres sur les cards en limitant leur longueur avec un overflow ... `text-overflow: ellipsis;`
-  
+
+1. Déterminer une length max des titres sur les cards en limitant leur longueur avec un overflow ... `text-overflow: ellipsis;`
+2. Gérer le responsive correctement du time stepper sur la route `/home`

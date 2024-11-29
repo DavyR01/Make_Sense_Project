@@ -19,6 +19,7 @@ module.exports = withMT({
       "lg-max": { max: "1023px" },
       "md-max": { max: "767px" },
       "sm-max": { max: "639px" },
+      "880-min": { min: "880px" },
     },
     extend: {
       colors: {

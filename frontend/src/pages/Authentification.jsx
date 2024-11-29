@@ -1,7 +1,6 @@
 import React from "react";
-import "../css/user/Authentification.css";
-import Connexion from "./user/Connexion";
 import HeaderCountryChoice from "../components/user/HeaderCountryChoice";
+import Connexion from "./user/Connexion";
 // import ForgottenPassword from "../components/user/ForgottenPassword";
 
 export default function Authentification() {

@@ -18,6 +18,7 @@ export default function Home() {
   const [valuesDetailsDecisions, setValuesDetailsDecisions] = useState([]);
   const { token } = useCurrentUserContext();
   const { dark } = useCurrentDarkContext();
+  //   const countDecisionsLoginUser = 0;
 
   // ? function to update the array of decisions after delete one decision. 2 solutions : with splice or filter. Here, we use filter method.
 
@@ -68,7 +69,10 @@ export default function Home() {
 
     fetch(`${backEnd}/decision`, requestOptions)
       .then((response) => response.json())
-      .then((result) => setValuesDetailsDecisions(result))
+      .then((result) => {
+        //   console.log(valuesDetailsDecisions);
+        setValuesDetailsDecisions(result);
+      })
       .catch((error) => console.warn("error", error));
   }, [token]);
 
@@ -129,10 +133,13 @@ export default function Home() {
             </button>
           </div>
         </div>
-        <div className="md:grid md:col-start-1 md:col-end-4 md:ml-10 md:justify-start flex justify-center items-center md:w-screen">
+        <div className="md:grid md:col-start-1 md:col-end-4 md:ml-10 md:justify-start flex justify-center md:w-screen">
           <div className="md:grid md:grid-cols-3 xl:grid-cols-4 grid-rows-2 gap-4">
             {valuesDetailsDecisions.map((valueDetailsDecision) => {
               if (valueDetailsDecision.user_id === user.id) {
+                //  countDecisionsLoginUser += 1;
+                //  console.log(countDecisionsLoginUser);
+
                 return (
                   <DecisionCard
                     key={valueDetailsDecision.id}
@@ -156,6 +163,11 @@ export default function Home() {
                 ... {t("Voir plus")}
               </div>
             </button>
+          </div>
+          <div className="timeStepperHome hidden 880-min:block md:row-start-1 md:row-end-4 md:col-start-4 md:justify-center md:items-center">
+            <TimeStepperHome />
+            {/* {countDecisionsLoginUser <= 3 ? <TimeStepperHome /> : ""} */}
+            {/* {console.log(countDecisionsLoginUser)} */}
           </div>
         </div>
 
@@ -195,9 +207,6 @@ export default function Home() {
               </div>
             </button>
           </div>
-        </div>
-        <div className="hidden xl:block md:row-start-1 md:row-end-4 md:col-start-4 md:justify-center md:items-center">
-          <TimeStepperHome />
         </div>
       </div>
     </div>

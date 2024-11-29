@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
-import "../../css/user/ForgottenPassword.css";
-import peoplepicture from "../../assets/peoplepicture.png";
 import "../../assets/logo-makesense.png";
+import peoplepicture from "../../assets/peoplepicture.png";
 import HeaderCountryChoice from "../../components/user/HeaderCountryChoice";
 
 const backEnd = import.meta.env.VITE_BACKEND_URL;
