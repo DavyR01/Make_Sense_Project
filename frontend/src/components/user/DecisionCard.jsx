@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import "../../css/user/decisionCard.css";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import iconTrash from "../../assets/icons/trash-orange.svg";
+import userimg from "../../assets/icons/user.png";
 import { useCurrentDarkContext } from "../../context/DarkContext";
 import { useCurrentUserContext } from "../../context/UserContext";
+import "../../css/user/decisionCard.css";
 import AlertDeleteDecision from "./AlertDeleteDecision";
-import userimg from "../../assets/icons/user.png";
 
 const backEnd = import.meta.env.VITE_BACKEND_URL;
 
@@ -94,80 +94,93 @@ export default function DecisionCard({
   }, [valueDetailsDecision]);
 
   return (
-    <div
-      className={`relative w-[250px] md:min-w-[200px] md:max-w-[210px] h-[180px] hover:scale-110 duration-200	md:mb-0 mb-3 bg-[#fcfcfc] px-4 py-4 sm:px-6 shadow-lg rounded-xl ${
-        dark ? "" : "bg-dark-bg"
-      }`}
-    >
+    <>
       <Toaster position="top-center" reverseOrder={false} />
       <AlertDeleteDecision
         openModalAlertDelete={openModalAlertDelete}
         setOpenModalAlertDelete={setOpenModalAlertDelete}
         setdeleteIsConfirm={setDeleteIsConfirm}
       />
-      {valueDetailsDecision.user_id === user.id ? (
-        <div className="flex justify-between">
-          <div className={statusForClassname()} />
-          <button type="button" onClick={() => setOpenModalAlertDelete(true)}>
-            <div className="wrapForHide flex justify-center flex-row items-center group-hover:opacity-50">
-              <span className="spanhidden text-xs text-slate-400">
-                {t("Supprimer btn")}
-              </span>
-              <img className="" src={iconTrash} alt="trash" />
+      <button
+        type="button"
+        onClick={() => {
+          navigate(`/decision/${valueDetailsDecision.id}`);
+        }}
+      >
+        <div
+          className={`relative w-[250px] md:min-w-[200px] md:max-w-[210px] h-[180px] hover:scale-110 duration-200	md:mb-0 mb-3 bg-[#fcfcfc] px-4 py-4 sm:px-6 shadow-lg rounded-xl ${
+            dark ? "" : "bg-dark-bg"
+          }`}
+        >
+          {valueDetailsDecision.user_id === user.id ? (
+            <div className="flex justify-between">
+              <div className={statusForClassname()} />
+              <button
+                type="button"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  setOpenModalAlertDelete(true);
+                }}
+              >
+                <div className="wrapForHide flex justify-center flex-row items-center group-hover:opacity-50">
+                  <span className="spanhidden text-xs text-slate-400">
+                    {t("Supprimer btn")}
+                  </span>
+                  <img className="" src={iconTrash} alt="trash" />
+                </div>
+              </button>
             </div>
-          </button>
-        </div>
-      ) : (
-        <div className="flex justify-between items-center">
-          <div className={statusForClassname()} />
-          {/* Permet d'afficher les
-          couleurs des status sur les décisions. */}
-          <button
-            type="button"
-            onClick={() =>
-              navigate(`/user-profile/${valueDetailsDecision.user_id}`)
-            }
-          >
-            <div className="wrapForHide flex justify-center flex-row items-center group-hover:opacity-50">
-              <span className="spanhidden text-xs text-right text-slate-400">
-                {t("Voir le profil de")} {valueDetailsDecision.firstname}
-              </span>
-              <img
-                className="w-10 h-10 rounded-full hover:opacity-25 transition ease-in-out delay-50"
-                src={
-                  urlAvatarStatus.status === 200
-                    ? `${backEnd}/avatar/${valueDetailsDecision.avatar}`
-                    : userimg
-                }
-                alt="avatar-decision"
-              />
+          ) : (
+            <div className="flex justify-between items-center">
+              <div className={statusForClassname()} />
+              {/* Permet d'afficher les
+             couleurs des status sur les décisions. */}
+              <button
+                type="button"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  navigate(`/user-profile/${valueDetailsDecision.user_id}`);
+                }}
+              >
+                <div className="wrapForHide flex justify-center flex-row items-center group-hover:opacity-50">
+                  <span className="spanhidden text-xs text-right text-slate-400">
+                    {t("Voir le profil de")} {valueDetailsDecision.firstname}
+                  </span>
+                  <img
+                    className="w-10 h-10 rounded-full hover:opacity-25 transition ease-in-out delay-50"
+                    src={
+                      urlAvatarStatus.status === 200
+                        ? `${backEnd}/avatar/${valueDetailsDecision.avatar}`
+                        : userimg
+                    }
+                    alt="avatar-decision"
+                  />
+                </div>
+              </button>
             </div>
-          </button>
+          )}
+          {/* {valueDetailsDecision ? ( */}
+          <div className="flex items-center">
+            <p
+              className={`text-left mt-5 mb-5 ${
+                dark ? "text-black" : "text-white"
+              }`}
+            >
+              {valueDetailsDecision.title}
+            </p>
+          </div>
+          <div className="border-t absolute bottom-3 ">
+            <p className="text-xs font-thin text-left mt-2 text-gray-500">
+              {t("Crée le")} :{" "}
+              {convertDateFromApi(valueDetailsDecision.date_decision_creation)}
+            </p>
+            <p className="text-xs font-thin text-left text-gray-500">
+              {t("Fin de conflit le")} :{" "}
+              {convertDateFromApi(valueDetailsDecision.date_decision_final)}
+            </p>
+          </div>
         </div>
-      )}
-      {/* {valueDetailsDecision ? ( */}
-      <NavLink to={`/decision/${valueDetailsDecision.id}`}>
-        <div className="flex items-center">
-          <p
-            className={`text-left mt-5 mb-5 ${
-              dark ? "text-black" : "text-white"
-            }`}
-          >
-            {valueDetailsDecision.title}
-          </p>
-        </div>
-        <div className="border-t absolute bottom-3 ">
-          <p className="text-xs font-thin text-left mt-2 text-gray-500">
-            {t("Crée le")} :{" "}
-            {convertDateFromApi(valueDetailsDecision.date_decision_creation)}
-          </p>
-          <p className="text-xs font-thin text-left text-gray-500">
-            {t("Fin de conflit le")} :{" "}
-            {convertDateFromApi(valueDetailsDecision.date_decision_final)}
-          </p>
-        </div>
-      </NavLink>
-      {/* ) : null} */}
-    </div>
+      </button>
+    </>
   );
 }
