@@ -1,11 +1,11 @@
 import { React, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
-import "../../css/user/Connexion.css";
-import "../../assets/logo-makesense.png";
 import toast, { Toaster } from "react-hot-toast";
 import { useTranslation } from "react-i18next";
+import { NavLink, useNavigate } from "react-router-dom";
+import "../../assets/logo-makesense.png";
 import peoplepicture from "../../assets/peoplepicture.png";
 import { useCurrentUserContext } from "../../context/UserContext";
+import "../../css/user/Connexion.css";
 
 const backEnd = import.meta.env.VITE_BACKEND_URL;
 
@@ -58,7 +58,7 @@ function Connexion() {
       <NavLink to="/">
         <img
           className="p-6 hidden md:block"
-          src="/src/assets/logo-makesense.png"
+          src="src/assets/logo-makesense.png"
           alt="logo"
           width={350}
         />
@@ -66,7 +66,7 @@ function Connexion() {
       <NavLink to="/" className="flex justify-center">
         <img
           className="p-6 md:hidden"
-          src="/src/assets/make_sense_white.png"
+          src="src/assets/make_sense_white.png"
           alt="logo"
           width={350}
         />
