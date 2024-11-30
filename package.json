@@ -1,30 +1,43 @@
 {
-  "name": "template-fullstack",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "setup": "npm install && husky init && npm --prefix ./frontend install && npm --prefix ./backend install",
-    "migrate": "cd backend/ && node migrate.js && cd ..",
-    "dev": "concurrently -n front,back -c green,yellow -t \"HH:mm:ss\" -p \"{name} {time}\" \"npm --prefix ./frontend run dev\" \"npm --prefix ./backend run dev\"",
-    "dev-front": "npm --prefix ./frontend run dev",
-    "dev-back": "npm --prefix ./backend run dev",
-    "test": "npm --prefix ./frontend run test && npm --prefix ./backend run test",
-    "fix": "npm --prefix ./frontend run fix && npm --prefix ./backend run fix",
-    "go": "git add . && git commit -m ",
-    "delete": "rm -rf node_modules package-lock.json && cd frontend && rm -rf node_modules package-lock.json && cd ../backend && rm -rf node_modules package-lock.json",
-    "update": "concurrently -n current,backend,frontend -c green,yellow,blue \"ncu -u\" \"cd backend && ncu -u\" \"cd frontend && ncu -u\"",
-    "update2": "npx npm-check-updates -u",
-    "update3": "ncu -u",
-    "prepare": "husky"
-  },
-  "keywords": [],
-  "author": "Wild Code School",
-  "license": "ISC",
-  "devDependencies": {
-    "concurrently": "^9.1.0",
-    "eslint": "^9.15.0",
-    "husky": "^9.1.7",
-    "prettier": "^3.4.1"
-  }
+   "name": "template-fullstack",
+   "version": "1.0.0",
+   "description": "",
+   "main": "index.js",
+   "scripts": {
+      "setup": "npm install && husky init && npm --prefix ./frontend install && npm --prefix ./backend install",
+      "setupProd": "npm i --omit=dev && husky init && npm --prefix ./frontend i --omit=dev && npm --prefix ./backend i --omit=dev",
+      "build": "cd frontend/ && npm run build",
+      "migrate": "cd backend/ && node migrate.js && cd ..",
+      "dev": "concurrently -n front,back -c green,yellow -t \"HH:mm:ss\" -p \"{name} {time}\" \"npm --prefix ./frontend run dev\" \"npm --prefix ./backend run dev\"",
+      "devHost": "concurrently -n front,back -c green,yellow -t \"HH:mm:ss\" -p \"{name} {time}\" \"npm --prefix ./frontend run devHost\" \"npm --prefix ./backend run dev\"",
+      "start": "concurrently -n front,back -c green,yellow -t \"HH:mm:ss\" -p \"{name} {time}\" \"npm --prefix ./frontend run start-front\" \"npm --prefix ./backend run dev\"",
+      "dev-front": "npm --prefix ./frontend run dev",
+      "dev-back": "npm --prefix ./backend run dev",
+      "test": "npm --prefix ./frontend run test && npm --prefix ./backend run test",
+      "fix": "npm --prefix ./frontend run fix && npm --prefix ./backend run fix",
+      "go": "git add . && git commit -m ",
+      "delete": "rm -rf node_modules package-lock.json && cd frontend && rm -rf node_modules package-lock.json && cd ../backend && rm -rf node_modules package-lock.json",
+      "update": "concurrently -n current,backend,frontend -c green,yellow,blue \"ncu -u\" \"cd backend && ncu -u\" \"cd frontend && ncu -u\"",
+      "update2": "npx npm-check-updates -u",
+      "update3": "ncu -u",
+      "prepare": "husky",
+      "preview": "npm --prefix ./frontend run preview",
+      "previewHost": "npm --prefix ./frontend run previewHost"
+   },
+   "keywords": [],
+   "author": "Wild Code School",
+   "license": "ISC",
+   "devDependencies": {
+      "concurrently": "^9.1.0",
+      "eslint": "^9.15.0",
+      "husky": "^9.1.7",
+      "prettier": "^3.4.1"
+   },
+   "json-comments": {
+      "tips": "Please install the JsonComments plugin to enable commenting functionality for JSON files, see: https://github.com/zhangfisher/json_comments_extension",
+      "frontend/package.json": {
+         "scripts.devHost": "Permet le \"Hot Module Replacement\" (HMR) pour un serveur de développement. Tester en temps réel.",
+         "scripts.previewHost": "Pour prévisualiser la version de production construite"
+      }
+   }
 }
