@@ -21,3 +21,5 @@ Axes d'améliorations :
 3) Gérer le responsive du profil d'un utilisateur (UserProfile)
 4) Rediriger sur la page d'accueil en cliquant sur le logo
 5) Scroll impossible sur la page "/décisions" et /décisions/<id> en responsive. A corriger!
+6) Voir problématique du token qui ne se supprime pas lors de la déconnexion
+7) Tenter d'accéder aux URLs du back pour voir si elles sont protégées et changer par /api.

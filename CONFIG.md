@@ -8,6 +8,11 @@
 "previewHost": "npm --prefix ./frontend run previewHost"
 ```
 
+Possible to connect with loopback adress or our local IP adress :
+- in local on http://192.168.0.18:5173/
+- in IPV4 between http://127.0.0.1:5173/ or http://127.255.255.255:5173/ 
+- in IPV6 on only http://[::1]:5173/ (to test operation `ping ::1`) or http://[0000:0000:0000:0000:0000:0000:0000:0001]:5173/
+
 Remarques:
 -- Permet de passer un argument --host sur la commande correspondante enfant. 
 
