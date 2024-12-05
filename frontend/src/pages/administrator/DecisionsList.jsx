@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { BsTrash } from "react-icons/bs";
 import toast, { Toaster } from "react-hot-toast";
 import { useTranslation } from "react-i18next";
-import LogoWhite from "../../assets/make_sense_white.png";
-import { useCurrentUserContext } from "../../context/UserContext";
+import { BsTrash } from "react-icons/bs";
 import Logo from "../../assets/logo-makesense.png";
-import "../../css/administrator/decisionList.css";
+import LogoWhite from "../../assets/make_sense_white.png";
+import AlertDeleteDecision from "../../components/user/AlertDeleteDecision";
 import Paginate from "../../components/user/Paginate";
 import { useCurrentDarkContext } from "../../context/DarkContext";
-import AlertDeleteDecision from "../../components/user/AlertDeleteDecision";
+import { useCurrentUserContext } from "../../context/UserContext";
+import "../../css/administrator/decisionList.css";
 
 const backEnd = import.meta.env.VITE_BACKEND_URL;
 
@@ -152,9 +152,9 @@ export default function DecisionsList() {
         setdeleteIsConfirm={setdeleteIsConfirm}
       />
       <div
-        className={`flex flex-row items-center justify-between bg-light-grey ${
+        className={`flex flex-row items-center justify-between  ${
           dark
-            ? "text-black"
+            ? "text-black bg-light-grey"
             : "text-white bg-dark-header border-b-2 border-dark-bg"
         }`}
       >

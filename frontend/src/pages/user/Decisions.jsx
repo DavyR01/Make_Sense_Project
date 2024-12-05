@@ -1,16 +1,16 @@
-import { React, useEffect, useState, Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
-import { useNavigate } from "react-router-dom";
+import { Fragment, React, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import Paginate from "../../components/user/Paginate";
-import TimeStepperHome from "../../components/user/TimeStepperHome";
-import DecisionCard from "../../components/user/DecisionCard";
+import { useNavigate } from "react-router-dom";
+import ChevronDown from "../../assets/icons/chevron-down.svg";
 import Logo from "../../assets/logo-makesense.png";
 import LogoWhite from "../../assets/make_sense_white.png";
-import ChevronDown from "../../assets/icons/chevron-down.svg";
-import { useCurrentUserContext } from "../../context/UserContext";
+import DecisionCard from "../../components/user/DecisionCard";
+import Paginate from "../../components/user/Paginate";
+import TimeStepperHome from "../../components/user/TimeStepperHome";
 import { useCurrentDarkContext } from "../../context/DarkContext";
+import { useCurrentUserContext } from "../../context/UserContext";
 
 const backEnd = import.meta.env.VITE_BACKEND_URL;
 
@@ -171,10 +171,10 @@ export default function Decisions({ open }) {
       }`}
     >
       <div
-        className={`flex flex-row items-center justify-between bg-light-grey pr-16 pl-10
+        className={`flex flex-row items-center justify-between pr-16 pl-10
           ${
             dark
-              ? "text-black"
+              ? "text-black bg-light-grey"
               : "text-white bg-dark-header border-b-2 border-dark-bg"
           }`}
       >

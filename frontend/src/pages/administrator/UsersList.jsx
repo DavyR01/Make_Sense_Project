@@ -1,14 +1,14 @@
 /* eslint-disable no-shadow */
 import React, { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
 import { Toaster, toast } from "react-hot-toast";
+import { useTranslation } from "react-i18next";
 import { BsTrash } from "react-icons/bs";
 import Logo from "../../assets/logo-makesense.png";
 import LogoWhite from "../../assets/make_sense_white.png";
+import AlertDeleteDecision from "../../components/user/AlertDeleteDecision";
 import { useCurrentDarkContext } from "../../context/DarkContext";
 import { useCurrentUserContext } from "../../context/UserContext";
 import "../../css/administrator/usersList.css";
-import AlertDeleteDecision from "../../components/user/AlertDeleteDecision";
 
 const backEnd = import.meta.env.VITE_BACKEND_URL;
 
@@ -115,9 +115,9 @@ export default function UsersList() {
         setdeleteIsConfirm={setDeleteIsConfirm}
       />
       <div
-        className={`flex flex-row items-center justify-between bg-light-grey ${
+        className={`flex flex-row items-center justify-between  ${
           dark
-            ? "text-black"
+            ? "text-black bg-light-grey"
             : "text-white bg-dark-header border-b-2 border-dark-bg"
         }`}
       >

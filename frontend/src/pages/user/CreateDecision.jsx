@@ -1,20 +1,20 @@
 import { React, useState } from "react";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
 import DatePicker from "react-datepicker";
-import { useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-import { ReactSearchAutocomplete } from "react-search-autocomplete";
-import toast, { Toaster } from "react-hot-toast";
-import target from "../../assets/icons/target.svg";
-import "../../css/user/createDecision.css";
-import Close from "../../assets/icons/x.svg";
 import "react-datepicker/dist/react-datepicker.css";
+import toast, { Toaster } from "react-hot-toast";
+import { useTranslation } from "react-i18next";
+import ReactQuill from "react-quill";
 import "react-quill/dist/quill.bubble.css";
-import { useCurrentDarkContext } from "../../context/DarkContext";
-import { useCurrentUserContext } from "../../context/UserContext";
+import "react-quill/dist/quill.snow.css";
+import { useNavigate } from "react-router-dom";
+import { ReactSearchAutocomplete } from "react-search-autocomplete";
+import target from "../../assets/icons/target.svg";
+import Close from "../../assets/icons/x.svg";
 import Logo from "../../assets/logo-makesense.png";
 import LogoWhite from "../../assets/make_sense_white.png";
+import { useCurrentDarkContext } from "../../context/DarkContext";
+import { useCurrentUserContext } from "../../context/UserContext";
+import "../../css/user/createDecision.css";
 
 const backEnd = import.meta.env.VITE_BACKEND_URL;
 
@@ -153,10 +153,10 @@ export default function CreateDecision() {
         toastOptions={{ duration: 1000 }}
       />
       <div
-        className={`flex flex-row items-center justify-between bg-light-grey pr-16 pl-10
+        className={`flex flex-row items-center justify-between  pr-16 pl-10
           ${
             dark
-              ? "text-black"
+              ? "text-black bg-light-grey"
               : "text-white bg-dark-header border-b-2 border-dark-bg"
           }`}
       >
@@ -192,14 +192,14 @@ export default function CreateDecision() {
             </p>
             <p className="decision-explaination">
               {t(
-                "Veuillez créer une décision en remplissant les champs ci-dessous."
+                "Veuillez créer une décision en remplissant les champs ci-dessous"
               )}
             </p>
           </div>
           <div className="col-span-2">
             <div className="mt-14 mb-6">
               <label htmlFor="title-input" className="block mb-2">
-                {t("Titre_décision")}{" "}
+                {t("Titre de la décision")}{" "}
               </label>
               <input
                 onChange={(e) => setTitleDecision(e.target.value)}

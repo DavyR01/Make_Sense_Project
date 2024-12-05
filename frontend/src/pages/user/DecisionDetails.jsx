@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useParams, useNavigate } from "react-router-dom";
-import AccordionDecisionDetails from "../../components/user/AccordionDecisionDetails";
+import { useNavigate, useParams } from "react-router-dom";
 import userimg from "../../assets/icons/user.png";
 import Logo from "../../assets/logo-makesense.png";
 import LogoWhite from "../../assets/make_sense_white.png";
+import AccordionDecisionDetails from "../../components/user/AccordionDecisionDetails";
 import TimelineStepperDecision from "../../components/user/TimelineStepperDecision";
-import "../../css/user/createDecision.css";
-import { useCurrentUserContext } from "../../context/UserContext";
 import { useCurrentDarkContext } from "../../context/DarkContext";
+import { useCurrentUserContext } from "../../context/UserContext";
+import "../../css/user/createDecision.css";
 
 const backEnd = import.meta.env.VITE_BACKEND_URL;
 
@@ -64,10 +64,10 @@ export default function DecisionDetails() {
       }`}
     >
       <div
-        className={`flex flex-row items-center justify-between bg-light-grey pr-16 pl-10
+        className={`flex flex-row items-center justify-between pr-16 pl-10
           ${
             dark
-              ? "text-black"
+              ? "text-black bg-light-grey"
               : "text-white bg-dark-header border-b-2 border-dark-bg"
           }`}
       >

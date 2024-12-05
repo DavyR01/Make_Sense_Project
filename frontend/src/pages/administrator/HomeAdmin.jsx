@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import UsersCard from "../../components/administrator/UsersCard";
 import Logo from "../../assets/logo-makesense.png";
 import LogoWhite from "../../assets/make_sense_white.png";
-import { useCurrentUserContext } from "../../context/UserContext";
+import UsersCard from "../../components/administrator/UsersCard";
 import { useCurrentDarkContext } from "../../context/DarkContext";
+import { useCurrentUserContext } from "../../context/UserContext";
 
 const backEnd = import.meta.env.VITE_BACKEND_URL;
 
@@ -44,10 +44,10 @@ export default function HomeAdmin({ open }) {
       }`}
     >
       <div
-        className={`flex flex-row items-center justify-between bg-light-grey pr-16 pl-10
+        className={`flex flex-row items-center justify-between pr-16 pl-10
           ${
             dark
-              ? "text-black"
+              ? "text-black bg-light-grey"
               : "text-white bg-dark-header border-b-2 border-dark-bg"
           }`}
       >

@@ -83,10 +83,10 @@ export default function Home() {
       }`}
     >
       <div
-        className={`flex flex-row items-center justify-between bg-light-grey pr-16 pl-10
+        className={`flex flex-row items-center justify-between pr-16 pl-10
           ${
             dark
-              ? "text-black"
+              ? "text-black bg-light-grey"
               : "text-white bg-dark-header border-b-2 border-dark-bg"
           }`}
       >

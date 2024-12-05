@@ -1,19 +1,19 @@
 import { React, useEffect, useState } from "react";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
-import "../../css/user/createDecision.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import "react-quill/dist/quill.bubble.css";
-import { useParams, useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 import toast, { Toaster } from "react-hot-toast";
+import { useTranslation } from "react-i18next";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.bubble.css";
+import "react-quill/dist/quill.snow.css";
+import { useNavigate, useParams } from "react-router-dom";
 import { ReactSearchAutocomplete } from "react-search-autocomplete";
-import { useCurrentDarkContext } from "../../context/DarkContext";
-import { useCurrentUserContext } from "../../context/UserContext";
 import Close from "../../assets/icons/x.svg";
 import Logo from "../../assets/logo-makesense.png";
 import LogoWhite from "../../assets/make_sense_white.png";
+import { useCurrentDarkContext } from "../../context/DarkContext";
+import { useCurrentUserContext } from "../../context/UserContext";
+import "../../css/user/createDecision.css";
 
 const backEnd = import.meta.env.VITE_BACKEND_URL;
 
@@ -203,10 +203,10 @@ export default function EditDecision() {
         toastOptions={{ duration: 1000 }}
       />
       <div
-        className={`flex flex-row items-center justify-between bg-light-grey pr-16 pl-10
+        className={`flex flex-row items-center justify-between  pr-16 pl-10
           ${
             dark
-              ? "text-black"
+              ? "text-black bg-light-grey"
               : "text-white bg-dark-header border-b-2 border-dark-bg"
           }`}
       >
