@@ -25,6 +25,8 @@ const resources = {
       "Envoyer la demande": "Envoyer la demande",
       "Reponse mdp":
         "Un e-mail vous a été envoyé ! Suivez les instructions dans cet e-mail pour modifier votre mot de passe.",
+      serviceoff:
+        "Le service d'envoi de mail est indisponible pour le moment !",
 
       // page inscription
       "Inscription page": "Inscription",
@@ -50,10 +52,10 @@ const resources = {
       "Mes décisions": "Mes décisions",
       "Nouvelle décision": "Nouvelle décision",
       "Voir plus": "Voir plus",
-      "Décisions en cours": "Décisions en cours",
+      "Décisions en cours": "Décisions triées par date",
 
       // timeStepperHome
-      "Prochaines décisions": "Décisions tardives",
+      "Prochaines décisions": "Chronologie décisions",
 
       // page Décisions
       "Toutes les décisions": "Toutes les décisions",
@@ -77,8 +79,8 @@ const resources = {
 
       // alert deconnexion
       "Êtes-vous sûr de vouloir vous deconnecter ?":
-        "Êtes-vous sûr de vouloir vous deconnecter ?",
-      "Oui btn": "Oui, je souhaite me deconnecter",
+        "Êtes-vous sûr de vouloir vous déconnecter ?",
+      "Oui btn": "Oui, je souhaite me déconnecter",
       "Annuler btn": "Annuler",
 
       // page creation decision
@@ -92,8 +94,8 @@ const resources = {
       "Bénéfice de la décision": "Bénéfice de la décision",
       "Risques potentiels de la décision": "Risques potentiels de la décision",
       "Date finale de la décision": "Date finale de la décision",
-      "Personnes impactées": "Personne impactées",
-      "Personnes expertes": "Personne expertes",
+      "Personnes impactées": "Personnes impactées",
+      "Personnes expertes": "Personnes expertes",
 
       // détails décision
       "Détails de la décision": "Détails de la décision",
@@ -162,8 +164,8 @@ const resources = {
       Status: "Statut",
 
       // Mentions légale & Aides
-      "Retour compte": "Retour compte",
-      "Retour accueil": "Retour accueil",
+      "Retour espace": "Retour sur mon espace personnel",
+      "Retour connexion": "Revenir à l'authentication",
     },
   },
   EN: {
@@ -184,6 +186,8 @@ const resources = {
       "Envoyer la demande": "Send the request",
       "Reponse mdp":
         "An e-mail has been sent to you! Follow the instructions in this e-mail to change your password.",
+      serviceoff:
+        "The mail sending service is currently unavailable!",
 
       // page inscription
       "Inscription page": "Registration",
@@ -212,7 +216,7 @@ const resources = {
       "Décisions en cours": "Decisions in progress",
 
       // timeStepperHome
-      "Prochaines décisions": "late decisions",
+      "Prochaines décisions": "Decision timeline",
 
       // page Décisions
       "Toutes les décisions": "All decisions",
@@ -320,8 +324,8 @@ const resources = {
       Status: "Status",
 
       // Mentions légale & Aides
-      "Retour compte": "Back to my account",
-      "Retour accueil": "Back to home",
+      "Retour espace": "Back to my personal space",
+      "Retour connexion": "Return login session",
     },
   },
   ES: {
@@ -342,6 +346,8 @@ const resources = {
       "Envoyer la demande": "Enviar la solicitud",
       "Reponse mdp":
         "Se le ha enviado un correo electrónico. Siga las instrucciones de este correo electrónico para cambiar su contraseña.",
+        serviceoff:
+       " El servicio de correo electrónico no está disponible en este momento!",
 
       // page inscription
       "Inscription page": "Inscripción",
@@ -370,7 +376,7 @@ const resources = {
       "Décisions en cours": "Decisiones en curso",
 
       // timeStepperHome
-      "Prochaines décisions": "Decisiones tardías",
+      "Prochaines décisions": "Cronología decisiones",
 
       // page Décisions
       "Toutes les décisions": "Todas las decisiones",
@@ -478,8 +484,8 @@ const resources = {
       Status: "Estado",
 
       // Mentions légale & Aides
-      "Retour compte": "Volver a mi cuenta",
-      "Retour accueil": "Volver a la página de inicio",
+      "Retour espace": "Volver a mi espacio personal",
+      "Retour connexion": "Volver iniciar sesión",
     },
   },
 };

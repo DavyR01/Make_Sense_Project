@@ -134,14 +134,14 @@ function Connexion() {
                   {t("Se connecter")}
                 </button>
 
-                <div className="text-center mt-3 text-sm">
+                <div className="text-center mt-5 text-sm">
                   <NavLink to="/motdepasseoublie">
-                    <p className="text-white mtmb-1 font-medium hover:underline hover:text-flash-yellow">
+                    <p className="text-white font-medium hover:underline hover:text-flash-yellow">
                       {t("Mot de passe oublié ?")}
                     </p>
                   </NavLink>
                   <NavLink to="/inscription">
-                    <p className=" text-white font-medium text-primary-600 hover:underline hover:text-primary-yellow">
+                    <p className="text-white font-medium hover:underline hover:text-flash-yellow mt-3">
                       {t("S'inscrire")}
                     </p>
                   </NavLink>

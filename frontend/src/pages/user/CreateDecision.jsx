@@ -153,7 +153,7 @@ export default function CreateDecision() {
         toastOptions={{ duration: 1000 }}
       />
       <div
-        className={`flex flex-row items-center justify-between  pr-16 pl-10
+        className={`flex flex-row items-center justify-between pr-16 pl-10
           ${
             dark
               ? "text-black bg-light-grey"

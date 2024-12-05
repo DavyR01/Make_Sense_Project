@@ -4,18 +4,31 @@ import { IoHomeSharp } from "react-icons/io5";
 import { MdOutlineManageAccounts } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import Logo from "../../assets/logo-makesense.png";
+import LogoWhidte from "../../assets/make_sense_white.png";
 import HeaderCountryChoice from "../../components/user/HeaderCountryChoice";
+import { useCurrentDarkContext } from "../../context/DarkContext";
 import { useCurrentUserContext } from "../../context/UserContext";
 
 export default function LegalNotice() {
   const { token } = useCurrentUserContext();
   const { t } = useTranslation();
+  const { dark } = useCurrentDarkContext();
 
   return (
-    <div>
+    <div
+      className={`${
+        dark || !token
+          ? "text-black bg-light-grey"
+          : "text-white bg-dark-header border-b-2 border-dark-bg"
+      }`}
+    >
       <HeaderCountryChoice />
       <div className="flex justify-center items-center h-32 m-8">
-        <img className="h-12" src={Logo} alt="logo MakeSense" />
+        {dark ? (
+          <img className="h-20" src={Logo} alt="logo make-sense" />
+        ) : (
+          <img className="h-20" src={LogoWhidte} alt="logo make-sense" />
+        )}{" "}
       </div>
       <div className="flex items-center ml-6">
         {/* <img className="m-5" src={Return} alt="arrow return" /> */}
@@ -27,7 +40,7 @@ export default function LegalNotice() {
               to="/home"
             >
               <MdOutlineManageAccounts className="min-w-5" size={20} />
-              {t("Retour compte")}
+              {t("Retour espace")}
             </NavLink>
           </div>
         ) : (
@@ -37,12 +50,14 @@ export default function LegalNotice() {
               to="/"
             >
               <IoHomeSharp className="min-w-5" size={20} />
-              {t("Retour accueil")}
+              {t("Retour connexion")}
             </NavLink>
           </div>
         )}
       </div>
-      <div className="h-auto w-screen bg-dark-blue ">
+      <div
+        className={`h-auto w-screen ${!dark ? "bg-dark-bg" : "bg-dark-blue"}`}
+      >
         <p className="text-flash-yellow pl-20 pt-8 pb-8 text-7xl">
           Mentions légales
         </p>
@@ -53,7 +68,9 @@ export default function LegalNotice() {
         </p>
       </div>
       <div className="w-4/5 m-auto ">
-        <h2 className="text-dark-blue font-bold text-4xl mt-10">
+        <h2
+          className={`${dark || !token ? "text-dark-blue" : "text-light-blue"} font-bold text-4xl mt-10`}
+        >
           1- Modifications et notifications
         </h2>
         <p className="text-xl pt-5">
@@ -67,7 +84,11 @@ export default function LegalNotice() {
           votre connaissance lors de votre connexion au Site à l’aide d’une
           bannière.{" "}
         </p>
-        <h2 className="text-dark-blue font-bold text-4xl mt-10">2- Lexique</h2>
+        <h2
+          className={`${dark || !token ? "text-dark-blue" : "text-light-blue"} font-bold text-4xl mt-10`}
+        >
+          2- Lexique
+        </h2>
         <p className="text-xl pt-5">
           Bénévoles formés : Les “Bénévoles formés” sont les bénévoles makesense
           ayant bénéficiés d’une formation pair à pair ou en ligne à nos outils
@@ -105,7 +126,9 @@ export default function LegalNotice() {
           dans un pays tiers à l’Union européenne. Utilisateurs Internaute se
           connectant et naviguant sur nos Sites ou nos réseaux sociaux.{" "}
         </p>
-        <h2 className="text-dark-blue font-bold text-4xl mt-10">
+        <h2
+          className={`${dark || !token ? "text-dark-blue" : "text-light-blue"} font-bold text-4xl mt-10`}
+        >
           3- Mentions légales
         </h2>
         <p className="text-xl pt-5">
@@ -118,7 +141,9 @@ export default function LegalNotice() {
           l’adresse suivante : support@makesense.org. Les Sites sont tous
           hébergés par AWS.{" "}
         </p>
-        <h2 className="text-dark-blue font-bold text-4xl mt-10">
+        <h2
+          className={`${dark || !token ? "text-dark-blue" : "text-light-blue"} font-bold text-4xl mt-10`}
+        >
           4- Propriété intellectuelle et contrefaçons
         </h2>
         <p className="text-xl pt-5">
@@ -161,7 +186,9 @@ export default function LegalNotice() {
           l’incomplétude ou l’inexactitude de l’information, du contenu et des
           données disponibles sur son site internet.{" "}
         </p>
-        <h2 className="text-dark-blue font-bold text-4xl mt-10">
+        <h2
+          className={`${dark || !token ? "text-dark-blue" : "text-light-blue"} font-bold text-4xl mt-10`}
+        >
           5- Gestion des Données personnelles
         </h2>
         <p className="text-xl pt-5">
@@ -283,7 +310,9 @@ export default function LegalNotice() {
           diligentée contre une activité illégale ou suspectée l’être, sous
           réserve de la loi applicable.
         </p>
-        <h2 className="text-dark-blue font-bold text-4xl mt-10">
+        <h2
+          className={`${dark || !token ? "text-dark-blue" : "text-light-blue"} font-bold text-4xl mt-10`}
+        >
           6- Politique de cookies
         </h2>
         <p className="text-xl pt-5">
@@ -338,7 +367,9 @@ export default function LegalNotice() {
           thème WordPress. wordfence_XXX ou wf_XXX : Plugin WordPress lié à la
           sécurité.
         </p>
-        <h2 className="text-dark-blue font-bold text-4xl mt-10">
+        <h2
+          className={`${dark || !token ? "text-dark-blue" : "text-light-blue"} font-bold text-4xl mt-10`}
+        >
           7- Quels sont vos droits?
         </h2>
         <p className="text-xl pt-5">
@@ -384,7 +415,9 @@ export default function LegalNotice() {
           le droit d’introduire une réclamation auprès de la CNIL ou toute autre
           autorité de contrôle compétente.
         </p>
-        <h2 className="text-dark-blue font-bold text-4xl mt-10">
+        <h2
+          className={`${dark || !token ? "text-dark-blue" : "text-light-blue"} font-bold text-4xl mt-10`}
+        >
           8- Nous contacter :
         </h2>
         <p className="text-xl pt-5">
@@ -394,7 +427,9 @@ export default function LegalNotice() {
           demander l’accès, la rectification ou la suppression de vos Données
           personnelles, veuillez nous contacter sur support@makesense.org.
         </p>
-        <h2 className="text-dark-blue font-bold text-4xl mt-10">
+        <h2
+          className={`${dark || !token ? "text-dark-blue" : "text-light-blue"} font-bold text-4xl mt-10`}
+        >
           9- Loi applicable et validité :
         </h2>
         <p className="text-xl pt-5">
