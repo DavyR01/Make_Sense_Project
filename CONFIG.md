@@ -1,6 +1,7 @@
 # Setup & Config
 
-1) When you update or upgrade dependencies with `npm run update` in some package.json, take care to not update `"eslint": "^8.2.0"` and `"eslint-plugin-react-hooks": "^4.3.0",` because it induces errors compatibility with this project.
+1) Update packages and versioning : 
+When you update or upgrade dependencies with `npm run update` in some package.json, take care to not update `"eslint": "^8.2.0"` and `"eslint-plugin-react-hooks": "^4.3.0",` because it induces errors compatibility with this project.
 
 2) Command to run app in local network to make it available locally on `http://192.168.0.18:4173/` on another devices to exhibit it :
 ```
@@ -22,3 +23,7 @@ Permet le "Hot Module Replacement" (HMR) pour un serveur de développement. Test
 
 - `"previewHost": "vite preview"`
 Pour prévisualiser la version de production construite
+
+
+4) Tester l'environnement de production après un build et en servant les fichiers statiques générés contenus dans dist : `npm run start` .
+On se sert du package serve et on spécifie le port 5173 sur lequel le serveur frontend écoute.

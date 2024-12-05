@@ -150,7 +150,7 @@ function Inscription() {
                     name="email"
                     id="email"
                     value={email}
-                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}"
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="adresse@examplecom"
                     className=" border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"

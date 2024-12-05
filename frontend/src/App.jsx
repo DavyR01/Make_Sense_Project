@@ -1,35 +1,35 @@
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import {
-  Routes,
-  Route,
-  useLocation,
-  useNavigate,
-  Navigate,
+   Navigate,
+   Route,
+   Routes,
+   useLocation,
+   useNavigate,
 } from "react-router-dom";
-import CreateDecision from "./pages/user/CreateDecision";
-import HomeUser from "./pages/user/HomeUser";
-import Authentification from "./pages/Authentification";
-import UserProfile from "./pages/user/UserProfile";
 import "./App.css";
-import "./i18n";
-import LegalNotice from "./pages/user/LegalNotice";
-import Sidebar from "./components/user/Sidebar";
-import MyProfile from "./pages/user/MyProfile";
-import Help from "./pages/user/Help";
-import Decisions from "./pages/user/Decisions";
-import DecisionDetails from "./pages/user/DecisionDetails";
 import NotificationModal from "./components/user/NotificationModal";
-import Inscription from "./pages/user/Inscription";
-import ForgottenPassword from "./pages/user/ForgottenPassword";
-import { useCurrentUserContext } from "./context/UserContext";
-import EditDecision from "./pages/user/EditDecision";
-import Password from "./pages/user/Password";
+import Sidebar from "./components/user/Sidebar";
 import SidebarMobile from "./components/user/SidebarMobile";
-import HomeAdmin from "./pages/administrator/HomeAdmin";
-import UsersList from "./pages/administrator/UsersList";
+import { useCurrentUserContext } from "./context/UserContext";
+import "./i18n";
 import DecisionsList from "./pages/administrator/DecisionsList";
+import HomeAdmin from "./pages/administrator/HomeAdmin";
 import Messages from "./pages/administrator/Messages";
+import UsersList from "./pages/administrator/UsersList";
+import Authentification from "./pages/Authentification";
 import Error from "./pages/Error";
+import CreateDecision from "./pages/user/CreateDecision";
+import DecisionDetails from "./pages/user/DecisionDetails";
+import Decisions from "./pages/user/Decisions";
+import EditDecision from "./pages/user/EditDecision";
+import ForgottenPassword from "./pages/user/ForgottenPassword";
+import Help from "./pages/user/Help";
+import HomeUser from "./pages/user/HomeUser";
+import Inscription from "./pages/user/Inscription";
+import LegalNotice from "./pages/user/LegalNotice";
+import MyProfile from "./pages/user/MyProfile";
+import Password from "./pages/user/Password";
+import UserProfile from "./pages/user/UserProfile";
 
 export default function App() {
   const [showModal, setShowModal] = useState(false);
@@ -39,6 +39,13 @@ export default function App() {
   const location = useLocation();
   const { token } = useCurrentUserContext();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    //  console.log("TOKEN", token);
+    if (!token) {
+      navigate("/");
+    }
+  }, [token]);
 
   const [checked, setChecked] = useState(true);
   const handleChecked = () => {

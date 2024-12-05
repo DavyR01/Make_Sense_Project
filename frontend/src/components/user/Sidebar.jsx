@@ -1,11 +1,11 @@
-import { React, useEffect, useState } from "react";
 import { Switch } from "@material-tailwind/react";
-import "../../css/user/sidebar.css";
+import { React, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useCurrentDarkContext } from "../../context/DarkContext";
 import { useCurrentLangContext } from "../../context/LangContext";
 import { useCurrentUserContext } from "../../context/UserContext";
+import "../../css/user/sidebar.css";
 import AlertDeconnexion from "./AlertDeconnexion";
 
 export default function Sidebar({
@@ -24,7 +24,7 @@ export default function Sidebar({
   const [openModalAlertDeconnexion, setOpenModalAlertDeconnexion] =
     useState(false);
   const navigate = useNavigate();
-
+  const { setToken } = useCurrentUserContext({});
   const handleNotificationModal = () => {
     setShowModal(!showModal);
   };
@@ -35,9 +35,11 @@ export default function Sidebar({
 
   useEffect(() => {
     if (logoutIsConfirm === true) {
-      localStorage.removeItem("token");
-      navigate("/");
+      setToken("");
       setUser({});
+      localStorage.removeItem("tokeeen");
+      navigate("/", { replace: true });
+      // window.location.reload();
     } else {
       setLogoutIsConfirm(false);
     }

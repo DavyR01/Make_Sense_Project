@@ -94,7 +94,7 @@ function Connexion() {
                 <input
                   type="email"
                   onChange={(e) => setEmail(e.target.value)}
-                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}"
                   minLength={8}
                   maxLength={200}
                   name="email"
