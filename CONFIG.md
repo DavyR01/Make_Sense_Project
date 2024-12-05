@@ -1,5 +1,7 @@
 # Setup & Config
 
+## TIPS
+
 1) Update packages and versioning : 
 When you update or upgrade dependencies with `npm run update` in some package.json, take care to not update `"eslint": "^8.2.0"` and `"eslint-plugin-react-hooks": "^4.3.0",` because it induces errors compatibility with this project.
 
@@ -27,3 +29,5 @@ Pour prévisualiser la version de production construite
 
 4) Tester l'environnement de production après un build et en servant les fichiers statiques générés contenus dans dist : `npm run start` .
 On se sert du package serve et on spécifie le port 5173 sur lequel le serveur frontend écoute.
+
+5) In production environment, about pictures, take care to import them properly to get a nice display.

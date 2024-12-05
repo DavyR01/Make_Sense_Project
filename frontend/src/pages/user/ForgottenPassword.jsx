@@ -1,7 +1,7 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
-import "../../assets/logo-makesense.png";
+import logoMakeSense from "../../assets/logo-makesense.png";
 import peoplepicture from "../../assets/peoplepicture.png";
 import HeaderCountryChoice from "../../components/user/HeaderCountryChoice";
 
@@ -34,7 +34,7 @@ function ForgottenPassword({ email, setEmail }) {
       <NavLink to="/">
         <img
           className="p-6 hidden md:block"
-          src="/src/assets/logo-makesense.png"
+          src={logoMakeSense}
           alt="logo"
           width={350}
         />

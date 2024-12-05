@@ -23,3 +23,4 @@ Axes d'améliorations :
 5) Scroll impossible sur la page "/décisions" et /décisions/<id> en responsive. A corriger!
 6) Voir problématique du token qui ne se supprime pas lors de la déconnexion
 7) Tenter d'accéder aux URLs du back pour voir si elles sont protégées et changer par /api.
+8) Empêcher d'accéder à la route "/" quand user connectée (page authentification)

@@ -2,7 +2,7 @@ import { React, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 import { NavLink, useNavigate } from "react-router-dom";
-import "../../assets/logo-makesense.png";
+import logoMakeSense from "../../assets/logo-makesense.png";
 import peoplepicture from "../../assets/peoplepicture.png";
 import { useCurrentUserContext } from "../../context/UserContext";
 import "../../css/user/Connexion.css";
@@ -58,7 +58,7 @@ function Connexion() {
       <NavLink to="/">
         <img
           className="p-6 hidden md:block"
-          src="src/assets/logo-makesense.png"
+          src={logoMakeSense}
           alt="logo"
           width={350}
         />
