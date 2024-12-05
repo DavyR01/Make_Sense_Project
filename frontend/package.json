@@ -8,7 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "previewHost": "vite preview --host",
-    "start-front": "serve -s dist",
+    "start-front": "npx serve -s dist",
     "test": "echo '----- Checking Frontend...' && prettier --debug-check . && eslint --ext .jsx . && echo '----- Done!'",
     "fix": "prettier --write . && eslint --fix --ext .jsx ."
   },

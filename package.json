@@ -10,7 +10,7 @@
       "migrate": "cd backend/ && node migrate.js && cd ..",
       "dev": "concurrently -n front,back -c green,yellow -t \"HH:mm:ss\" -p \"{name} {time}\" \"npm --prefix ./frontend run dev\" \"npm --prefix ./backend run dev\"",
       "devHost": "concurrently -n front,back -c green,yellow -t \"HH:mm:ss\" -p \"{name} {time}\" \"npm --prefix ./frontend run devHost\" \"npm --prefix ./backend run dev\"",
-      "start": "concurrently -n front,back -c green,yellow -t \"HH:mm:ss\" -p \"{name} {time}\" \"npm --prefix ./frontend run start-front\" \"npm --prefix ./backend run dev\"",
+      "start": "concurrently -n front,back -c green,yellow -t \"HH:mm:ss\" -p \"{name} {time}\" \"npm --prefix ./frontend run start-front\" \"npm --prefix ./backend run start\"",
       "dev-front": "npm --prefix ./frontend run dev",
       "dev-back": "npm --prefix ./backend run dev",
       "test": "npm --prefix ./frontend run test && npm --prefix ./backend run test",
