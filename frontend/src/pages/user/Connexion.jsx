@@ -89,7 +89,7 @@ function Connexion() {
                   htmlFor="email"
                   className="text-white block mt-8 mb-2 text-md font-medium"
                 >
-                  E-mail :
+                  E-mail <span className="text-flash-yellow">*</span>
                 </label>
                 <input
                   type="email"
@@ -109,7 +109,8 @@ function Connexion() {
                   htmlFor="password"
                   className=" block mb-2 text-md font-medium"
                 >
-                  {t("Mot de passe")} :
+                  {t("Mot de passe")}
+                  <span className="text-flash-yellow">*</span>
                 </label>
                 <input
                   type="password"

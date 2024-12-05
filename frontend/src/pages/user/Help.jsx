@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 import { toast, Toaster } from "react-hot-toast";
-import HeaderCountryChoice from "../../components/user/HeaderCountryChoice";
+import { useTranslation } from "react-i18next";
+import { IoHomeSharp } from "react-icons/io5";
+import { MdOutlineManageAccounts } from "react-icons/md";
+import { NavLink } from "react-router-dom";
 import Logo from "../../assets/logo-makesense.png";
+import HeaderCountryChoice from "../../components/user/HeaderCountryChoice";
+import { useCurrentUserContext } from "../../context/UserContext";
 
 const backEnd = import.meta.env.VITE_BACKEND_URL;
 
@@ -10,6 +15,8 @@ export default function Help() {
   const [email, setEmail] = useState("");
   const [objet, setObjet] = useState("");
   const [content, setContent] = useState("");
+  const { token } = useCurrentUserContext();
+  const { t } = useTranslation();
 
   // for alert notification error edit decision after submit
   const notify = () =>
@@ -63,8 +70,33 @@ export default function Help() {
       <HeaderCountryChoice />
       <Toaster position="top-center" reverseOrder={false} />
       <div className="flex justify-center items-center h-32 m-8">
-        <img className="h-12" src={Logo} alt="logo MakeSense" />
+        <NavLink to="/">
+          <img className="h-12" src={Logo} alt="logo MakeSense" />
+        </NavLink>
       </div>
+      <div className="flex items-center ml-6">
+        {token ? (
+          <div className="cursor-pointer">
+            <NavLink
+              className="flex items-center gap-3 mr-4 mb-2 border-gray-800 border p-2 border-dashed hover:bg-dark-blue hover:text-white rounded-xl"
+              to="/home"
+            >
+              <MdOutlineManageAccounts className="min-w-5" size={20} />
+              {t("Retour compte")}
+            </NavLink>
+          </div>
+        ) : (
+          <div className="cursor-pointer">
+            <NavLink
+              className="flex items-center gap-3 mr-4 mb-2 border-gray-800 border p-2 border-dashed hover:bg-dark-blue hover:text-white rounded-xl"
+              to="/"
+            >
+              <IoHomeSharp className="min-w-5" size={20} />
+              {t("Retour accueil")}
+            </NavLink>
+          </div>
+        )}
+      </div>{" "}
       <div className="h-auto w-screen bg-dark-blue ">
         <p className="text-flash-yellow pl-20 pt-8 pb-8 text-7xl">
           Besoin d'aide ?

@@ -101,7 +101,8 @@ function Inscription() {
                     htmlFor="text"
                     className="text-white block text-md font-medium"
                   >
-                    {t("Prénom input")} :
+                    {t("Prénom input")}
+                    <span className="text-flash-yellow">*</span>
                   </label>
                   <input
                     type="text"
@@ -122,7 +123,8 @@ function Inscription() {
                     htmlFor="text"
                     className="text-white block text-md font-medium"
                   >
-                    {t("Nom input")} :
+                    {t("Nom input")}
+                    <span className="text-flash-yellow">*</span>
                   </label>
                   <input
                     type="text"
@@ -143,7 +145,7 @@ function Inscription() {
                     htmlFor="email"
                     className="text-white block text-md font-medium mb-2"
                   >
-                    Email :
+                    Email <span className="text-flash-yellow">*</span>
                   </label>
                   <input
                     type="email"
@@ -163,7 +165,8 @@ function Inscription() {
                     htmlFor="password"
                     className="text-white block text-md font-medium mb-2"
                   >
-                    {t("Mot de passe")} :
+                    {t("Mot de passe")}
+                    <span className="text-flash-yellow">*</span>
                   </label>
                   <input
                     type="password"

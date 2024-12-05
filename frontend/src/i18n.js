@@ -12,7 +12,7 @@ const resources = {
       // page connexion
       "Changer de pays": "Changer de pays",
       "Accédez à votre compte": "Accédez à votre compte",
-      "Mot de passe": "Mot de passe",
+      "Mot de passe": "Mot de passe ",
       "Se connecter": "Se connecter",
       "Mot de passe oublié ?": "Mot de passe oublié ?",
       "Connexion page": "Connexion",
@@ -21,7 +21,7 @@ const resources = {
       "Mentions légales": "Mentions légales",
 
       // page Mot de passe Oublié
-      "Votre adresse mail": "Votre adresse mail",
+      "Votre adresse mail": "Votre adresse mail ",
       "Envoyer la demande": "Envoyer la demande",
       "Reponse mdp":
         "Un e-mail vous a été envoyé ! Suivez les instructions dans cet e-mail pour modifier votre mot de passe.",
@@ -29,8 +29,8 @@ const resources = {
       // page inscription
       "Inscription page": "Inscription",
       "Créez votre compte": "Créer votre compte",
-      "Prénom input": "Prénom",
-      "Nom input": "Nom",
+      "Prénom input": "Prénom ",
+      "Nom input": "Nom ",
       "S'enregistrer": "S'enregistrer",
       "Déjà membre ?": "Déjà membre ?",
 
@@ -160,6 +160,10 @@ const resources = {
       "Date de création": "Date de création",
       "Date de finalisation": "Date de finalisation",
       Status: "Statut",
+
+      // Mentions légale & Aides
+      "Retour compte": "Retour compte",
+      "Retour accueil": "Retour accueil",
     },
   },
   EN: {
@@ -167,7 +171,7 @@ const resources = {
       // page connexion
       "Changer de pays": "Change your country",
       "Accédez à votre compte": "Access your account",
-      "Mot de passe": "Password",
+      "Mot de passe": "Password ",
       "Se connecter": "Sign in",
       "Mot de passe oublié ?": "Forgot your password ?",
       "Connexion page": "Connection",
@@ -176,7 +180,7 @@ const resources = {
       "Mentions légales": "Legal mentions",
 
       // page Mot de passe Oublié
-      "Votre adresse mail": "Your email address",
+      "Votre adresse mail": "Your email address ",
       "Envoyer la demande": "Send the request",
       "Reponse mdp":
         "An e-mail has been sent to you! Follow the instructions in this e-mail to change your password.",
@@ -184,8 +188,8 @@ const resources = {
       // page inscription
       "Inscription page": "Registration",
       "Créez votre compte": "Create your account",
-      "Prénom input": "First name",
-      "Nom input": "Last name",
+      "Prénom input": "First name ",
+      "Nom input": "Last name ",
       "S'enregistrer": "Sign up",
       "Déjà membre ?": "Already a member ?",
 
@@ -314,6 +318,10 @@ const resources = {
       "Date de création": "Creation date",
       "Date de finalisation": "Finalization date",
       Status: "Status",
+
+      // Mentions légale & Aides
+      "Retour compte": "Back to my account",
+      "Retour accueil": "Back to home",
     },
   },
   ES: {
@@ -321,7 +329,7 @@ const resources = {
       // page connexion
       "Changer de pays": "Cambiar de país",
       "Accédez à votre compte": "Acceder a tu cuenta",
-      "Mot de passe": "Contraseña",
+      "Mot de passe": "Contraseña ",
       "Se connecter": "Conectarse",
       "Mot de passe oublié ?": "¿Ha olvidado su contraseña?",
       "Connexion page": "Conexión",
@@ -338,8 +346,8 @@ const resources = {
       // page inscription
       "Inscription page": "Inscripción",
       "Créez votre compte": "Crear tu cuenta",
-      "Prénom input": "Nombre de pila",
-      "Nom input": "Nombre de familia",
+      "Prénom input": "Nombre de pila ",
+      "Nom input": "Nombre de familia ",
       "S'enregistrer": "Inscribirse",
       "Déjà membre ?": "¿Ya es miembro?",
 
@@ -468,6 +476,10 @@ const resources = {
       "Date de création": "Fecha de creacion",
       "Date de finalisation": "Fecha de finalizacion",
       Status: "Estado",
+
+      // Mentions légale & Aides
+      "Retour compte": "Volver a mi cuenta",
+      "Retour accueil": "Volver a la página de inicio",
     },
   },
 };

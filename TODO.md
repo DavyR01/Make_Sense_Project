@@ -24,3 +24,4 @@ Axes d'améliorations :
 6) Voir problématique du token qui ne se supprime pas lors de la déconnexion
 7) Tenter d'accéder aux URLs du back pour voir si elles sont protégées et changer par /api.
 8) Empêcher d'accéder à la route "/" quand user connectée (page authentification)
+9) Fix le mode black & white à l'aide d'un switch sur la Headbar

@@ -1,18 +1,46 @@
 import React from "react";
-import HeaderCountryChoice from "../../components/user/HeaderCountryChoice";
+import { useTranslation } from "react-i18next";
+import { IoHomeSharp } from "react-icons/io5";
+import { MdOutlineManageAccounts } from "react-icons/md";
+import { NavLink } from "react-router-dom";
 import Logo from "../../assets/logo-makesense.png";
-import Return from "../../assets/icons/corner-down-left.svg";
+import HeaderCountryChoice from "../../components/user/HeaderCountryChoice";
+import { useCurrentUserContext } from "../../context/UserContext";
 
 export default function LegalNotice() {
+  const { token } = useCurrentUserContext();
+  const { t } = useTranslation();
+
   return (
     <div>
       <HeaderCountryChoice />
       <div className="flex justify-center items-center h-32 m-8">
         <img className="h-12" src={Logo} alt="logo MakeSense" />
       </div>
-      <div className="flex items-center">
-        <img className="m-5" src={Return} alt="arrow return" />
-        <p>Back to home</p>
+      <div className="flex items-center ml-6">
+        {/* <img className="m-5" src={Return} alt="arrow return" /> */}
+
+        {token ? (
+          <div className="cursor-pointer">
+            <NavLink
+              className="flex items-center gap-3 mr-4 mb-2 border-gray-800 border p-2 border-dashed hover:bg-dark-blue hover:text-white rounded-xl"
+              to="/home"
+            >
+              <MdOutlineManageAccounts className="min-w-5" size={20} />
+              {t("Retour compte")}
+            </NavLink>
+          </div>
+        ) : (
+          <div className="cursor-pointer">
+            <NavLink
+              className="flex items-center gap-3 mr-4 mb-2 border-gray-800 border p-2 border-dashed hover:bg-dark-blue hover:text-white rounded-xl"
+              to="/"
+            >
+              <IoHomeSharp className="min-w-5" size={20} />
+              {t("Retour accueil")}
+            </NavLink>
+          </div>
+        )}
       </div>
       <div className="h-auto w-screen bg-dark-blue ">
         <p className="text-flash-yellow pl-20 pt-8 pb-8 text-7xl">

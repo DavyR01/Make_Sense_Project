@@ -61,7 +61,8 @@ function ForgottenPassword({ email, setEmail }) {
                     htmlFor="email"
                     className="text-white block mt-8 mb-4 text-md font-medium"
                   >
-                    {t("Votre adresse mail")} :
+                    {t("Votre adresse mail")}
+                    <span className="text-flash-yellow">*</span>
                   </label>
                   <input
                     type="email"
