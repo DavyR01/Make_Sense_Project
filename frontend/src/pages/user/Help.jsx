@@ -82,7 +82,7 @@ export default function Help() {
               to="/home"
             >
               <MdOutlineManageAccounts className="min-w-5" size={20} />
-              {t("Retour compte")}
+              {t("Retour espace")}
             </NavLink>
           </div>
         ) : (
@@ -92,7 +92,7 @@ export default function Help() {
               to="/"
             >
               <IoHomeSharp className="min-w-5" size={20} />
-              {t("Retour accueil")}
+              {t("Retour connexion")}
             </NavLink>
           </div>
         )}

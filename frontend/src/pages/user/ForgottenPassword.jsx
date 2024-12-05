@@ -14,6 +14,7 @@ function ForgottenPassword({ email, setEmail }) {
   const raw = JSON.stringify({
     email,
   });
+  const [message, setMessage] = React.useState("");
 
   const requestOptions = {
     method: "POST",
@@ -22,10 +23,25 @@ function ForgottenPassword({ email, setEmail }) {
     redirect: "follow",
   };
 
-  const sendEmail = () => {
-    fetch(`${backEnd}/forgottenpassword`, requestOptions).catch((err) =>
-      console.warn(err)
-    );
+  const sendEmail = async () => {
+    try {
+      const result = await fetch(
+        `${backEnd}/forgottenpassword`,
+        requestOptions
+      );
+
+      if (!result.ok) {
+        throw new Error(
+          `HTTP error! status: ${result.status} - ${result.statusText}`
+        );
+      }
+      setMessage("service OFF"); // Message de succès
+
+      // console.log(result.statusText, "but sendinblue is off for the moment !");
+    } catch (error) {
+      // console.log("error during send email :", error);
+      setMessage("Failed to send email. Please try again."); // Message d'erreur
+    }
   };
 
   return (
@@ -51,7 +67,7 @@ function ForgottenPassword({ email, setEmail }) {
         <div className=" flex flex-col justify-center items-center text-white ">
           <div className="bg-dark-blue  rounded-lg max-w-xl xl:p-0 md:shadow-1 mt-[30px] md:mt-[60px] ">
             {/* <div className="connexion-YellowRectangle" /> */}
-            <div className="p-6 space-y-6 sm:p-12">
+            <div className="p-6 space-y-6 sm:p-12 sm:px-24">
               <h1 className="text-flash-yellow text-center font-bold leading-tight tracking-tight text-3xl">
                 {t("Mot de passe oublié ?")}
               </h1>
@@ -76,14 +92,24 @@ function ForgottenPassword({ email, setEmail }) {
                 </div>
                 <div className="text-center ">
                   <button
-                    onClick={sendEmail}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      sendEmail();
+                    }}
                     type="submit"
                     className=" text-white mt-5 hover:bg-red-pink font-medium rounded-lg text-xl px-5 py-3 text-center border hover:scale-105 duration-300"
                   >
                     {t("Envoyer la demande")}
                   </button>
                 </div>
-                <p className="text-center">{t("Reponse mdp")}</p>
+                <div className="">
+                  <p className="text-center">{/* {t("Reponse mdp")} */}</p>
+                  {message && (
+                    <p className="text-red-500 text-center">
+                      {message === "service OFF" ? t("serviceoff") : ""}
+                    </p>
+                  )}
+                </div>
               </form>
             </div>
           </div>
