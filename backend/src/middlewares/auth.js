@@ -33,12 +33,17 @@ const verifyPassword = async (req, res) => {
     );
     if (isVerified) {
       const payload = { sub: req.user.id };
+      // console.log("PAYLOAD :", payload);
 
       const token = jwt.sign(payload, JWT_SECRET, {
         algorithm: "HS512",
         expiresIn: JWT_TIMING,
       });
 
+      // console.log(req.body.password);
+      // console.log(req.user.hashedPassword);
+
+      delete req.body.password;
       delete req.user.hashedPassword;
       res.send({ token, user: req.user });
     } else {

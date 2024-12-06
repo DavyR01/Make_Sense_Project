@@ -28,3 +28,6 @@ Axes d'améliorations :
 10) Ajouter logo page auth en responsive
 11) Protéger la route /api/user/byname
 12) Voir payload (user et mot de passe).
+13) Corriger le basculement des switch en version responsive dans le menu.
+14) Corriger le logo en responsive
+15) 
