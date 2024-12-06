@@ -37,23 +37,28 @@ const {
 } = require("./validators/validatorUserConnexion");
 
 // routes for user ******************************************
-router.get("/user", verifyToken, userControllers.browse);
-router.get("/user/bytoken", verifyToken, userControllers.findByToken);
-router.get("/user/byname", userControllers.browseByName);
-router.get("/user/:id", verifyToken, userControllers.read);
-router.put("/user/:id", verifyToken, validatorProfile, userControllers.edit);
+router.get("/api/user", verifyToken, userControllers.browse);
+router.get("/api/user/bytoken", verifyToken, userControllers.findByToken);
+router.get("/api/user/byname", userControllers.browseByName);
+router.get("/api/user/:id", verifyToken, userControllers.read);
+router.put(
+  "/api/user/:id",
+  verifyToken,
+  validatorProfile,
+  userControllers.edit
+);
 router.post(
-  "/user",
+  "/api/user",
   validateUserInscription,
   verifyEmail,
   hashPassword,
   userControllers.add
 );
-router.delete("/user/:id", userControllers.destroy);
+router.delete("/api/user/:id", userControllers.destroy);
 
 // Route for login ******************************************
 router.post(
-  "/login",
+  "/api/login",
   validateUserConnexion,
   authControllers.checkMailUser,
   verifyPassword
@@ -61,83 +66,91 @@ router.post(
 
 // Forgotten Password *******************************************
 router.post(
-  "/forgottenpassword",
+  "/api/forgottenpassword",
   forgottenPassword.verifyEmail,
   forgottenPassword.createToken,
   mailController.sendForgottenPassword
 );
 
 router.post(
-  "/resetpassword",
+  "/api/resetpassword",
   forgottenPassword.verifyTokenPassword,
   hashPassword,
   forgottenPassword.resetPassword
 );
 
 // Routes for decision ***************************************
-router.get("/decision", verifyToken, decisionControllers.browse);
+router.get("/api/decision", verifyToken, decisionControllers.browse);
 router.get(
-  "/decision/page",
+  "/api/decision/page",
   verifyToken,
   decisionControllers.browseByPageAndFilter
 );
 router.get(
-  "/decision/listadminbypage",
+  "/api/decision/listadminbypage",
   verifyToken,
   decisionControllers.browseAllByPageAndFilter
 );
-router.get("/decision/last", verifyToken, decisionControllers.readByLast);
-router.get("/decision/:id", verifyToken, decisionControllers.read);
+router.get("/api/decision/last", verifyToken, decisionControllers.readByLast);
+router.get("/api/decision/:id", verifyToken, decisionControllers.read);
 
 // Sert à afficher les décisions d'un user sur son profil
 router.get(
-  "/decision-byuser/:id",
+  "/api/decision-byuser/:id",
   verifyToken,
   decisionControllers.readDecisionByUserId
 );
 
 router.put(
-  "/decision/:id",
+  "/api/decision/:id",
   verifyToken,
   validatorEditDecision,
   decisionControllers.edit
 );
 router.post(
-  "/decision",
+  "/api/decision",
   verifyToken,
   validatorDecision,
   decisionControllers.add
 );
-router.delete("/decision/:id", verifyToken, decisionControllers.destroy);
+router.delete("/api/decision/:id", verifyToken, decisionControllers.destroy);
 
 // Routes for update avatar **********************************
 router.post(
-  "/avatar",
+  "/api/avatar",
   verifyToken,
   upload.single("avatar"),
   fileControllers.renameAvatar,
   userControllers.updateAvatar
 );
-router.get("/avatar/:fileName", fileControllers.sendAvatar);
+router.get("/api/avatar/:fileName", fileControllers.sendAvatar);
 
 // the following routes are used to add/update/delete comment from a chosen decision
-router.put("/decision/:id/comments/:id", verifyToken, commentControllers.edit);
+router.put(
+  "/api/decision/:id/comments/:id",
+  verifyToken,
+  commentControllers.edit
+);
 router.post(
-  "/decision/:id/comments",
+  "/api/decision/:id/comments",
   verifyToken,
   validatorComment,
   commentControllers.add
 );
 
 // Route for notification *********************************************
-router.get("/notification/:id", verifyToken, notificationControllers.browse);
+router.get(
+  "/api/notification/:id",
+  verifyToken,
+  notificationControllers.browse
+);
 
 // Route for admin **********************************************
-router.get("/admin/countstats", adminControllers.browseCount);
+router.get("/api/admin/countstats", adminControllers.browseCount);
 
 // Route for message *********************************************
-router.get("/admin/message", messageControllers.browseMessage);
-router.post("/admin/addmessage", messageControllers.addMessage);
-router.delete("/admin/message/:id", messageControllers.deleteMessage);
+router.get("/api/admin/message", messageControllers.browseMessage);
+router.post("/api/admin/addmessage", messageControllers.addMessage);
+router.delete("/api/admin/message/:id", messageControllers.deleteMessage);
 
 module.exports = router;
