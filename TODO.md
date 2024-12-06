@@ -25,3 +25,6 @@ Axes d'améliorations :
 7) Tenter d'accéder aux URLs du back pour voir si elles sont protégées et changer par /api.
 8) ✅ Empêcher d'accéder à la route "/" quand user connectée (page authentification)
 9) Message d'erreur si mail déjà utilisé faux lors de l'inscription faux.
+10) Ajouter logo page auth en responsive
+11) Protéger la route /api/user/byname
+12) Voir payload (user et mot de passe).
