@@ -21,8 +21,8 @@
     "update2": "npx npm-check-updates -u",
     "update3": "ncu -u",
     "prepare": "husky",
-    "preview": "npm --prefix ./frontend run preview",
-    "previewHost": "npm --prefix ./frontend run previewHost"
+    "preview": "npm run build && npm --prefix ./frontend run preview",
+    "previewHost": "npm run build && npm --prefix ./frontend run previewHost"
   },
   "keywords": [],
   "author": "Wild Code School",

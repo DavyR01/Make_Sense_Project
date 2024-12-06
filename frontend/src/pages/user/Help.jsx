@@ -155,8 +155,9 @@ export default function Help() {
           onClick={sendMessage}
           type="submit"
         >
-          {" "}
-          Envoyer
+          <div className="flex lg:block p-2 bg-red-pink text-white hover:bg-white hover:text-red-pink hover:border-2 hover:border-red-pink transition duration-200 ease-in-out">
+            Envoyer
+          </div>
         </button>
       </div>
     </div>

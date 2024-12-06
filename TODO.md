@@ -22,12 +22,13 @@ Axes d'améliorations :
 4) ✅ Rediriger sur la page d'accueil en cliquant sur le logo
 5) Scroll impossible sur la page "/home", "/décisions" et /décisions/<id> en responsive. A corriger! (quand <=1024px)
 6) ✅ Voir problématique du token qui ne se supprime pas lors de la déconnexion
-7) Tenter d'accéder aux URLs du back pour voir si elles sont protégées et changer par /api.
+7) ✅ Tenter d'accéder aux URLs du back pour voir si elles sont protégées et changer par /api.
 8) ✅ Empêcher d'accéder à la route "/" quand user connectée (page authentification)
 9) Message d'erreur si mail déjà utilisé faux lors de l'inscription faux.
-10) Ajouter logo page auth en responsive
 11) Protéger la route /api/user/byname
 12) Voir payload (user et mot de passe).
 13) Corriger le basculement des switch en version responsive dans le menu.
-14) Corriger le logo en responsive
-15) 
+14) ✅ Corriger les logo en responsive
+15) Changer logo onglet (favicon)
+16) Changer les mots de passe préconfigurés
+17) 

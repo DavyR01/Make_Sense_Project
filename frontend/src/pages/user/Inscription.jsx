@@ -3,6 +3,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 import { NavLink, useNavigate } from "react-router-dom";
 import logoMakeSense from "../../assets/logo-makesense.png";
+import LogoWhite from "../../assets/make_sense_white.png";
 import peoplepicture from "../../assets/peoplepicture.png";
 import HeaderCountryChoice from "../../components/user/HeaderCountryChoice";
 
@@ -78,7 +79,7 @@ function Inscription() {
         <NavLink to="/" className="flex justify-center">
           <img
             className="p-6 md:hidden"
-            src="/src/assets/make_sense_white.png"
+            src={LogoWhite}
             alt="logo"
             width={350}
           />

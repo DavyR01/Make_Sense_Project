@@ -114,7 +114,7 @@ export default function Home() {
         <div className="box col-start-1 col-end-4">
           <div className="flex items-center">
             <h2 className="text-xl ml-5 md:text-3xl text-red-pink font-extrabold p-4">
-              {t("Mes décisions")} :{" "}
+              {t("Mes décisions")} :
             </h2>
             <button
               type="button"

@@ -2,6 +2,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 import { NavLink } from "react-router-dom";
 import logoMakeSense from "../../assets/logo-makesense.png";
+import LogoWhite from "../../assets/make_sense_white.png";
 import peoplepicture from "../../assets/peoplepicture.png";
 import HeaderCountryChoice from "../../components/user/HeaderCountryChoice";
 
@@ -56,12 +57,7 @@ function ForgottenPassword({ email, setEmail }) {
         />
       </NavLink>
       <NavLink to="/" className="flex justify-center">
-        <img
-          className="p-6 md:hidden"
-          src="/src/assets/make_sense_white.png"
-          alt="logo"
-          width={350}
-        />
+        <img className="p-6 md:hidden" src={LogoWhite} alt="logo" width={350} />
       </NavLink>
       <div className="flex flex-col justify-between md-max:h-3/4 md:pt-40 lg:pt-0">
         <div className=" flex flex-col justify-center items-center text-white ">
