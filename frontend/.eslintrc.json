@@ -43,10 +43,13 @@
         "assert": "either"
       }
     ],
-    "prettier/prettier": ["error", {
-      "endOfLine": "auto"
-    }],
-     "linebreak-style": "off"
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
+    "linebreak-style": "off"
     //  "linebreak-style": ["error", "windows"]
   },
   "settings": {

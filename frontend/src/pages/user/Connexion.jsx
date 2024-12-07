@@ -8,7 +8,6 @@ import peoplepicture from "../../assets/peoplepicture.png";
 import { useCurrentUserContext } from "../../context/UserContext";
 import "../../css/user/Connexion.css";
 
-
 const backEnd = import.meta.env.VITE_BACKEND_URL;
 
 function Connexion() {
@@ -66,12 +65,7 @@ function Connexion() {
         />
       </NavLink>
       <NavLink to="/" className="flex justify-center">
-        <img
-          className="p-6 md:hidden"
-          src={LogoWhite}
-          alt="logo"
-          width={350}
-        />
+        <img className="p-6 md:hidden" src={LogoWhite} alt="logo" width={350} />
       </NavLink>
       <div className="flex flex-col justify-center items-center text-white md:pt-40 lg:pt-0">
         <div className="w-full bg-dark-blue rounded-lg max-w-md xl:p-0 md:shadow-1 relative ">

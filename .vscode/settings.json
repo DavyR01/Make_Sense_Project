@@ -1,5 +1,6 @@
 {
    "editor.codeActionsOnSave": {
+      //? If problem with prettier, run 'npm run fix'
       // "source.sortImports": "never",
    },
    "[javascriptreact]": {
@@ -7,5 +8,5 @@
    },
    "[javascript]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode"
-   }
+   },
 }

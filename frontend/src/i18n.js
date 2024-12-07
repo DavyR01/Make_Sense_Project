@@ -186,8 +186,7 @@ const resources = {
       "Envoyer la demande": "Send the request",
       "Reponse mdp":
         "An e-mail has been sent to you! Follow the instructions in this e-mail to change your password.",
-      serviceoff:
-        "The mail sending service is currently unavailable!",
+      serviceoff: "The mail sending service is currently unavailable!",
 
       // page inscription
       "Inscription page": "Registration",
@@ -346,8 +345,8 @@ const resources = {
       "Envoyer la demande": "Enviar la solicitud",
       "Reponse mdp":
         "Se le ha enviado un correo electrónico. Siga las instrucciones de este correo electrónico para cambiar su contraseña.",
-        serviceoff:
-       " El servicio de correo electrónico no está disponible en este momento!",
+      serviceoff:
+        " El servicio de correo electrónico no está disponible en este momento!",
 
       // page inscription
       "Inscription page": "Inscripción",

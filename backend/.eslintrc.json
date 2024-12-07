@@ -20,5 +20,4 @@
     ],
     "linebreak-style": "off" // Mixed with option "endOfLine": "auto" in .prettierrc file, undisplay and handle line feeds automaticaly (CRLF or LF) depending on operating system.
   }
-  
 }

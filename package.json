@@ -7,6 +7,7 @@
     "setup": "npm install && husky init && npm --prefix ./frontend install && npm --prefix ./backend install",
     "setupProd": "npm i --omit=dev && husky init && npm --prefix ./frontend i --omit=dev && npm --prefix ./backend i --omit=dev",
     "build": "cd frontend/ && npm run build",
+    "buildfix": "npm run fix && cd frontend/ && npm run build",
     "migrate": "cd backend/ && node migrate.js && cd ..",
     "dev": "concurrently -n front,back -c green,yellow -t \"HH:mm:ss\" -p \"{name} {time}\" \"npm --prefix ./frontend run dev\" \"npm --prefix ./backend run dev\"",
     "devHost": "concurrently -n front,back -c green,yellow -t \"HH:mm:ss\" -p \"{name} {time}\" \"npm --prefix ./frontend run devHost\" \"npm --prefix ./backend run dev\"",
