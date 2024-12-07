@@ -73,7 +73,7 @@ export default function DecisionsList() {
       .then((result) => {
         setValuesDetailsDecisions(result.rows);
         setTotalDecisions(result.nbDecision.nbDecision); // Permet d'afficher la pagination et le nomdre de décisions défini par page.
-        console.warn(result);
+        //   console.warn(result);
       })
       .catch((error) => console.warn("error", error));
   }, [token, currentPage, decisionPerPage]);

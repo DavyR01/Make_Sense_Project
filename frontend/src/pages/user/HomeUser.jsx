@@ -119,16 +119,8 @@ export default function Home() {
             <button
               type="button"
               onClick={() => navigate("/create-decision")}
-              className=" lg:block hidden h-6 pr-3 pl-3 mt-4 md:m-4 md:h-10 bg-red-pink rounded-xl text-white hover:bg-white hover:text-red-pink hover:border-2 hover:border-red-pink transition duration-200 ease-in-out"
+              className="mr-9 rounded-xl bg-red-pink px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-white hover:text-red-pink hover:border-2 hover:border-red-pink transition duration-200 ease-in-out lg:h-10 lg:text-base"
             >
-              + {t("Décision")}
-            </button>
-            <button
-              type="button"
-              onClick={() => navigate("/create-decision")}
-              className="lg:hidden w-[100px] mr-9 rounded-xl  bg-red-pink px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100"
-            >
-              {" "}
               + {t("Décision")}
             </button>
           </div>

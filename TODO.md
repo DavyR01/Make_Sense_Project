@@ -27,8 +27,8 @@ Axes d'améliorations :
 9) Message d'erreur si mail déjà utilisé faux lors de l'inscription faux.
 11) Protéger la route /api/user/byname
 12) Voir payload (user et mot de passe).
-13) Corriger le basculement des switch en version responsive dans le menu.
-14) ✅ Corriger les logo en responsive
-15) Changer logo onglet (favicon)
+13) Corriger le basculement des switch en version responsive dans le menu (mode).
+14) ✅ Corriger les logos en responsive
+15) ✅ Changer logo onglet (favicon)
 16) Changer les mots de passe préconfigurés
 17) 
