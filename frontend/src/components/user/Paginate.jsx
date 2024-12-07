@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 
 function Paginate({
   decisionPerPage,
@@ -11,6 +12,7 @@ function Paginate({
 }) {
   const pageNumbers = [];
   const [width, setWidth] = useState(window.innerWidth);
+  const { t } = useTranslation();
 
   // check if the window size is mobile
   function handleWindowSizeChange() {
@@ -36,7 +38,7 @@ function Paginate({
             onClick={previousPage}
             className="relative inline-flex items-center px-4 py-2 border border-gray-200 text-xs md:text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-200"
           >
-            Prev
+            {t("Précédent")}
           </button>
         )}
         <div className="flex gap-2 items-center">
@@ -76,7 +78,7 @@ function Paginate({
             onClick={nextPage}
             className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-200 text-xs md:text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
           >
-            Next
+            {t("Suivant")}
           </button>
         )}
       </div>

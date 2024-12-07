@@ -39,7 +39,7 @@ const {
 // routes for user ******************************************
 router.get("/api/user", verifyToken, userControllers.browse);
 router.get("/api/user/bytoken", verifyToken, userControllers.findByToken);
-router.get("/api/user/byname", (req, res) => {
+router.get("/api/user/byname", verifyToken, (req, res) => {
   //   console.log("Requête reçue pour /api/user/byname"); // Log de la requête
   userControllers.browseByName(req, res);
 });
@@ -149,11 +149,19 @@ router.get(
 );
 
 // Route for admin **********************************************
-router.get("/api/admin/countstats", adminControllers.browseCount);
+router.get("/api/admin/countstats", verifyToken, adminControllers.browseCount);
 
 // Route for message *********************************************
-router.get("/api/admin/message", messageControllers.browseMessage);
-router.post("/api/admin/addmessage", messageControllers.addMessage);
-router.delete("/api/admin/message/:id", messageControllers.deleteMessage);
+router.get("/api/admin/message", verifyToken, messageControllers.browseMessage);
+router.post(
+  "/api/admin/addmessage",
+  verifyToken,
+  messageControllers.addMessage
+);
+router.delete(
+  "/api/admin/message/:id",
+  verifyToken,
+  messageControllers.deleteMessage
+);
 
 module.exports = router;

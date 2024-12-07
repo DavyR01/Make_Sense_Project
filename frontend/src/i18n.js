@@ -64,6 +64,8 @@ const resources = {
       "Terminées filter": "Terminée",
       "Non abouties": "Non aboutie",
       "Filtrer btn": "Filtrer",
+      "Précédent": "Précédent",
+      "Suivant": "Suivant",
 
       // notifications
       "Notifications title": "Notifications",
@@ -224,6 +226,8 @@ const resources = {
       "Terminées filter": "Finished",
       "Non abouties": "Not achieved",
       "Filtrer btn": "Filter",
+      "Précédent": "Previous",
+      "Suivant": "Next",
 
       // notifications
       "Notifications title": "Notifications",
@@ -384,6 +388,8 @@ const resources = {
       "Terminées filter": "Terminadas",
       "Non abouties": "No logradas",
       "Filtrer btn": "Filtrar",
+      "Précédent": "Anterior",
+      "Suivant": "Siguiente",
 
       // notifications
       "Notifications title": "Notificaciones",
