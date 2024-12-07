@@ -120,6 +120,11 @@ const add = async (req, res) => {
   const concerns = req.body.person_concern;
   const notif = req.body.notif;
 
+  //   console.log(decision);
+  //   console.log(experts);
+  //   console.log(concerns);
+  //   console.log(notif);
+
   try {
     const [result] = await models.decision.insert(decision);
     await models.person_expert.insert(result.insertId, experts);

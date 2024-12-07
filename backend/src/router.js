@@ -39,7 +39,7 @@ const {
 // routes for user ******************************************
 router.get("/api/user", verifyToken, userControllers.browse);
 router.get("/api/user/bytoken", verifyToken, userControllers.findByToken);
-router.get("/api/user/byname", verifyToken, (req, res) => {
+router.get("/api/user/byname", (req, res) => {
   //   console.log("Requête reçue pour /api/user/byname"); // Log de la requête
   userControllers.browseByName(req, res);
 });
