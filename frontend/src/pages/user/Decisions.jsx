@@ -166,9 +166,7 @@ export default function Decisions({ open }) {
 
   return (
     <div
-      className={`w-screen overflow-hidden flex flex-col ${
-        dark ? "" : "bg-dark-header"
-      }`}
+      className={`w-screen overflow-x-hidden  flex flex-col ${dark ? "" : "bg-dark-header"}`}
     >
       <div
         className={`flex flex-row items-center justify-between pr-16 pl-10
@@ -379,9 +377,9 @@ export default function Decisions({ open }) {
           </Transition>
         </div>
       </Menu>
-      <div className="flex flex-col items-center md:grid md:grid-cols-3 lg:grid-cols-4 md:items-start mt-3 ">
+      <div className="text-center flex flex-col items-center md:grid md:grid-cols-3 lg:grid-cols-4 md:items-start mt-3 ">
         <div className="md:grid col-start-1 md:col-end-3 lg:col-end-4 md:ml-10 md:justify-start">
-          <div className="md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 grid-rows-3 gap-4">
+          <div className="md:grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 md:grid-rows-3 md:gap-4">
             {valuesDetailsDecisions.map((valueDetailsDecision) => {
               return (
                 <DecisionCard
@@ -395,7 +393,7 @@ export default function Decisions({ open }) {
             })}
           </div>
 
-          <div className="md:ml-6 mb-16 mt-6">
+          <div className="ml-6 mb-16 mt-6">
             <Paginate
               decisionPerPage={decisionPerPage}
               totalDecisions={totalDecisions}

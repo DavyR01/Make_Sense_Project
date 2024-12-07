@@ -59,7 +59,7 @@ export default function DecisionDetails() {
 
   return (
     <div
-      className={`flex flex-col w-screen overflow-hidden ${
+      className={`flex flex-col w-screen overflow-x-hidden ${
         dark ? "" : "bg-dark-header text-white"
       }`}
     >

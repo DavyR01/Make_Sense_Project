@@ -64,8 +64,8 @@ const resources = {
       "Terminées filter": "Terminée",
       "Non abouties": "Non aboutie",
       "Filtrer btn": "Filtrer",
-      "Précédent": "Précédent",
-      "Suivant": "Suivant",
+      Précédent: "Précédent",
+      Suivant: "Suivant",
 
       // notifications
       "Notifications title": "Notifications",
@@ -78,6 +78,7 @@ const resources = {
       "Envoyer btn": "Envoyer",
       "Localisation input": "Localisation",
       "Téléphone input": "Téléphone",
+      "Charger photo": "Charger ma photo",
 
       // alert deconnexion
       "Êtes-vous sûr de vouloir vous deconnecter ?":
@@ -226,8 +227,8 @@ const resources = {
       "Terminées filter": "Finished",
       "Non abouties": "Not achieved",
       "Filtrer btn": "Filter",
-      "Précédent": "Previous",
-      "Suivant": "Next",
+      Précédent: "Previous",
+      Suivant: "Next",
 
       // notifications
       "Notifications title": "Notifications",
@@ -239,6 +240,7 @@ const resources = {
       "Envoyer btn": "Send",
       "Localisation input": "Localization",
       "Téléphone input": "Phone",
+      "Charger photo": "Upload my photo",
 
       // alert deconnexion
       "Êtes-vous sûr de vouloir vous deconnecter ?":
@@ -388,8 +390,8 @@ const resources = {
       "Terminées filter": "Terminadas",
       "Non abouties": "No logradas",
       "Filtrer btn": "Filtrar",
-      "Précédent": "Anterior",
-      "Suivant": "Siguiente",
+      Précédent: "Anterior",
+      Suivant: "Siguiente",
 
       // notifications
       "Notifications title": "Notificaciones",
@@ -401,6 +403,7 @@ const resources = {
       "Envoyer btn": "Enviar",
       "Localisation input": "Localización",
       "Téléphone input": "Teléfono",
+      "Charger photo": "Subir mi foto",
 
       // alert deconnexion
       "Êtes-vous sûr de vouloir vous deconnecter ?":

@@ -31,4 +31,5 @@ Axes d'améliorations :
 14) ✅ Corriger les logos en responsive
 15) ✅ Changer logo onglet (favicon)
 16) Changer les mots de passe préconfigurés
-17) 
+17) ✅ Centrer fenetre de dialogue de déconnexion en responsive. 
+18) Changer de couleur police date ("nous sommes le") et "crée le", "prend fin le" car pas très visible.

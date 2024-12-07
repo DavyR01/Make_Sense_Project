@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import iconPrevious from "../../assets/icons/chevron-left.svg";
+import iconNext from "../../assets/icons/chevron-right.svg";
 
 function Paginate({
   decisionPerPage,
@@ -31,8 +33,21 @@ function Paginate({
   }
   return pageNumbers.length > 1 ? (
     <div className="px-4 py-3 flex items-center justify-between border-t rounded-b-xl border-gray-100 sm:px-6">
-      <div className="flex-1 flex justify-between sm">
-        {open && isMobile ? null : (
+      <div className="flex-1 flex justify-between">
+        {open && isMobile ? (
+          <button
+            type="button"
+            onClick={previousPage}
+            className="relative inline-flex items-center px-4 py-2 border border-gray-200 text-xs md:text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-200"
+          >
+            <img
+              src={iconPrevious}
+              alt={t("Précédent")}
+              className="mr-2 w-auto h-auto max-w-none"
+            />
+            {/* {t("Précédent")} */}
+          </button>
+        ) : (
           <button
             type="button"
             onClick={previousPage}
@@ -50,8 +65,8 @@ function Paginate({
                   onClick={() => paginate(number)}
                   className={
                     number === currentPage
-                      ? "bg-light-green md:w-10 md:h-10 w-6 h-6 rounded-full"
-                      : "bg-gray-50 hover:bg-gray-200 md:w-10 md:h-10 w-6 h-6 rounded-full duration-300"
+                      ? "bg-light-green w-10 h-10 rounded-full"
+                      : "bg-gray-50 hover:bg-gray-200 w-10 h-10 rounded-full duration-300"
                   }
                 >
                   {number}
@@ -65,14 +80,27 @@ function Paginate({
                   className={
                     number === currentPage
                       ? "bg-light-green md:w-10 md:h-10 w-6 h-6 rounded-full"
-                      : "bg-gray-50 hover:bg-gray-200 md:w-10 md:h-10 w-6 h-6 rounded-full duration-300"
+                      : "bg-gray-50 hover:bg-gray-200 w-10 h-10 rounded-full duration-300"
                   }
                 >
                   {number}
                 </button>
               ))}
         </div>
-        {open && isMobile ? null : (
+        {open && isMobile ? (
+          <button
+            type="button"
+            onClick={nextPage}
+            className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-200 text-xs md:text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+          >
+            <img
+              src={iconNext}
+              alt={t("Précédent")}
+              className="mr-2 w-auto h-auto max-w-none"
+            />
+            {/* {t("Suivant")} */}
+          </button>
+        ) : (
           <button
             type="button"
             onClick={nextPage}

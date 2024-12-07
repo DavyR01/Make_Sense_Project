@@ -15,6 +15,8 @@ export default function SidebarMobile({
   setOpenMobile,
   checked,
   handleChecked,
+  //   open,
+  //   setOpen,
 }) {
   const { user, setUser } = useCurrentUserContext();
   const { lang, toggleLang } = useCurrentLangContext();
@@ -57,8 +59,8 @@ export default function SidebarMobile({
         <div className="h-[500px] flex flex-col items-center z-40">
           <div className="flex flex-row mt-4 mb-[20px]">
             {user?.is_admin === 1 ? (
+              //! A VOIR
               <div className="text-white mt-4 mx-4 flex">
-                {" "}
                 <Switch
                   id="amber"
                   color="amber"
@@ -403,7 +405,6 @@ export default function SidebarMobile({
       ) : (
         ""
       )}
-
       <div>
         <AlertDeconnexion
           openModalAlertDeconnexion={openModalAlertDeconnexion}

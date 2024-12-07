@@ -78,7 +78,7 @@ export default function Home() {
 
   return (
     <div
-      className={`w-screen z-0${
+      className={`w-screen z-0 overflow-x-hidden ${
         dark ? "text-black" : "text-white bg-dark-header"
       }`}
     >
@@ -125,7 +125,7 @@ export default function Home() {
             </button>
           </div>
         </div>
-        <div className="md:grid md:col-start-1 md:col-end-4 md:ml-10 md:justify-start flex justify-center md:w-screen">
+        <div className="text-center md:grid md:col-start-1 md:col-end-4 md:ml-10 md:justify-start flex justify-center md:w-screen">
           <div className="md:grid md:grid-cols-3 xl:grid-cols-4 grid-rows-2 gap-4">
             {valuesDetailsDecisions.map((valueDetailsDecision) => {
               if (valueDetailsDecision.user_id === user.id) {
@@ -168,7 +168,7 @@ export default function Home() {
             {t("Toutes les décisions")} :{" "}
           </h2>
         </div>
-        <div className="box col-start-1 col-end-4 md:ml-10 md:justify-start flex justify-center items-center z-0 md:w-screen">
+        <div className="text-center box col-start-1 col-end-4 md:ml-10 md:justify-start flex justify-center items-center z-0 md:w-screen">
           <div className="md:grid md:mb-5 md:grid-cols-3 xl:grid-cols-4 gap-4 z-0">
             {valuesDetailsDecisions.slice(0, 9).map((valueDetailsDecision) => {
               if (
