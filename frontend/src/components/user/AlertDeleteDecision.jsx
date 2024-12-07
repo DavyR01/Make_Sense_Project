@@ -1,5 +1,5 @@
-import { React, useRef, Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
+import { Fragment, React, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import alertTriangleIcon from "../../assets/icons/alert-triangle.svg";
 
@@ -32,7 +32,7 @@ function AlertDeleteDecision({
         </Transition.Child>
 
         <div className="fixed inset-0 z-10 overflow-y-auto">
-          <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+          <div className="flex min-h-full justify-center p-4 text-center items-center sm:p-0">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"

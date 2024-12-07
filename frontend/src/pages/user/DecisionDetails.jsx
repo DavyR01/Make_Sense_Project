@@ -79,7 +79,7 @@ export default function DecisionDetails() {
           ) : (
             <p className=" pt-3 text-xl">{t("Bonjour home")}</p>
           )}
-          <p className="text-x font-extralight text-gray-500 pb-2">
+          <p className="text-x font-extralight pb-2">
             {t("Nous sommes le")} : {new Date().toLocaleDateString()}
           </p>
         </div>
@@ -109,7 +109,7 @@ export default function DecisionDetails() {
             <div className="border-b mb-3">
               <div className="flex flex-row justify-between">
                 <div>
-                  <p className="text-xs font-thin text-left mt-2 text-gray-500">
+                  <p className="text-xs font-thin text-left mt-2 text-gray-600">
                     {t("Crée le")} :{" "}
                     {valuesDetailsDecision?.date_decision_creation
                       ?.slice(0, 10)
@@ -117,7 +117,7 @@ export default function DecisionDetails() {
                       .reverse()
                       .join("/")}
                   </p>
-                  <p className="text-xs font-thin text-left text-gray-500 mb-3">
+                  <p className="text-xs font-thin text-left text-gray-600 mb-3">
                     {t("Fin de conflit le")} :{" "}
                     {valuesDetailsDecision?.date_decision_final
                       ?.slice(0, 10)

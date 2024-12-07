@@ -33,3 +33,4 @@ Axes d'améliorations :
 16) Changer les mots de passe préconfigurés
 17) ✅ Centrer fenetre de dialogue de déconnexion en responsive. 
 18) Changer de couleur police date ("nous sommes le") et "crée le", "prend fin le" car pas très visible.
+19) Empêcher la création d'une décision si elle n'est pas complète. Même si message d'erreur, elle se crée quand même si les 3 premiers champs sont remplis.

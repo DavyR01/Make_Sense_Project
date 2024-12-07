@@ -98,7 +98,7 @@ export default function Home() {
           ) : (
             <p className="pt-3 text-xl">{t("Bonjour home")}</p>
           )}
-          <p className="md:flex text-x font-extralight text-gray-500 pb-2">
+          <p className="md:flex text-x font-extralight text-gray-600 pb-2">
             {t("Nous sommes le")} : {new Date().toLocaleDateString()}
           </p>
         </div>

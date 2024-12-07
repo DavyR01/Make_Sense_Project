@@ -170,11 +170,11 @@ export default function DecisionCard({
             </p>
           </div>
           <div className="border-t absolute bottom-3 ">
-            <p className="text-xs font-thin text-left mt-2 text-gray-500">
+            <p className="text-xs font-thin text-left mt-2 text-gray-600">
               {t("Crée le")} :{" "}
               {convertDateFromApi(valueDetailsDecision.date_decision_creation)}
             </p>
-            <p className="text-xs font-thin text-left text-gray-500">
+            <p className="text-xs font-thin text-left text-gray-600">
               {t("Fin de conflit le")} :{" "}
               {convertDateFromApi(valueDetailsDecision.date_decision_final)}
             </p>
