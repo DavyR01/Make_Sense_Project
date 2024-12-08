@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import { Switch } from "@material-tailwind/react";
 import { React, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -418,7 +420,10 @@ export default function SidebarMobile({
           setOpenModalAlertDeconnexion={setOpenModalAlertDeconnexion}
           setLogoutIsConfirm={setLogoutIsConfirm}
         />
-        <div className="flex flex-col justify-end items-center pb-4 h-[50px] ">
+        <div
+          onClick={() => setOpenMobile(!openMobile)}
+          className="flex flex-col justify-end items-center pb-4 h-[50px] border-gray-500 border-t-2 "
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -430,7 +435,6 @@ export default function SidebarMobile({
                 ? "w-6 h-6 stroke-white   "
                 : "w-6 h-6 stroke-white rotate-180 "
             }`}
-            onClick={() => setOpenMobile(!openMobile)}
           >
             <path
               strokeLinecap="round"

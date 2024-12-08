@@ -41,3 +41,5 @@
 25) Simplifier les chemins ou path avec une baseUrl et option paths dans le fichier config.
 26) Gérer le mini scroll vertical sur les tableaux côté admin alors qu'il n'est pas nécessaire.
 27) Gérer l'espace de la side bar mobile en bas de la page qui passe un peu au dessus du dernier élément dans le tableau quand > 768px (md tailwind)
+28) Comprendre les erreurs EsLint disabled `SidebarMobile.jsx`
+29) 
