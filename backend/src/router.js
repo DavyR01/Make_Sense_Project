@@ -153,11 +153,7 @@ router.get("/api/admin/countstats", verifyToken, adminControllers.browseCount);
 
 // Route for message *********************************************
 router.get("/api/admin/message", verifyToken, messageControllers.browseMessage);
-router.post(
-  "/api/admin/addmessage",
-  verifyToken,
-  messageControllers.addMessage
-);
+router.post("/api/admin/addmessage", messageControllers.addMessage);
 router.delete(
   "/api/admin/message/:id",
   verifyToken,

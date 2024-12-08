@@ -86,7 +86,7 @@ function Messages() {
       >
         <div className="flex flex-col">
           {user ? (
-            <p className="pl-10 pt-3 text-xl">MESSAGES </p>
+            <p className="pl-10 pt-3 text-xl">{t("Message")} </p>
           ) : (
             <p className="pl-10 pt-3 text-xl">{t("Bonjour home")}</p>
           )}

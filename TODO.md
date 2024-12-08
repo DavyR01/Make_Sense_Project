@@ -1,26 +1,25 @@
-### Reste à faire
+# Reste à faire
 
-Prettier:
+## Prettier:
 
 - corriger la config front/back pour qu'elle suive le même standard qu'ESLint
 
-Testing:
+## Testing:
 
 - ajouter des tests unitaires sur le front et le back, avec les commandes associées
 
-Vérifications:
+## Vérifications:
 
 - s'assurer que les principaux outils utilisés lors de la formation sont compatibles avec ce template
-- deploiements ? Compatible avec Netlify/Vercel/Heroku ?
-- fonctionnement avec yarn/pnpm
 
-Axes d'améliorations :
+## Axes d'améliorations et Correctifs :
 
 1. Déterminer une length max des titres sur les cards en limitant leur longueur avec un overflow ... `text-overflow: ellipsis;`
 2. Gérer le responsive correctement du time stepper sur la route `/home`
 3) Gérer le responsive du profil d'un utilisateur (UserProfile)
+3) ✅ Gérer le responsive du profil du profil de l'utilisateur connecté (MyProfile)
 4) ✅ Rediriger sur la page d'accueil en cliquant sur le logo
-5) Scroll impossible sur la page "/home", "/décisions" et /décisions/<id> en responsive. A corriger! (quand <=1024px)
+5) ✅ Scroll impossible sur la page "/home", "/décisions" et /décisions/<id> en responsive. A corriger! (quand <=1024px)
 6) ✅ Voir problématique du token qui ne se supprime pas lors de la déconnexion
 7) ✅ Tenter d'accéder aux URLs du back pour voir si elles sont protégées et changer par /api.
 8) ✅ Empêcher d'accéder à la route "/" quand user connectée (page authentification)
@@ -32,5 +31,8 @@ Axes d'améliorations :
 15) ✅ Changer logo onglet (favicon)
 16) Changer les mots de passe préconfigurés
 17) ✅ Centrer fenetre de dialogue de déconnexion en responsive. 
-18) Changer de couleur police date ("nous sommes le") et "crée le", "prend fin le" car pas très visible.
-19) Empêcher la création d'une décision si elle n'est pas complète. Même si message d'erreur, elle se crée quand même si les 3 premiers champs sont remplis.
+18) ✅ Changer de couleur police date ("nous sommes le") et "crée le", "prend fin le" car pas très visible.
+19) Empêcher la création d'une décision si elle n'est pas complète. Même si message d'erreur, elle se crée quand même si les 3 premiers champs sont remplis mais pas les autres.
+20) Réduire le sidebar mobile lors de la connexion automatiquement, ainsi que lors d'un clic hors de cette zone.
+21) Corriger le responsive Côté admin des listes et messagerie en incluant un scroll x mais en désactivant le scroll y
+22) Changer la manière d'upload une photo de profil autrement que par un lien.

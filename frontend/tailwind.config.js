@@ -35,6 +35,9 @@ module.exports = withMT({
         "dark-header": "#1e1e1e",
         "gray-bar": "#98999b",
       },
+      width: {
+        640: "640px", // Select this rule by typing w-640 in jsx
+      },
       boxShadow: {
         1: "10px 10px 20px 0 rgba(50, 0, 50, 0.3)",
       },

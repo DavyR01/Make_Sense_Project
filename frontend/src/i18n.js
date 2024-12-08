@@ -151,6 +151,7 @@ const resources = {
       // message admin
       "Nom, prénom": "Nom, prénom",
       Titre: "Titre",
+      Message: "Boîte de réception",
 
       // liste utilisateur
       "Liste utilisateurs": "Liste utilisateurs",
@@ -313,6 +314,7 @@ const resources = {
       // message admin
       "Nom, prénom": "Lastname, firstname",
       Titre: "Title",
+      Message: "Mailbox",
 
       // liste utilisateur
       "Liste utilisateurs": "Users list",
@@ -475,7 +477,9 @@ const resources = {
 
       // message admin
       "Nom, prénom": "Apellido, nombre",
-      Titre: "Title",
+      Titre: "Título",
+      Message: "Bandeja de entrada",
+
 
       // liste utilisateur
       "Liste utilisateurs": "Lista de usuarios",

@@ -104,7 +104,7 @@ export default function UsersList() {
 
   return (
     <div
-      className={`w-screen z-0${
+      className={`w-screen z-0 overflow-y-hidden ${
         dark ? "text-black" : "text-white bg-dark-header"
       }`}
     >
@@ -143,11 +143,15 @@ export default function UsersList() {
       {/* CREATION COLUMNS */}
 
       <div
-        className={`md:w-[95%] m-auto h-auto ${
+        style={{
+          /*  width: "640px", maxWidth: "none",  */ overflowX: "auto",
+        }}
+        className={`md:w-[95%] m-auto h-auto sm-max: w-640 ${
           dark ? "text-black" : "text-white"
         }`}
       >
         <div
+          //  style={{ width: "100%", minWidth: "640px" }}
           className={`grid grid-cols-6 items-center ${
             dark ? "bg-gray-200" : "bg-dark-bg border-gray-400"
           }bg-gray-400 h-12 mt-10 justify-center rounded-sm`}
