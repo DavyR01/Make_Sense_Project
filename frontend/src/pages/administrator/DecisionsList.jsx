@@ -58,6 +58,14 @@ export default function DecisionsList() {
   };
 
   useEffect(() => {
+    // Gestion background hors layout
+    document.body.classList.add(dark ? "bg-white" : "bg-dark-header");
+    return () => {
+      document.body.classList.remove(dark ? "bg-white" : "bg-dark-header");
+    };
+  }, [dark]);
+
+  useEffect(() => {
     const myHeader = new Headers();
     myHeader.append("Authorization", `Bearer ${token}`);
 
@@ -184,10 +192,10 @@ export default function DecisionsList() {
         <thead>
           <tr
             className={`mt-12 text-center ${
-              dark ? "bg-white" : "bg-dark-header text-white"
+              dark ? "bg-dark-blue text-white" : "bg-dark-header text-white"
             }`}
           >
-            <th className="w-auto p-2">{t("Supprimer")}</th>
+            <th className="w-auto p-2">{` `}</th>
             <th className="w-auto p-2">{t("Auteur")}</th>
             <th className="w-auto p-2">{t("Concerné")}</th>
             <th className="w-auto p-2">{t("Expert")}</th>

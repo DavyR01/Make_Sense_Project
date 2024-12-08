@@ -166,6 +166,7 @@ const resources = {
       "Date de création": "Date de création",
       "Date de finalisation": "Date de finalisation",
       Status: "Statut",
+      Titre_décision: "Titre décision",
 
       // Mentions légale & Aides
       "Retour espace": "Retour sur mon espace personnel",
@@ -329,6 +330,7 @@ const resources = {
       "Date de création": "Creation date",
       "Date de finalisation": "Finalization date",
       Status: "Status",
+      Titre_décision: "Decision title",
 
       // Mentions légale & Aides
       "Retour espace": "Back to my personal space",
@@ -480,7 +482,6 @@ const resources = {
       Titre: "Título",
       Message: "Bandeja de entrada",
 
-
       // liste utilisateur
       "Liste utilisateurs": "Lista de usuarios",
 
@@ -494,6 +495,7 @@ const resources = {
       "Date de création": "Fecha de creacion",
       "Date de finalisation": "Fecha de finalizacion",
       Status: "Estado",
+      Titre_décision: "Título de la decisión",
 
       // Mentions légale & Aides
       "Retour espace": "Volver a mi espacio personal",

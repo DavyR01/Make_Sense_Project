@@ -16,6 +16,12 @@ body,
   height: auto;
   width: auto;
 }
+
+/* body{
+background-color: red;
+} */
+ 
+
 @media (max-width: 1024px) {
   html,
   body,

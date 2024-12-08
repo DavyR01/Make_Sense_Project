@@ -38,21 +38,6 @@ export default function UsersList() {
   //   );
   // };
 
-  useEffect(() => {
-    const myHeader = new Headers();
-    myHeader.append("Authorization", `Bearer ${token}`);
-
-    const requestOptions = {
-      headers: myHeader,
-    };
-    fetch(`${backEnd}/user`, requestOptions)
-      .then((res) => res.json())
-      .then((result) => {
-        setUsers(result);
-      })
-      .catch((err) => console.error(err));
-  }, [token]);
-
   const handleDeleteUser = () => {
     const myHeaders = new Headers();
     myHeaders.append("Authorization", `Bearer ${token}`);
@@ -93,6 +78,21 @@ export default function UsersList() {
   };
 
   useEffect(() => {
+    const myHeader = new Headers();
+    myHeader.append("Authorization", `Bearer ${token}`);
+
+    const requestOptions = {
+      headers: myHeader,
+    };
+    fetch(`${backEnd}/user`, requestOptions)
+      .then((res) => res.json())
+      .then((result) => {
+        setUsers(result);
+      })
+      .catch((err) => console.error(err));
+  }, [token]);
+
+  useEffect(() => {
     if (deleteIsConfirm) {
       setOpenModalAlertDelete(false);
       handleDeleteUser();
@@ -100,11 +100,17 @@ export default function UsersList() {
     } else {
       setDeleteIsConfirm(false);
     }
-  }, [deleteIsConfirm]);
+
+    // Gestion background hors layout
+    document.body.classList.add(dark ? "bg-white" : "bg-dark-header");
+    return () => {
+      document.body.classList.remove(dark ? "bg-white" : "bg-dark-header");
+    };
+  }, [deleteIsConfirm, dark]);
 
   return (
     <div
-      className={`w-screen z-0 overflow-y-hidden ${
+      className={`w-screen z-0 ${
         dark ? "text-black" : "text-white bg-dark-header"
       }`}
     >
@@ -143,9 +149,11 @@ export default function UsersList() {
       {/* CREATION COLUMNS */}
 
       <div
-        style={{
-          /*  width: "640px", maxWidth: "none",  */ overflowX: "auto",
-        }}
+        //   style={{
+        //     width: "640px",
+        //     maxWidth: "none",
+        //     overflowX: "auto",
+        //   }}
         className={`md:w-[95%] m-auto h-auto sm-max: w-640 ${
           dark ? "text-black" : "text-white"
         }`}
@@ -153,53 +161,58 @@ export default function UsersList() {
         <div
           //  style={{ width: "100%", minWidth: "640px" }}
           className={`grid grid-cols-6 items-center ${
-            dark ? "bg-gray-200" : "bg-dark-bg border-gray-400"
-          }bg-gray-400 h-12 mt-10 justify-center rounded-sm`}
+            dark ? "bg-dark-blue text-white" : "bg-dark-bg border-gray-400"
+          } h-12 mt-10 justify-center rounded-sm`}
         >
           {" "}
-          <BsTrash className="w-12 h-5" />
+          {/* <BsTrash className="w-12 h-5" /> */}
           <p className="col-start-2 ">Avatar</p>
           <p className="col-start-3 text-center">{t("Nom, prénom")}</p>
           <p className="col-start-4 col-end-6 text-center">Email</p>
           <p className="col-start-6 col-end-7 text-center">Phone</p>
         </div>
-        {users.map((user) => (
-          <div
-            type="button"
-            key={user.id}
-            className={
-              user.id % 2 === 0
-                ? `grid pt-2 pb-2 grid-cols-6 items-center ${
-                    dark ? "bg-gray-200" : "bg-dark-header"
-                  }  h-auto min-h-min	justify-center border-b-2 border-gray-400	w-full `
-                : `grid pt-2 pb-2 grid-cols-6 items-center${
-                    dark ? "bg-gray-300" : "bg-dark-header"
-                  } h-auto min-h-min	justify-center hover:bg-gray-400 hover:text-black border-b-2 border-gray-400	w-full `
-            }
-          >
-            <button
+        <div className="mb-16">
+          {users.map((user) => (
+            <div
               type="button"
-              onClick={() => {
-                setOpenModalAlertDelete(true);
-                setIdUserToDelete(user.id);
-              }}
+              key={user.id}
+              className={
+                user.id % 2 === 0
+                  ? `grid pt-2 pb-2 grid-cols-6 items-center ${
+                      dark ? "bg-gray-200" : "bg-dark-header"
+                    }  h-auto min-h-min	justify-center border-b-2 border-gray-400	w-full `
+                  : `grid pt-2 pb-2 grid-cols-6 items-center${
+                      dark ? "bg-gray-300" : "bg-dark-header"
+                    } h-auto min-h-min	justify-center hover:bg-gray-400 hover:text-black border-b-2 border-gray-400	w-full `
+              }
             >
-              <BsTrash className="w-12 h-5" />
-            </button>
-            <img
-              src={`${backEnd}/avatar/${user?.avatar}`}
-              alt="avatar"
-              className="col-start-2 col-end-3 w-8 h-8 rounded-full"
-            />
-            <p className="col-start-3 text-center">
-              {user.firstname} {user.lastname}
-            </p>
-            <p className="col-start-4 col-end-6 text-center">{user.email}</p>
-            <button type="button" className="col-start-6 col-end-7 text-center">
-              <p>{user.phone}</p>
-            </button>
-          </div>
-        ))}
+              <button
+                type="button"
+                onClick={() => {
+                  setOpenModalAlertDelete(true);
+                  setIdUserToDelete(user.id);
+                }}
+              >
+                <BsTrash className="w-12 h-5" />
+              </button>
+              <img
+                src={`${backEnd}/avatar/${user?.avatar}`}
+                alt="avatar"
+                className="col-start-2 col-end-3 w-8 h-8 rounded-full"
+              />
+              <p className="col-start-3 text-center">
+                {user.firstname} {user.lastname}
+              </p>
+              <p className="col-start-4 col-end-6 text-center">{user.email}</p>
+              <button
+                type="button"
+                className="col-start-6 col-end-7 text-center"
+              >
+                <p>{user.phone}</p>
+              </button>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

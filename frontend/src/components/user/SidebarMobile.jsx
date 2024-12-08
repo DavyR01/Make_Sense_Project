@@ -136,7 +136,10 @@ export default function SidebarMobile({
               </NavLink>
               <button
                 type="button"
-                onClick={handleNotificationModal}
+                onClick={() => {
+                  setOpenMobile(!openMobile);
+                  handleNotificationModal();
+                }}
                 className="flex flex-row items-center mt-4"
               >
                 <div className="yellow-point mr-2" />
@@ -296,6 +299,7 @@ export default function SidebarMobile({
               <NavLink
                 to="/userslist"
                 className="flex flex-row items-center mt-4"
+                onClick={() => setOpenMobile(!openMobile)}
               >
                 <div className="yellow-point mr-2" />
                 <svg
@@ -344,7 +348,10 @@ export default function SidebarMobile({
               <button
                 type="button"
                 className="flex flex-row items-center mt-4"
-                onClick={() => handleLogOut()}
+                onClick={() => {
+                  setOpenMobile(!openMobile);
+                  handleLogOut();
+                }}
               >
                 <div className="yellow-point mr-2" />
                 <svg

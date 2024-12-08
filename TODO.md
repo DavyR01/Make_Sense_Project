@@ -10,7 +10,7 @@
 
 ## Vérifications:
 
-- s'assurer que les principaux outils utilisés lors de la formation sont compatibles avec ce template
+- ✅ S'assurer que les principaux outils utilisés lors de la formation sont compatibles avec ce template
 
 ## Axes d'améliorations et Correctifs :
 
@@ -34,5 +34,10 @@
 18) ✅ Changer de couleur police date ("nous sommes le") et "crée le", "prend fin le" car pas très visible.
 19) Empêcher la création d'une décision si elle n'est pas complète. Même si message d'erreur, elle se crée quand même si les 3 premiers champs sont remplis mais pas les autres.
 20) Réduire le sidebar mobile lors de la connexion automatiquement, ainsi que lors d'un clic hors de cette zone.
-21) Corriger le responsive Côté admin des listes et messagerie en incluant un scroll x mais en désactivant le scroll y
+21) ✅ Corriger le responsive Côté admin des listes et messagerie en incluant un scroll x (voir w-640)
 22) Changer la manière d'upload une photo de profil autrement que par un lien.
+23) ✅ Corriger l'espace blanc en dessous des tableau espace admin (Jouer avec le body du composant uniquement en le sélectionnant lors de son montage, en appliquant un style et en supprimant ce style au démontage: utilisation useEffect)
+24) Elargir la zone de touche pour réduire ou étendre la side bar mobile en version responsive.
+25) Simplifier les chemins ou path avec une baseUrl et option paths dans le fichier config.
+26) Gérer le mini scroll vertical sur les tableaux côté admin alors qu'il n'est pas nécessaire.
+27) Gérer l'espace de la side bar mobile en bas de la page qui passe un peu au dessus du dernier élément dans le tableau quand > 768px (md tailwind)

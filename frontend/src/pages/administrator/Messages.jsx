@@ -64,9 +64,17 @@ function Messages() {
 
   // console.log(messages);
 
+  useEffect(() => {
+    document.body.classList.add(dark ? "bg-white" : "bg-dark-header");
+    return () => {
+      document.body.classList.remove(dark ? "bg-white" : "bg-dark-header");
+    };
+  }, [dark]);
+
   return (
     <div
-      className={`w-screen z-0${
+      className={` w-screen z-0 ${
+        // className={` w-screen z-0 sm-max:overflow-y-hidden h-screen ${
         dark ? "text-black" : "text-white bg-dark-header"
       }`}
     >
@@ -103,61 +111,67 @@ function Messages() {
         </div>
       </div>
 
+      {/* CREATION COLUMNS */}
+
       <div
-        className={`md:w-[95%] m-auto h-auto ${
+        className={`md:w-[95%] m-auto h-auto w-640  ${
           dark ? "text-black" : "text-white"
         }`}
       >
         <div
-          className={`grid grid-cols-6 items-center bg-gray-400 ${
-            dark ? "bg-gray-200" : "bg-dark-bg border-gray-400"
-          }bg-gray-400 h-12 mt-10 justify-center rounded-sm`}
+          className={`grid grid-cols-6 items-center ${
+            dark ? "bg-dark-blue text-white" : "bg-dark-bg border-gray-400"
+          }  h-12 mt-10 justify-center rounded-sm`}
         >
-          <BsTrash className="w-12 h-5" />
+          {/* <BsTrash className="w-12 h-5" /> */}
 
           <p className="col-start-2 text-center">{t("Nom, prénom")}</p>
           <p className="col-start-3 col-end-5 text-center">Email</p>
           <p className="col-start-5 col-end-7 text-center">{t("Titre")}</p>
         </div>
-        {messages.map((message) => (
-          <div
-            type="button"
-            key={message.id}
-            className={
-              message.id % 2 === 0
-                ? `grid pt-2 pb-2 grid-cols-6 items-center ${
-                    dark ? "bg-gray-200" : "bg-dark-header"
-                  }  h-auto min-h-min	justify-center border-b-2 border-gray-400	w-full `
-                : `grid pt-2 pb-2 grid-cols-6 items-center${
-                    dark ? "bg-gray-300" : "bg-dark-header"
-                  } h-auto min-h-min	justify-center hover:bg-gray-400 hover:text-black border-b-2 border-gray-400	w-full `
-            }
-          >
-            <button
+        <div className="mb-16">
+          {messages.map((message) => (
+            <div
               type="button"
-              onClick={() => {
-                setOpenModalAlertDelete(true);
-                setId(message.id);
-              }}
+              key={message.id}
+              className={
+                message.id % 2 === 0
+                  ? `grid pt-2 pb-2 grid-cols-6 items-center ${
+                      dark ? "bg-gray-200" : "bg-dark-header"
+                    }  h-auto min-h-min	justify-center border-b-2 border-gray-400	w-full `
+                  : `grid pt-2 pb-2 grid-cols-6 items-center${
+                      dark ? "bg-gray-300" : "bg-dark-header"
+                    } h-auto min-h-min	justify-center hover:bg-gray-400 hover:text-black border-b-2 border-gray-400	w-full `
+              }
             >
-              <BsTrash className="w-12 h-5" />
-            </button>
-            <p className="col-start-2 text-center">{message.username}</p>
-            <p className="col-start-3 col-end-5 text-center">{message.email}</p>
-            <button
-              type="button"
-              className="col-start-5 col-end-7 text-center"
-              onClick={() => setShowModalMessage(true)}
-            >
-              <p>{message.objet}</p>
-            </button>
-            <ModalMessage
-              showModalMessage={showModalMessage}
-              setShowModalMessage={setShowModalMessage}
-              message={message}
-            />
-          </div>
-        ))}
+              <button
+                type="button"
+                onClick={() => {
+                  setOpenModalAlertDelete(true);
+                  setId(message.id);
+                }}
+              >
+                <BsTrash className="w-12 h-5" />
+              </button>
+              <p className="col-start-2 text-center">{message.username}</p>
+              <p className="col-start-3 col-end-5 text-center">
+                {message.email}
+              </p>
+              <button
+                type="button"
+                className="col-start-5 col-end-7 text-center"
+                onClick={() => setShowModalMessage(true)}
+              >
+                <p>{message.objet}</p>
+              </button>
+              <ModalMessage
+                showModalMessage={showModalMessage}
+                setShowModalMessage={setShowModalMessage}
+                message={message}
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

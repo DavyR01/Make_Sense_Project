@@ -166,7 +166,7 @@ export default function Decisions({ open }) {
 
   return (
     <div
-      className={`w-screen overflow-x-hidden  flex flex-col ${dark ? "" : "bg-dark-header"}`}
+      className={`w-screen overflow-x-hidden flex flex-col ${dark ? "" : "bg-dark-header"}`}
     >
       <div
         className={`flex flex-row items-center justify-between pr-16 pl-10
