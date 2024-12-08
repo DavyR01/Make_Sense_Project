@@ -16,7 +16,6 @@ function NotificationModal({ setShowModal, open, showModal }) {
   useEffect(() => {
     const myHeader = new Headers();
     myHeader.append("Authorization", `Bearer ${token}`);
-
     const requestOptions = {
       headers: myHeader,
     };
@@ -29,19 +28,39 @@ function NotificationModal({ setShowModal, open, showModal }) {
   }, [token]);
 
   return (
-    <div className="fixed top-0 left-0">
+    <div className="fixed top-0 left-0 z-10">
+      {showModal && (
+        <div className="bg-dark-header fixed inset-0 bg-opacity-50 transition-opacity" />
+        //   <div className="bg-dark-header fixed inset-0 bg-opacity-50 transition-opacity" />
+      )}
       <Modal
+        //   style={{
+        //     width: "100%",
+        //   }}
+
+        //   className={` bg-transparent shake ${
+        //     //   className={` bg-green-500 shake ${
+        //     open && showModal ? " rounded-r-xl w-full" : ""
+        //   }`}
+
         className={`${
           open && showModal
-            ? "md:ml-[274px] md:mt-[110px] rounded-r-xl w-[400px] shake bg-transparent"
-            : "md:ml-[78px] md:mt-[110px] rounded-r-xl  w-[400px] shake"
+            ? "lg:ml-[274px] lg:mt-[110px] rounded-r-xl shake bg-transparent"
+            : "md:ml-[78px] md:mt-[110px] rounded-r-xl shake"
         }`}
         show
-        position="left"
-        size="2xl"
+        position="top-left"
+        //   position={open && showModal ? "center" : "top-left"}
+        //   position="top-left"
+        size="xl"
         onClose={() => setShowModal(false)}
       >
-        <div className={`${!dark ? "border border-white rounded-lg" : ""}`}>
+        <div
+          //  style={{ width: "400px", marginLeft: "300px", marginTop: "100px" }}
+          //  w-[400px] ml-[300px] mt-[100px] md:w-full md:ml-0 md:mt-0
+          className={` ${!dark ? "border border-white rounded-lg" : ""}`}
+        >
+          {/* {document.body.classList.add("!bg-green-500")}; */}
           <Modal.Header
             className={`pl-3 pr-3 pt-6 pb-6  text-slate-50 align-middle rounded-tr-lg ${
               dark ? "bg-light-blue" : "bg-dark-bg"
