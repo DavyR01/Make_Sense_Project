@@ -19,6 +19,7 @@ module.exports = withMT({
       "lg-max": { max: "1023px" },
       "md-max": { max: "767px" },
       "sm-max": { max: "639px" },
+      "xs-max": { max: "319px" },
       "880-min": { min: "880px" },
     },
     extend: {
@@ -37,6 +38,8 @@ module.exports = withMT({
       },
       width: {
         640: "640px", // Select this rule by typing w-640 in jsx
+        480: "480px",
+        320: "320px",
       },
       boxShadow: {
         1: "10px 10px 20px 0 rgba(50, 0, 50, 0.3)",

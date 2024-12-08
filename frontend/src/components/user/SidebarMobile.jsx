@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import { Switch } from "@material-tailwind/react";
@@ -84,7 +85,12 @@ export default function SidebarMobile({
                   id="amber"
                   color="amber"
                   value={checked}
-                  onClick={handleChecked}
+                  onClick={() => {
+                    handleChecked();
+                    console.log("OPEN MOBILE");
+
+                    //   setOpenMobile(!openMobile);
+                  }}
                 />{" "}
                 <p className={`${openMobile ? "text-l mt-1 ml-3" : ""}`}>
                   Admin ?
@@ -96,7 +102,11 @@ export default function SidebarMobile({
                 id="indigo"
                 color="indigo"
                 value={dark}
-                onClick={toggleDark}
+                onClick={() => {
+                  toggleDark();
+                  console.log("OPEN MOBILE");
+                  // setOpenMobile(!openMobile);
+                }}
               />{" "}
               <p className={`${openMobile ? "text-l mt-1 ml-3" : ""}`}>
                 Dark ?

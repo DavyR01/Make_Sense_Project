@@ -10,7 +10,7 @@ const backEnd = import.meta.env.VITE_BACKEND_URL;
 function NotificationModal({ setShowModal, showModal }) {
   const { user, token } = useCurrentUserContext();
   const { t } = useTranslation();
-  const [notifs, setNotifs] = useState();
+  const [notifs, setNotifs] = useState([]);
   const { dark } = useCurrentDarkContext();
   const modalRef = useRef(null);
 
@@ -83,11 +83,15 @@ function NotificationModal({ setShowModal, showModal }) {
             className={dark ? "bg-gray-200" : "bg-dark-header"}
           >
             <div className="space-y-3 p-6 grid grid-cols-1 divide-y text-base leading-relaxed text-gray-500 dark:text-gray-400">
-              {notifs?.map((notif) => (
-                <div key={notif.id}>
-                  {t("Identifié sur la decision")} : {notif.title}
-                </div>
-              ))}
+              {notifs.length > 0 ? (
+                notifs?.map((notif) => (
+                  <div key={notif.id}>
+                    {t("Identifié sur la decision")} : {notif.title}
+                  </div>
+                ))
+              ) : (
+                <div>{t("No notifications")}</div>
+              )}
             </div>
           </Modal.Body>
           <Modal.Footer className={dark ? "bg-gray-200" : "bg-dark-header"}>

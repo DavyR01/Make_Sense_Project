@@ -71,6 +71,9 @@ export default function HomeAdmin({ open }) {
           )}
         </div>
       </div>
+
+      {/* CREATION COLUMNS */}
+
       <div
         className={`${
           dark ? "text-black" : "text-white bg-dark-header"

@@ -71,6 +71,7 @@ const resources = {
       "Notifications title": "Notifications",
       "Identifié sur la décision": "Identifié sur la décision",
       "Fermer btn": "Fermer",
+      "No notifications": "Aucune notification pour le moment ...",
 
       // page Profil
       "Ajoute une photo":
@@ -236,6 +237,7 @@ const resources = {
       "Notifications title": "Notifications",
       "Identifié sur la décision": "Identified on the decision",
       "Fermer btn": "Close",
+      "No notifications": "No notification yet ...",
 
       // page Profil
       "Ajoute une photo": "Add a profile picture with your best smile",
@@ -401,6 +403,7 @@ const resources = {
       "Notifications title": "Notificaciones",
       "Identifié sur la décision": "Identificado en la decisión",
       "Fermer btn": "Cerrar",
+      "No notifications": "Ninguna notificación todavía ...",
 
       // page Profil
       "Ajoute une photo": "Agrega una foto de perfil con tu mejor sonrisa",

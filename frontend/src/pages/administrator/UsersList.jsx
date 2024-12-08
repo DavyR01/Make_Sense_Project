@@ -154,7 +154,7 @@ export default function UsersList() {
         //     maxWidth: "none",
         //     overflowX: "auto",
         //   }}
-        className={`md:w-[95%] m-auto h-auto sm-max: w-640 ${
+        className={`md:w-[95%] m-auto h-auto sm-max:w-640 ${
           dark ? "text-black" : "text-white"
         }`}
       >
