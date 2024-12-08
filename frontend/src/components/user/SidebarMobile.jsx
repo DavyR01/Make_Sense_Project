@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import { Switch } from "@material-tailwind/react";
-import { React, useEffect, useState } from "react";
+import { React, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useCurrentDarkContext } from "../../context/DarkContext";
@@ -27,6 +27,7 @@ export default function SidebarMobile({
   const [openModalAlertDeconnexion, setOpenModalAlertDeconnexion] =
     useState(false);
   const { setToken } = useCurrentUserContext({});
+  const sidebarRef = useRef(null);
 
   const navigate = useNavigate();
   const handleNotificationModal = () => {
@@ -50,8 +51,24 @@ export default function SidebarMobile({
     }
   }, [logoutIsConfirm]);
 
+  const handleClickOutside = (e) => {
+    if (sidebarRef.current && !sidebarRef.current.contains(e.target)) {
+      setOpenMobile(false);
+    }
+  };
+
+  useEffect(() => {
+    if (openMobile) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [openMobile]);
+
   return (
     <div
+      ref={sidebarRef}
       className={`${!openMobile ? "h-[50px]" : "h-[500px]"} ${
         dark ? `bg-light-blue` : "bg-dark-bg"
       }
