@@ -57,6 +57,10 @@ export default function App() {
     }
   };
 
+  useEffect(() => {
+    setShowModal(false);
+  }, [location, setShowModal]);
+
   return (
     <div className="flex flex-col md:flex-row h-full ">
       {/* <div className="flex"> */}
@@ -95,13 +99,14 @@ export default function App() {
           </div>
         </div>
       )}
-      {showModal ? (
+      {showModal && (
         <NotificationModal
+          key={location.pathname}
           showModal={showModal}
           open={open}
           setShowModal={setShowModal}
         />
-      ) : null}
+      )}
       {token ? (
         <Routes>
           <Route path="/help" element={<Help />} />

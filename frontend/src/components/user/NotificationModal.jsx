@@ -1,6 +1,9 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import { Button, Modal } from "flowbite-react";
-import React, { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import { useCurrentDarkContext } from "../../context/DarkContext";
 import { useCurrentUserContext } from "../../context/UserContext";
 import "../../css/user/sidebar.css";
@@ -13,6 +16,15 @@ function NotificationModal({ setShowModal, showModal }) {
   const [notifs, setNotifs] = useState([]);
   const { dark } = useCurrentDarkContext();
   const modalRef = useRef(null);
+  const navigate = useNavigate();
+
+  const handleNavigation = useCallback(
+    (decisionId) => {
+      setShowModal(false);
+      navigate(`/decision/${decisionId}`);
+    },
+    [navigate, setShowModal]
+  );
 
   useEffect(() => {
     const myHeader = new Headers();
@@ -21,8 +33,12 @@ function NotificationModal({ setShowModal, showModal }) {
       headers: myHeader,
     };
     fetch(`${backEnd}/notification/${user.id}`, requestOptions)
-      .then((response) => response.json())
+      .then((response) => {
+        //   console.log("response :", response.json);
+        return response.json();
+      })
       .then((result) => {
+        //   console.log("result :", result);
         setNotifs(result);
       })
       .catch((error) => console.warn("error", error));
@@ -76,25 +92,43 @@ function NotificationModal({ setShowModal, showModal }) {
               dark ? "bg-light-blue" : "bg-dark-bg"
             }`}
           >
-            <div className="text-white">{t("Notifications title")}:</div>
+            <div className="text-white pl-3">{t("Notifications title")}:</div>
           </Modal.Header>
           <Modal.Body
             // ref={modalRef}
             className={dark ? "bg-gray-200" : "bg-dark-header"}
           >
-            <div className="space-y-3 p-6 grid grid-cols-1 divide-y text-base leading-relaxed text-gray-500 dark:text-gray-400">
+            <div className="pl-5 pr-2 grid grid-cols-1 divide-y text-base leading-relaxed text-gray-500 dark:text-gray-400">
               {notifs.length > 0 ? (
-                notifs?.map((notif) => (
-                  <div key={notif.id}>
-                    {t("Identifié sur la decision")} : {notif.title}
-                  </div>
-                ))
+                <ul className="list-disc">
+                  {notifs?.map((notif) => (
+                    <li className="py-1" key={notif.id}>
+                      {t("Identifié sur la decision")} :{" "}
+                      {/* <NavLink to={`/decision/${notif.decision_id}`}> */}
+                      <span
+                        onClick={() => {
+                          handleNavigation(notif.decision_id);
+                          //   window.reload();
+                          //   setShowModal(false);
+                          //   navigate(`/decision/${notif.decision_id}`);
+                        }}
+                      >
+                        <span className="text-blue-gray-700 underline cursor-pointer">
+                          {notif.title}
+                        </span>
+                      </span>
+                      {/* </NavLink> */}
+                    </li>
+                  ))}
+                </ul>
               ) : (
                 <div>{t("No notifications")}</div>
               )}
             </div>
           </Modal.Body>
-          <Modal.Footer className={dark ? "bg-gray-200" : "bg-dark-header"}>
+          <Modal.Footer
+            className={`pt-0 pb-3 ${dark} ? "bg-gray-200" : "bg-dark-header"`}
+          >
             <Button
               className={` rounded-xl ${dark ? "bg-light-blue" : "bg-dark-bg "}`}
               onClick={() => setShowModal(false)}

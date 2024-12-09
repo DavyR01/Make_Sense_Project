@@ -38,7 +38,7 @@ export default function DecisionDetails() {
         setValuesDetailsDecision(result);
       })
       .catch((error) => console.warn("error", error));
-  }, [updateDecision]);
+  }, [updateDecision, idParam.id]);
 
   useEffect(() => {
     const avatarId = valuesDetailsDecision.avatar ?? "randomuser.jpg";
