@@ -75,7 +75,7 @@ export default function HomeAdmin({ open }) {
       {/* CREATION COLUMNS */}
 
       <div
-        className={`${
+        className={`md-max:mb-12 ${
           dark ? "text-black" : "text-white bg-dark-header"
         } flex md:flex-row flex-col`}
       >
