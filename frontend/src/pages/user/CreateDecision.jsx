@@ -184,7 +184,7 @@ export default function CreateDecision() {
         </div>
       </div>
       <main className="mainCreateDecision">
-        <div className="grid grid-rows-1 grid-flow-col gap-4">
+        <div className="grid grid-rows-1 grid-flow-col gap-4 lg:-mb-6">
           <div className="hidden md:block row-span-3 md:mr-4">
             <p className="mt-20 decision-resume">
               <img src={target} alt="targeticon" />
@@ -380,12 +380,12 @@ export default function CreateDecision() {
           </div>
         </div>
       </main>
-      <div className="mb-24 md:mb-32 lg:mb-5">
+      <div className="md:float-right">
         <button
           type="button"
           onClick={sendDecision}
           id="buttonEnvoyerDecision"
-          className="bg-red-400 hover:bg-red-500 text-white font-bold py-2 px-4 mr-0 md:float-right md:mr-48 ml-14 md:mb-8 rounded-xl"
+          className="bg-red-400 hover:bg-red-500 text-white font-bold py-2 px-4 mr-0 md:mr-48 ml-14 lg:mb-12 rounded-xl mb-24"
         >
           {t("Envoyer btn")}
         </button>

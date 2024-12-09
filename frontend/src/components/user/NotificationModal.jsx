@@ -60,7 +60,7 @@ function NotificationModal({ setShowModal, showModal }) {
   }, [showModal]);
 
   return (
-    <div className="fixed top-0 left-0 z-10">
+    <div className="fixed top-0 left-0 z-30">
       {showModal && (
         <div className="bg-dark-header fixed inset-0 bg-opacity-50 transition-opacity" />
         //   <div className="bg-dark-header fixed inset-0 bg-opacity-50 transition-opacity" />

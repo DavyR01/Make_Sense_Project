@@ -380,12 +380,12 @@ export default function EditDecision() {
           </div>
         </div>
       </main>
-      <div className="mb-24 md:mb-5">
+      <div className="mb-24 md:mb-5 md:float-right">
         <button
           type="button"
           onClick={sendEditDecision}
           id="buttonEnvoyerDecision"
-          className="bg-red-400 hover:bg-red-500 text-white font-bold py-2 px-4 mr-0 md:float-right md:mr-48 ml-14 md:mb-8 rounded-xl"
+          className="bg-red-400 hover:bg-red-500 text-white font-bold py-2 px-4 mr-0 md:mr-48 ml-14 md:mb-20 lg:mb-6 rounded-xl"
         >
           {t("Envoyer btn")}
         </button>
