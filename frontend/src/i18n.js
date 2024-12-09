@@ -80,6 +80,7 @@ const resources = {
       "Localisation input": "Localisation",
       "Téléphone input": "Téléphone",
       "Charger photo": "Charger ma photo",
+      "Non renseigné": "Non renseigné",
 
       // alert deconnexion
       "Êtes-vous sûr de vouloir vous deconnecter ?":
@@ -245,6 +246,7 @@ const resources = {
       "Localisation input": "Localization",
       "Téléphone input": "Phone",
       "Charger photo": "Upload my photo",
+      "Non renseigné": "Unknown",
 
       // alert deconnexion
       "Êtes-vous sûr de vouloir vous deconnecter ?":
@@ -411,6 +413,7 @@ const resources = {
       "Localisation input": "Localización",
       "Téléphone input": "Teléfono",
       "Charger photo": "Subir mi foto",
+      "Non renseigné": "Desconocido",
 
       // alert deconnexion
       "Êtes-vous sûr de vouloir vous deconnecter ?":

@@ -115,29 +115,47 @@ export default function UserProfile() {
           </div>
           <div className="flex flex-col mt-10 gap-y-5 md:gap-y-20 justify-center">
             <h3>
-              <span className="text-gray-400"> {t("Prénom input")} :</span>{" "}
+              <span className="font-semibold"> {t("Prénom input")} :</span>{" "}
               {valuesUser.firstname}
             </h3>
             <h3>
-              <span className="text-gray-400"> {t("Nom input")} :</span>{" "}
-              {valuesUser.lastname}
+              <span className="font-semibold"> {t("Nom input")} :</span>{" "}
+              <span>
+                {valuesUser.lastname ? (
+                  valuesUser.lastname
+                ) : (
+                  <span className="text-gray-400">({t("Non renseigné")})</span>
+                )}
+              </span>
             </h3>
             <h3>
-              <span className="text-gray-400">
+              <span className="font-semibold">
                 {" "}
                 {t("Localisation input")} :
               </span>{" "}
-              {valuesUser.city ? valuesUser.city : "Non renseigné"}
+              {valuesUser.city ? (
+                valuesUser.city
+              ) : (
+                <span className="text-gray-400">({t("Non renseigné")})</span>
+              )}
             </h3>
           </div>
           <div className="flex flex-col gap-y-5 md:gap-y-20 md:mt-6">
             <h3 className="mt-5">
-              <span className="text-gray-400"> {t("Téléphone input")} :</span>{" "}
-              {valuesUser.phone ? valuesUser.phone : "Non renseigné"}
+              <span className="font-semibold"> {t("Téléphone input")} :</span>{" "}
+              {valuesUser.phone ? (
+                valuesUser.phone
+              ) : (
+                <span className="text-gray-400">({t("Non renseigné")})</span>
+              )}
             </h3>
             <h3>
-              <span className="text-gray-400"> Email :</span>{" "}
-              {valuesUser.email ? valuesUser.email : "Non renseigné"}
+              <span className="font-semibold"> Email :</span>{" "}
+              {valuesUser.email ? (
+                valuesUser.email
+              ) : (
+                <span className="text-gray-400">({t("Non renseigné")})</span>
+              )}
             </h3>
           </div>
         </div>
