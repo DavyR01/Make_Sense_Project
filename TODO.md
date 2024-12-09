@@ -49,3 +49,4 @@
 34) ❌ Sur la page `edit-decision`, Rajouter pop-up de confirmation lorsque l'on souhaite quitter le formulaire avec des modifications en cours. Prévenir l'utilisateur de la perte des modifications en cas de redirection.
 35) ❌ Fixer la position sur l'écran du Header en version mobile (768px) pour rectifier le scroll vers la droite partie admin sur les tableaux (tester position fixed, sticky, relative...)
 36) ❌ Limiter les droits d'accès aux pages d'admin côté front en tant que user.
+37) ❌ Sur page edit-decision/:id et create-decision, entre formats md et lg (768px et 1024px), problème de marge en bas de page; on ne voit pas le bouton "Envoyer".

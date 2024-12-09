@@ -47,6 +47,9 @@ const read = (req, res) => {
 /* function that retrieves data with "get" by token */
 const findByToken = (req, res) => {
   const id = req.payload.sub;
+  //   console.log("id findByToken :", id);
+  //   console.log("id findByToken :", req.payload);
+
   models.user
     .find(id)
     .then(([rows]) => {

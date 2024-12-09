@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import { useTranslation } from "react-i18next";
 import { BsTrash } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 import Logo from "../../assets/logo-makesense.png";
 import LogoWhite from "../../assets/make_sense_white.png";
 import AlertDeleteDecision from "../../components/user/AlertDeleteDecision";
@@ -15,6 +16,8 @@ const backEnd = import.meta.env.VITE_BACKEND_URL;
 export default function UsersList() {
   const { user, token } = useCurrentUserContext();
   const [users, setUsers] = useState([]);
+  const navigate = useNavigate();
+  //   const [loading, setLoading] = useState(true);
 
   // Gestion modal et suppression décision
   const [openModalAlertDelete, setOpenModalAlertDelete] = useState(false);
@@ -108,7 +111,32 @@ export default function UsersList() {
     };
   }, [deleteIsConfirm, dark]);
 
+  //   useEffect(() => {
+  //     if (user.is_admin !== 1) {
+  //       navigate("/404");
+  //     }
+  //   }, [user, navigate]);
+
+  useEffect(() => {
+    //  console.log("USER : ", user);
+
+    // Check if user is defined and if the user is an admin
+    if (user && Object.keys(user).length > 0) {
+      if (user.is_admin !== 1) {
+        navigate("/404");
+      } /* else { */
+      //   setLoading(false); // Set loading to false if user is admin
+      // }
+    }
+  }, [user, navigate]);
+
+  //   if (loading) {
+  //     return <div>Loading...</div>;
+  //   }
+
   return (
+    //  <div>
+    //    {user.is_admin === 1 ? (
     <div
       className={`w-screen z-0 ${
         dark ? "text-black" : "text-white bg-dark-header"
@@ -145,9 +173,7 @@ export default function UsersList() {
           )}
         </div>
       </div>
-
       {/* CREATION COLUMNS */}
-
       <div
         //   style={{
         //     width: "640px",
@@ -215,5 +241,11 @@ export default function UsersList() {
         </div>
       </div>
     </div>
+    //    ) : (
+    //      //   <div>{navigate(`/404`)}</div>
+    //      <Navigate to="/404" />
+    //      //   <div>Loading...</div>
+    //    )}
+    //  </div>
   );
 }
