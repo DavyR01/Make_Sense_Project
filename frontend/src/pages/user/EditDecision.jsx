@@ -320,7 +320,7 @@ export default function EditDecision() {
           </div>
           <div className="mt-8">
             <label htmlFor="pconcern-input" className="block mb-2">
-              {t("Personnes impactées")}{" "}
+              {t("Personnes expertes")}{" "}
             </label>
             <ReactSearchAutocomplete
               items={personImpactedDecision}
@@ -351,7 +351,7 @@ export default function EditDecision() {
           </div>
           <div className="mt-8 mb-8">
             <label htmlFor="pexpert-input" className="block mb-2 ">
-              {t("Personnes expertes")}{" "}
+              {t("Personnes impactées")}{" "}
             </label>
             <ReactSearchAutocomplete
               items={personExperteDecision}
