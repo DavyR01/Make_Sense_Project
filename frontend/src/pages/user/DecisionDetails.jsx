@@ -33,7 +33,11 @@ export default function DecisionDetails() {
     };
 
     fetch(`${backEnd}/decision/${idParam.id}`, requestOptions)
-      .then((response) => response.json())
+      .then((response) => {
+        //  console.log(idParam); /* {"id": "2"} */
+        //   console.log(idParam.id); /* 2 */
+        return response.json();
+      })
       .then((result) => {
         setValuesDetailsDecision(result);
       })
