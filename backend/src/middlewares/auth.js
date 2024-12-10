@@ -64,6 +64,7 @@ setInterval(rotateSecrets, 15 * 24 * 60 * 60 * 1000); // ? Automatic rotation ev
 
 //* ************** END Handle secret key rotation ********************
 
+// ? Salt unique et aléatoire généré par argon2 automatiquement à chaque changement de mot de passe.
 const hashingOptions = {
   type: argon2.argon2id,
   memoryCost: 2 ** 16,

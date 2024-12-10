@@ -53,3 +53,5 @@
 38) ✅ Changer périodiquement le JWT_SECRET : implique la déconnexion de tous les utiliseurs et la nécessité de se reconnecter. Faire une rotation des clés secrètes si on veut éviter la déconnexion automatique des utilisateurs car l'ancienne et la nouvelle clé sont valides simultanément, elles se chevauchent jusqu'à expiration naturelle de l'ancienne clé. Améliore la sécurité sans perturber l'utilisateur.
 39) ❌ En mode responsive et dark mode, corriger la modale notification dans l'angle gauche en haut car coupé légèrement.
 40) Mettre à jour toutes les dépendances.
+41) Regarder les commentaires TODO.
+42) Résoudre ces nombreuses erreurs dans la console dûe à 'background2.js'
