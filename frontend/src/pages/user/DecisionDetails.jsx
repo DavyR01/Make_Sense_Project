@@ -61,6 +61,9 @@ export default function DecisionDetails() {
     return "encours";
   };
 
+  //   console.log("USER ::", user);
+  //   console.log("VALUE DETAILS DECISIONS : :", valuesDetailsDecision);
+
   return (
     <div
       className={`flex flex-col w-screen overflow-x-hidden ${
@@ -178,7 +181,9 @@ export default function DecisionDetails() {
             <button
               type="button"
               onClick={() =>
-                navigate(`/user-profile/${valuesDetailsDecision.user_id}`)
+                valuesDetailsDecision.user_id === user.id
+                  ? navigate(`/my-profile`)
+                  : navigate(`/user-profile/${valuesDetailsDecision.user_id}`)
               }
             >
               <img
