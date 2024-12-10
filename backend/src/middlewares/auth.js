@@ -37,12 +37,12 @@ function initializeSecrets() {
 
 function rotateSecrets() {
   const newSecret = generateNewSecret();
-  //   console.log("New secret : ", newSecret);
+  //!   console.log("New secret : ", newSecret);
 
   activeSecrets.unshift({
     id: `secret${Date.now()}`,
     value: newSecret,
-    expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
+    expiresAt: new Date(Date.now() + 10 * 1000),
   });
 
   //   console.log("active Secrets in rotate : ", activeSecrets);
@@ -52,15 +52,18 @@ function rotateSecrets() {
   activeSecrets = activeSecrets.filter((secret) => secret.expiresAt > now);
 
   // ? Keep only 2 last objects in array activeSecrets
-  if (activeSecrets.length > 3) {
-    activeSecrets = activeSecrets.slice(0, 3);
+  if (activeSecrets.length > 5) {
+    activeSecrets = activeSecrets.slice(0, 5);
   }
-  //   console.log("Active Secrets after rotation: ", activeSecrets);
+  //!   console.log("Active Secrets after rotation: ", activeSecrets);
 }
 
 initializeSecrets();
 
-setInterval(rotateSecrets, 15 * 24 * 60 * 60 * 1000); // ? Automatic rotation every 15 days.
+console.log("IN AUTH !");
+
+// setInterval(rotateSecrets, 15 * 24 * 60 * 60 * 1000); // ? Automatic rotation every 15 days.
+setInterval(rotateSecrets, 10 * 1000); // ? Automatic rotation every 15 seconds testing.
 
 //* ************** END Handle secret key rotation ********************
 
