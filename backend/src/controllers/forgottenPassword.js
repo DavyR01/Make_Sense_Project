@@ -8,8 +8,8 @@ const verifyEmail = (req, res, next) => {
     .selectEmail(email)
     .then(([users]) => {
       if (users[0] != null) {
-        // eslint-disable-next-line prefer-destructuring
-        req.user = users[0];
+        [req.user] = users;
+        //   req.user = users[0];
 
         next();
       } else {
@@ -45,8 +45,7 @@ const verifyTokenPassword = (req, res, next) => {
     .selectToken(passwordToken)
     .then(([users]) => {
       if (users[0] != null) {
-        // eslint-disable-next-line prefer-destructuring
-        req.user = users[0];
+        [req.user] = users;
 
         next();
       } else {

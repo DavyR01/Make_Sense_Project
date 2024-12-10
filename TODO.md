@@ -45,10 +45,10 @@
 30) Uniquement les personnes impactées reçoivent des notifications.
 31) ❌ Enlever le "Voir plus" de "Mes décisions" dans home page user.
 32) ❌ Accéder aux profils de chacun des utilisateurs à partir de la page "Liste utilisateurs" en cliquant dessus.
-33) ❌ Finir de corriger les erreurs "Encountered two children with the same key, `[object Object]`." des méthodes "map" sur les itérations.
+33) ✅ Finir de corriger les erreurs "Encountered two children with the same key, `[object Object]`." des méthodes "map" sur les itérations.
 34) ❌ Sur la page `edit-decision`, Rajouter pop-up de confirmation lorsque l'on souhaite quitter le formulaire avec des modifications en cours. Prévenir l'utilisateur de la perte des modifications en cas de redirection.
 35) ❌ Fixer la position sur l'écran du Header en version mobile (768px) pour rectifier le scroll vers la droite partie admin sur les tableaux (tester position fixed, sticky, relative...) pour pas qu'il y ait une coupure.
-36) ❌ Limiter les droits d'accès à <u>toutes</u> les pages d'admin côté front en tant que user (fait sur "userslist").
+36) ❌ Limiter les droits d'accès à <u>toutes</u> les routes admin côté front en tant que user (fait sur "userslist") et les autorisations des routes côté back.
 37) ✅ Sur page edit-decision/:id et create-decision, entre formats md et lg (768px et 1024px), problème de marge en bas de page; on ne voit pas le bouton "Envoyer".
 38) ❌ Changer périodiquement le JWT_SECRET : implique la déconnexion de tous les utiliseurs et la nécessité de se reconnecter. Faire une rotation des clés secrètes si on veut éviter la déconnexion automatique des utilisateurs car l'ancienne et la nouvelle clé sont valides simultanément, elles se chevauchent jusqu'à expiration naturelle de l'ancienne clé. Améliore la sécurité sans perturber l'utilisateur.
-39) 
+39) ❌ En mode responsive et dark mode, corriger la modale notification dans l'angle gauche en haut car coupé légèrement.

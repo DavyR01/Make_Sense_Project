@@ -24,7 +24,6 @@ const models = fs
   .readdirSync(__dirname)
   .filter((file) => file !== "AbstractManager.js" && file !== "index.js")
   .reduce((acc, file) => {
-    // eslint-disable-next-line global-require, import/no-dynamic-require
     const Manager = require(path.join(__dirname, file));
 
     const managerInstance = new Manager();
