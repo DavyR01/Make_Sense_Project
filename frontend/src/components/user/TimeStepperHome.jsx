@@ -66,7 +66,7 @@ export default function TimeStepperHome() {
                 {dateFormat(data.date_decision_final)}
               </div>
               <p
-                className={`text-sm   ${
+                className={`text-sm line-clamp-2  ${
                   dark ? "text-dark-blue" : "text-gray-500"
                 }`}
               >

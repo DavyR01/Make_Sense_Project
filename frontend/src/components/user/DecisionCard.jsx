@@ -108,7 +108,7 @@ export default function DecisionCard({
         }}
       >
         <div
-          className={`relative w-[250px] md:min-w-[200px] md:max-w-[210px] h-[180px] hover:scale-110 duration-200	md:mb-0 mb-3 bg-[#fcfcfc] px-4 py-4 sm:px-6 shadow-lg rounded-xl ${
+          className={`overflow-hidden relative w-[250px] md:min-w-[200px] md:max-w-[210px] h-[180px] hover:scale-110 duration-200	md:mb-0 mb-3 bg-[#fcfcfc] px-4 py-4 sm:px-6 shadow-lg rounded-xl ${
             dark ? "" : "bg-dark-bg"
           }`}
         >
@@ -164,7 +164,8 @@ export default function DecisionCard({
             <p
               className={`text-left mt-5 mb-5 ${
                 dark ? "text-black" : "text-white"
-              }`}
+              } line-clamp-2 `}
+              title={valueDetailsDecision.title} // ? Display the whole title on hover
             >
               {valueDetailsDecision.title}
             </p>

@@ -14,7 +14,7 @@
 
 ## Axes d'améliorations et Correctifs :
 
-1. ❌ Déterminer une length max des titres sur les cards en limitant leur longueur avec un overflow ... `text-overflow: ellipsis;`
+1. ✅ Déterminer une length max des titres sur les cards en limitant leur longueur avec un overflow ... `text-overflow: ellipsis;`
 2. ❌ Gérer le responsive correctement du time stepper sur la route `/home`
 3) ❌ Gérer le responsive du profil d'un utilisateur (UserProfile)
 3) ✅ Gérer le responsive du profil du profil de l'utilisateur connecté (MyProfile)
@@ -40,7 +40,7 @@
 25) ❌ Simplifier les chemins ou path avec une baseUrl et option paths dans le fichier config.
 26) ✅ Gérer le mini scroll vertical sur les tableaux côté admin alors qu'il n'est pas nécessaire.
 27) ✅ Gérer l'espace de la sideBar mobile en bas de la page qui passe un peu au dessus du dernier élément dans le tableau quand > 768px (md tailwind)
-28) ❌ Comprendre les erreurs EsLint disabled `SidebarMobile.jsx`
+28) ✅ Comprendre les erreurs EsLint disabled `SidebarMobile.jsx`
 29) ✅ Add features notifications modale redirect to decision/:id with navigate.
 30) Uniquement les personnes impactées reçoivent des notifications.
 31) ❌ Enlever le "Voir plus" de "Mes décisions" dans home page user.
@@ -52,6 +52,8 @@
 37) ✅ Sur page edit-decision/:id et create-decision, entre formats md et lg (768px et 1024px), problème de marge en bas de page; on ne voit pas le bouton "Envoyer".
 38) ✅ Changer périodiquement le JWT_SECRET : implique la déconnexion de tous les utiliseurs et la nécessité de se reconnecter. Faire une rotation des clés secrètes si on veut éviter la déconnexion automatique des utilisateurs car l'ancienne et la nouvelle clé sont valides simultanément, elles se chevauchent jusqu'à expiration naturelle de l'ancienne clé. Améliore la sécurité sans perturber l'utilisateur.
 39) ❌ En mode responsive et dark mode, corriger la modale notification dans l'angle gauche en haut car coupé légèrement.
-40) Mettre à jour toutes les dépendances.
-41) Regarder les commentaires TODO.
-42) Résoudre ces nombreuses erreurs dans la console dûe à 'background2.js'
+40) ❌ Mettre à jour toutes les dépendances.
+41) ✅ Regarder les commentaires TODO.
+42) ❌ Résoudre ces nombreuses erreurs dans la console dûe à 'background2.js'
+43) Corriger l'ellipse aussi dans timeline page home
+44) Essayer un seul .env pour toute l'application

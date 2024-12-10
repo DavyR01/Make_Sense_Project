@@ -177,7 +177,6 @@ export default function DecisionDetails() {
             <p className="mt-2 mr-3">
               {t("Proposé par")} {valuesDetailsDecision.firstname} :
             </p>
-            {/* //! TODO if user === current no redirection */}
             <button
               type="button"
               onClick={() =>
