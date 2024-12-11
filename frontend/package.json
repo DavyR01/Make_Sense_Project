@@ -2,8 +2,9 @@
   "name": "make_sense_frontend",
   "version": "2.0.1",
   "private": true,
-  "keywords": ["make sense"],
-
+  "keywords": [
+    "make sense"
+  ],
   "scripts": {
     "dev": "vite",
     "devHost": "vite --host",
@@ -14,7 +15,6 @@
     "test": "echo '----- Checking Frontend...' && prettier --debug-check . && eslint --ext .jsx . && echo '----- Done!'",
     "fix": "prettier --write . && eslint --fix --ext .jsx ."
   },
-
   "dependencies": {
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.2.0",
@@ -23,6 +23,7 @@
     "flowbite": "^2.5.2",
     "flowbite-react": "^0.10.2",
     "i18next": "^24.0.2",
+    "make_sense_fullstack": "file:..",
     "prop-types": "^15.8.1",
     "react": "^18.3.1",
     "react-datepicker": "^7.5.0",
@@ -36,7 +37,6 @@
     "react-search-autocomplete": "^8.5.2",
     "vite": "^6.0.1"
   },
-  
   "devDependencies": {
     "autoprefixer": "^10.4.20",
     "eslint": "^8.2.0",

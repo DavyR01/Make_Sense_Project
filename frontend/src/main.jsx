@@ -3,9 +3,9 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 
-import { CurrentUserContextProvider } from "./context/UserContext";
 import { CurrentDarkContextProvider } from "./context/DarkContext";
 import { CurrentLangContextProvider } from "./context/LangContext";
+import { CurrentUserContextProvider } from "./context/UserContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
