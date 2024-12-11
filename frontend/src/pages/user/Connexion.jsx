@@ -9,6 +9,7 @@ import { useCurrentUserContext } from "../../context/UserContext";
 import "../../css/user/Connexion.css";
 
 const backEnd = import.meta.env.VITE_BACKEND_URL;
+// console.log("BACKEND", backEnd);
 
 function Connexion() {
   const { t } = useTranslation();

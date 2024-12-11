@@ -6,7 +6,7 @@
     "make sense"
   ],
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --mode front-dev",
     "devHost": "vite --host",
     "build": "vite build",
     "preview": "vite preview",
