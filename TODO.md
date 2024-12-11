@@ -55,5 +55,10 @@
 40) ❌ Mettre à jour toutes les dépendances.
 41) ✅ Regarder les commentaires TODO.
 42) ❌ Résoudre ces nombreuses erreurs dans la console dûe à 'background2.js'
-43) Corriger l'ellipse aussi dans timeline page home
-44) Essayer un seul .env pour toute l'application
+43) ❌ Corriger l'ellipse aussi dans timeline page home
+44) ✅ Essayer un seul .env pour toute l'application
+45) ❌ Quand >1024px et sidebar !open, rectifier la position de la modale notifications.
+46) Intégrer une variable NODE_ENV et adapter l'application en fonction du mode production ou développement tel que : 
+   NODE_ENV=development
+   NODE_ENV=production 
+47) 

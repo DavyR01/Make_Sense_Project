@@ -1,8 +1,11 @@
 {
-  "name": "make_sense",
-  "version": "1.0.0",
-  "description": "",
+  "name": "make_sense_backend",
+  "version": "2.0.1",
   "main": "index.js",
+  "keywords": ["make sense"],
+  "author": "Davy ROBERT",
+  "license": "ISC",
+  
   "scripts": {
     "dev": "nodemon index.js",
     "migrate": "node migrate.js",
@@ -10,24 +13,7 @@
     "test": "echo '----- Checking Backend...' && npx prettier --debug-check . && eslint --ext .js . && echo '----- Done!'",
     "fix": "prettier --write . && eslint --fix --ext .js ."
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "argon2": "^0.41.1",
-    "cors": "^2.8.5",
-    "dotenv": "^16.4.5",
-    "express": "^4.21.1",
-    "joi": "^17.13.3",
-    "jsonwebtoken": "^9.0.2",
-    "multer": "^1.4.5-lts.1",
-    "mysql2": "^3.11.5",
-    "node-notifier": "^10.0.1",
-    "nodemailer": "^6.9.16",
-    "template-fullstack": "file:..",
-    "uuid": "^11.0.3",
-    "uuidv4": "^6.2.13"
-  },
+
   "rules": {
     "no-console": [
       "error",
@@ -39,6 +25,22 @@
       }
     ]
   },
+
+  "dependencies": {
+    "argon2": "^0.41.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
+    "mysql2": "^3.11.5",
+    "node-notifier": "^10.0.1",
+    "nodemailer": "^6.9.16",
+    "uuid": "^11.0.3",
+    "uuidv4": "^6.2.13"
+  },
+
   "devDependencies": {
     "eslint": "^8.2.0",
     "eslint-config-airbnb-base": "^15.0.0",
