@@ -1,12 +1,9 @@
 const fs = require("fs");
 const mysql = require("mysql2/promise");
 const path = require("path");
-
-require("../config/config");
-// const config = require("../config/config");
+// require("../config/config");
 
 const { DB_HOST, DB_USER, DB_PASSWORD, DB_NAME } = process.env;
-// console.log(config);
 
 const pool = mysql.createPool({
   host: DB_HOST,
