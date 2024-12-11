@@ -1,6 +1,5 @@
-require("dotenv").config();
 const nodemailer = require("nodemailer");
-require("../config/config");
+// require("../config/config");
 
 const { FRONTEND_URL } = process.env;
 

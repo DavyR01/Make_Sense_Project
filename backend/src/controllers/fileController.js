@@ -1,6 +1,6 @@
 const fs = require("fs");
 const { v4: uuidv4 } = require("uuid");
-require("../config/config");
+// require("../config/config");
 
 const avatarDirectory = process.env.UPLOAD_DIR;
 

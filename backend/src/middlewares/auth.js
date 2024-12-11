@@ -1,8 +1,11 @@
-require("dotenv").config();
+// require("dotenv").config();
 const argon2 = require("argon2");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
+
 require("../config/config");
+// const config = require("../config/config");
+// console.log(config);
 
 const { /*  JWT_SECRET,  */ JWT_TIMING } = process.env;
 

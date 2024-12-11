@@ -1,4 +1,3 @@
-require("dotenv").config();
 require("./src/config/config");
 
 const fs = require("fs");
