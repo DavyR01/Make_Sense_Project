@@ -141,7 +141,7 @@ const verifyToken = async (req, res, next) => {
         return next();
       } catch (err) {
         // ? The loop goes on !
-        console.log("The loop goes on !");
+        console.log("The loop goes on until a secret JWT is valid!");
       }
     }
 

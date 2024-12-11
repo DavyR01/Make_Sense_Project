@@ -31,3 +31,10 @@ Pour prévisualiser la version de production construite
 On se sert du package serve et on spécifie le port 5173 sur lequel le serveur frontend écoute.
 
 5) In production environment, about pictures, take care to import them properly to get a nice display.
+
+6) Differences between ESModules and CommonJS Modules : 
+   1. ES : `import path from "path";`
+   2. CommonJS : `const path = require("path"); `
+
+With a `vite.config.js` file, I can use CommonJS Modules & ES Modules as I wish  
+Otherwise, with a `vite.config.mjs` file, It is mandatory to use only ES Modules.
