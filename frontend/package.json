@@ -9,9 +9,10 @@
     "dev": "vite --mode front-dev",
     "devHost": "vite --host",
     "build": "vite build",
+    "build:prod": "vite build --mode front-prod",
     "preview": "vite preview",
     "previewHost": "vite preview --host",
-    "start-front": "npx serve -s dist -l 5173",
+    "start": "npx serve -s dist -l 5173",
     "test": "echo '----- Checking Frontend...' && prettier --debug-check . && eslint --ext .jsx . && echo '----- Done!'",
     "fix": "prettier --write . && eslint --fix --ext .jsx ."
   },

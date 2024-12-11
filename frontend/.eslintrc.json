@@ -26,13 +26,13 @@
     "react/no-array-index-key": 0,
     "no-param-reassign": "off",
     "react/jsx-no-constructed-context-values": 0,
-   //  "no-restricted-syntax": [
-   //    "error",
-   //    {
-   //      "selector": "CallExpression[callee.object.name='console'][callee.property.name!=/^(error|warn)$/]",
-   //      "message": "You can only call the error() and warn() functions from the console object"
-   //    }
-   //  ],
+    //  "no-restricted-syntax": [
+    //    "error",
+    //    {
+    //      "selector": "CallExpression[callee.object.name='console'][callee.property.name!=/^(error|warn)$/]",
+    //      "message": "You can only call the error() and warn() functions from the console object"
+    //    }
+    //  ],
     "react/react-in-jsx-scope": "off",
     "react/jsx-one-expression-per-line": "off",
     "no-nested-ternary": "off",

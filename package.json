@@ -8,24 +8,20 @@
   "author": "Davy ROBERT",
   "license": "ISC",
   "description": "Makesense is an international community founded in 2010 that supports and brings together citizens, entrepreneurs and organizations to solve today's social and environmental challenges together. The aim is to develop a platform that will be internal to the association, and that will serve as a decision-making management tool, with a history and follow-up managed dynamically between users according to different statuses.",
-
   "scripts": {
     "setup": "npm install && husky init && npm --prefix ./frontend install && npm --prefix ./backend install",
     "setupProd": "npm i --omit=dev && husky init && npm --prefix ./frontend i --omit=dev && npm --prefix ./backend i --omit=dev",
     "build": "cd frontend/ && npm run build",
+    "buildProd": "cd frontend/ && npm run build:prod",
     "buildfix": "npm run fix && cd frontend/ && npm run build",
-
     "dev": "cross-env NODE_ENV=development concurrently -n front,back -c green,yellow -t \"HH:mm:ss\" -p \"{name} {time}\" \"npm --prefix ./frontend run dev\" \"npm --prefix ./backend run dev\"",
-    "start": "cross-env NODE_ENV=production npm run build && concurrently -n front,back -c green,yellow -t \"HH:mm:ss\" -p \"{name} {time}\" \"npm --prefix ./frontend run start-front\" \"npm --prefix ./backend run start\"",
-
+    "start": "cross-env NODE_ENV=production npm run buildProd && concurrently -n front,back -c green,yellow -t \"HH:mm:ss\" -p \"{name} {time}\" \"npm --prefix ./frontend run start\" \"npm --prefix ./backend run start\"",
     "devHost": "concurrently -n front,back -c green,yellow -t \"HH:mm:ss\" -p \"{name} {time}\" \"npm --prefix ./frontend run devHost\" \"npm --prefix ./backend run dev\"",
     "dev-front": "npm --prefix ./frontend run dev",
     "dev-back": "npm --prefix ./backend run dev",
-
     "test": "npm --prefix ./frontend run test && npm --prefix ./backend run test",
     "fix": "npm --prefix ./frontend run fix && npm --prefix ./backend run fix",
     "migrate": "cd backend/ && node migrate.js && cd ..",
-    
     "go": "git add . && git commit -m ",
     "delete": "rm -rf node_modules package-lock.json && cd frontend && rm -rf node_modules package-lock.json && cd ../backend && rm -rf node_modules package-lock.json",
     "update": "concurrently -n current,backend,frontend -c green,yellow,blue \"ncu -u\" \"cd backend && ncu -u\" \"cd frontend && ncu -u\"",
@@ -35,7 +31,6 @@
     "preview": "npm run build && npm --prefix ./frontend run preview",
     "previewHost": "npm run build && npm --prefix ./frontend run previewHost"
   },
-
   "devDependencies": {
     "concurrently": "^9.1.0",
     "cross-env": "^7.0.3",
@@ -43,7 +38,6 @@
     "husky": "^9.1.7",
     "prettier": "^3.4.1"
   },
-
   "json-comments": {
     "tips": "Please install the JsonComments plugin to enable commenting functionality for JSON files, see: https://github.com/zhangfisher/json_comments_extension",
     "frontend/package.json": {

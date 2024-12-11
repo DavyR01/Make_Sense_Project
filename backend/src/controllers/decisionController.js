@@ -265,13 +265,17 @@ const destroy = async (req, res) => {
 // ***************** GESTION AUTOUPDATE STATUS ****************
 
 // Put every decision_id from result in an array to pass to manager
-const idsDecisionsOnlyPour = (result) => {
-  const ids = [];
-  for (const element of result) {
-    ids.push(element.decision_id);
-  }
-  return ids;
-};
+
+const idsDecisionsOnlyPour = (result) =>
+  result.map((element) => element.decision_id);
+
+// const idsDecisionsOnlyPour = (result) => {
+//   const ids = [];
+//   for (const element of result) {
+//     ids.push(element.decision_id);
+//   }
+//   return ids;
+// };
 
 // update status decision to "terminee depending on date and vote"
 const autoUpdateStatusTDecisionTermineeByDateAndVote = (req, res) => {
@@ -316,13 +320,17 @@ const autoUpdateStatusTDecisionTermineeByDateAndVote = (req, res) => {
 // };
 
 // Put every decision_id from result in an array to pass to manager
-const idsDecisionsContre = (result) => {
-  const ids = [];
-  for (const element of result) {
-    ids.push(element.decision_id);
-  }
-  return ids;
-};
+
+const idsDecisionsContre = (result) =>
+  result.map((element) => element.decision_id);
+
+// const idsDecisionsContre = (result) => {
+//   const ids = [];
+//   for (const element of result) {
+//     ids.push(element.decision_id);
+//   }
+//   return ids;
+// };
 
 // update status decision to "non aboutie depending on date and vote"
 const autoUpdateStatusTDecisionNonAboutieByDateAndVote = (req, res) => {
