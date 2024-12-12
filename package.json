@@ -10,7 +10,7 @@
   "description": "Makesense is an international community founded in 2010 that supports and brings together citizens, entrepreneurs and organizations to solve today's social and environmental challenges together. The aim is to develop a platform that will be internal to the association, and that will serve as a decision-making management tool, with a history and follow-up managed dynamically between users according to different statuses.",
   "scripts": {
     "setup": "npm install && husky init && npm --prefix ./frontend install && npm --prefix ./backend install",
-    "setup:prod": "npm i --omit=dev && husky init && npm --prefix ./frontend i --omit=dev && npm --prefix ./backend i --omit=dev",
+    "setup:prod": "NODE_ENV=production npm i --omit=dev && NODE_ENV=production npm --prefix ./frontend i --omit=dev && NODE_ENV=production npm --prefix ./backend i --omit=dev",
     "build": "cd frontend/ && npm run build",
     "build:prod": "cd frontend/ && npm run build:prod",
     "build:fix": "npm run fix && cd frontend/ && npm run build",
@@ -27,7 +27,7 @@
     "update": "concurrently -n current,backend,frontend -c green,yellow,blue \"ncu -u\" \"cd backend && ncu -u\" \"cd frontend && ncu -u\"",
     "update2": "npx npm-check-updates -u",
     "update3": "ncu -u",
-    "prepare": "husky",
+   "prepare": "if [ \"$NODE_ENV\" != \"production\" ]; then husky install; fi",
     "preview": "npm run build && npm --prefix ./frontend run preview",
     "preview:host": "npm run build && npm --prefix ./frontend run preview:host"
   },
