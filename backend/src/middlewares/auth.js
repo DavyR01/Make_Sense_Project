@@ -135,6 +135,7 @@ const verifyToken = async (req, res, next) => {
     }
 
     //  req.payload = jwt.verify(token, getLatestSecret());
+    console.log("VERIFY TOKEN each requests");
 
     for (let index = 0; index < activeSecrets.length; index += 1) {
       try {
@@ -148,7 +149,10 @@ const verifyToken = async (req, res, next) => {
         console.log("The loop goes on until a secret JWT is valid!");
       }
     }
+    console.log("VERIFY TOKEN before redirect !!");
+    //  localStorage.removeItem("tokeeen");
 
+    //  return res.redirect("/");
     return res.status(401).send({ message: "Invalid token !!!!!!" }); // ? Message personnalisé visible dans onglet Network des devtools du navigateur
     //  throw new Error("Invalid token");
   } catch (err) {

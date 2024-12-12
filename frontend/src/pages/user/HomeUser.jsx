@@ -18,6 +18,8 @@ export default function Home() {
   const [valuesDetailsDecisions, setValuesDetailsDecisions] = useState([]);
   const { token } = useCurrentUserContext();
   const { dark } = useCurrentDarkContext();
+  //   const [shouldRedirect, setShouldRedirect] = useState(false);
+
   //   const countDecisionsLoginUser = 0;
 
   // ? function to update the array of decisions after delete one decision. 2 solutions : with splice or filter. Here, we use filter method.
@@ -60,6 +62,13 @@ export default function Home() {
 
   // ? fetch all datas with LEFT JOIN on user_id of decisions from API
   useEffect(() => {
+    console.log("TOKEN : ", token);
+
+    if (!token) {
+      navigate("/");
+      return;
+    }
+
     const myHeader = new Headers();
     myHeader.append("Authorization", `Bearer ${token}`);
 
@@ -68,13 +77,21 @@ export default function Home() {
     };
 
     fetch(`${backEnd}/decision`, requestOptions)
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.status === 401) {
+          localStorage.removeItem("tokeeen");
+          //  localStorage.setItem("tokeeen", " ");
+          navigate("/");
+          return;
+        }
+        return response.json(); // Traiter la réponse si le statut n'est pas 401
+      })
       .then((result) => {
         //   console.log(valuesDetailsDecisions);
         setValuesDetailsDecisions(result);
       })
       .catch((error) => console.warn("error", error));
-  }, [token]);
+  }, [token, navigate]);
 
   return (
     <div

@@ -1,10 +1,11 @@
+import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
 import {
-  Navigate,
-  Route,
-  Routes,
-  useLocation,
-  useNavigate,
+   Navigate,
+   Route,
+   Routes,
+   useLocation,
+   useNavigate,
 } from "react-router-dom";
 import "./App.css";
 import NotificationModal from "./components/user/NotificationModal";
@@ -31,6 +32,19 @@ import MyProfile from "./pages/user/MyProfile";
 import Password from "./pages/user/Password";
 import UserProfile from "./pages/user/UserProfile";
 
+const isTokenExpired = (token) => {
+  if (!token) return true;
+
+  try {
+    const decodedToken = jwtDecode(token);
+    const currentTime = Date.now() / 1000;
+    return decodedToken.exp < currentTime;
+  } catch (error) {
+    console.error("Erreur lors du décodage du token:", error);
+    return true;
+  }
+};
+
 export default function App() {
   const [showModal, setShowModal] = useState(false);
   const [email, setEmail] = useState();
@@ -42,8 +56,12 @@ export default function App() {
 
   useEffect(() => {
     //  console.log("TOKEN", token);
-    if (!token) {
-      navigate("/");
+    //  if (!token) {
+    if (!token || isTokenExpired(token)) {
+      console.log("HERE!!!");
+
+      // localStorage.removeItem("tokeeen");
+      navigate("/", { replace: true });
     }
   }, [token]);
 
