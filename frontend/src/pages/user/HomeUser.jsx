@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import Logo from "../../assets/logo-makesense.png";
 import LogoWhite from "../../assets/make_sense_white.png";
 import DecisionCard from "../../components/user/DecisionCard";
@@ -14,11 +14,10 @@ const backEnd = import.meta.env.VITE_BACKEND_URL;
 export default function Home() {
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const { user } = useCurrentUserContext();
   const [valuesDetailsDecisions, setValuesDetailsDecisions] = useState([]);
-  const { token } = useCurrentUserContext();
+  const { token, user, setToken } = useCurrentUserContext();
   const { dark } = useCurrentDarkContext();
-  //   const [shouldRedirect, setShouldRedirect] = useState(false);
+  const [shouldRedirect, setShouldRedirect] = useState(false);
 
   //   const countDecisionsLoginUser = 0;
 
@@ -59,13 +58,22 @@ export default function Home() {
     valuesDetailsDecisions.splice(indexOfValueDecision, 1);
     setValuesDetailsDecisions([...valuesDetailsDecisions]);
   }; */
+  useEffect(() => {
+    if (!token) {
+      setShouldRedirect(true);
+      // navigate("/");
+      return;
+    }
+  });
 
   // ? fetch all datas with LEFT JOIN on user_id of decisions from API
   useEffect(() => {
+    //  debugger;
     console.log("TOKEN : ", token);
 
     if (!token) {
-      navigate("/");
+      setShouldRedirect(true);
+      // navigate("/");
       return;
     }
 
@@ -80,8 +88,10 @@ export default function Home() {
       .then((response) => {
         if (response.status === 401) {
           localStorage.removeItem("tokeeen");
+          setToken("null");
           //  localStorage.setItem("tokeeen", " ");
-          navigate("/");
+          setShouldRedirect(true);
+          //  navigate("/");
           return;
         }
         return response.json(); // Traiter la réponse si le statut n'est pas 401
@@ -92,6 +102,10 @@ export default function Home() {
       })
       .catch((error) => console.warn("error", error));
   }, [token, navigate]);
+
+  if (shouldRedirect) {
+    return <Navigate to="/" replace />;
+  }
 
   return (
     <div
