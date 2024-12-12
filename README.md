@@ -42,8 +42,8 @@ Student project by :
 - `setup` : Initialization of frontend and backend, as well as all toolings
 - `migrate` : Run the database migration script
 - `dev` : Starts both servers (frontend + backend) in one terminal
-- `dev-front` : Starts the React frontend server
-- `dev-back` : Starts the Express backend server
+- `dev:front` : Starts the React frontend server
+- `dev:back` : Starts the Express backend server
 - `test` : Runs validation tools, and refuses unclean code (will be executed on every _commit_)
 - `fix` : Fixes linter errors (run it if `test` growls on your code !)
 

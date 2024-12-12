@@ -10,15 +10,15 @@
   "description": "Makesense is an international community founded in 2010 that supports and brings together citizens, entrepreneurs and organizations to solve today's social and environmental challenges together. The aim is to develop a platform that will be internal to the association, and that will serve as a decision-making management tool, with a history and follow-up managed dynamically between users according to different statuses.",
   "scripts": {
     "setup": "npm install && husky init && npm --prefix ./frontend install && npm --prefix ./backend install",
-    "setupProd": "npm i --omit=dev && husky init && npm --prefix ./frontend i --omit=dev && npm --prefix ./backend i --omit=dev",
+    "setup:prod": "npm i --omit=dev && husky init && npm --prefix ./frontend i --omit=dev && npm --prefix ./backend i --omit=dev",
     "build": "cd frontend/ && npm run build",
-    "buildProd": "cd frontend/ && npm run build:prod",
-    "buildfix": "npm run fix && cd frontend/ && npm run build",
+    "build:prod": "cd frontend/ && npm run build:prod",
+    "build:fix": "npm run fix && cd frontend/ && npm run build",
     "dev": "cross-env NODE_ENV=development concurrently -n front,back -c green,yellow -t \"HH:mm:ss\" -p \"{name} {time}\" \"npm --prefix ./frontend run dev\" \"npm --prefix ./backend run dev\"",
-    "start": "cross-env NODE_ENV=production npm run buildProd && concurrently -n front,back -c green,yellow -t \"HH:mm:ss\" -p \"{name} {time}\" \"npm --prefix ./frontend run start\" \"npm --prefix ./backend run start\"",
-    "devHost": "concurrently -n front,back -c green,yellow -t \"HH:mm:ss\" -p \"{name} {time}\" \"npm --prefix ./frontend run devHost\" \"npm --prefix ./backend run dev\"",
-    "dev-front": "npm --prefix ./frontend run dev",
-    "dev-back": "npm --prefix ./backend run dev",
+    "start": "cross-env NODE_ENV=production npm run build:prod && concurrently -n front,back -c green,yellow -t \"HH:mm:ss\" -p \"{name} {time}\" \"npm --prefix ./frontend run start\" \"npm --prefix ./backend run start\"",
+    "dev:host": "concurrently -n front,back -c green,yellow -t \"HH:mm:ss\" -p \"{name} {time}\" \"npm --prefix ./frontend run dev:host\" \"npm --prefix ./backend run dev\"",
+    "dev:front": "npm --prefix ./frontend run dev",
+    "dev:back": "npm --prefix ./backend run dev",
     "test": "npm --prefix ./frontend run test && npm --prefix ./backend run test",
     "fix": "npm --prefix ./frontend run fix && npm --prefix ./backend run fix",
     "migrate": "cd backend/ && node migrate.js && cd ..",
@@ -29,7 +29,7 @@
     "update3": "ncu -u",
     "prepare": "husky",
     "preview": "npm run build && npm --prefix ./frontend run preview",
-    "previewHost": "npm run build && npm --prefix ./frontend run previewHost"
+    "preview:host": "npm run build && npm --prefix ./frontend run preview:host"
   },
   "devDependencies": {
     "concurrently": "^9.1.0",
@@ -41,8 +41,8 @@
   "json-comments": {
     "tips": "Please install the JsonComments plugin to enable commenting functionality for JSON files, see: https://github.com/zhangfisher/json_comments_extension",
     "frontend/package.json": {
-      "scripts.devHost": "Permet le \"Hot Module Replacement\" (HMR) pour un serveur de développement. Tester en temps réel.",
-      "scripts.previewHost": "Pour prévisualiser la version de production construite"
+      "scripts.dev:host": "Permet le \"Hot Module Replacement\" (HMR) pour un serveur de développement. Tester en temps réel.",
+      "scripts.preview:host": "Pour prévisualiser la version de production construite"
     }
   }
 }
