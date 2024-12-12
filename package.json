@@ -8,7 +8,6 @@
   "author": "Davy ROBERT",
   "license": "ISC",
   "description": "Makesense is an international community founded in 2010 that supports and brings together citizens, entrepreneurs and organizations to solve today's social and environmental challenges together. The aim is to develop a platform that will be internal to the association, and that will serve as a decision-making management tool, with a history and follow-up managed dynamically between users according to different statuses.",
-  
   "scripts": {
     "setup": "npm i && husky init && npm --prefix ./frontend i && npm --prefix ./backend i",
     "setup:prod": "npm i && npm --prefix ./frontend i && npm --prefix ./backend i && npm run build:prod",
@@ -30,7 +29,8 @@
     "update2": "npx npm-check-updates -u",
     "update3": "ncu -u",
     "preview": "npm run build && npm --prefix ./frontend run preview",
-    "preview:host": "npm run build && npm --prefix ./frontend run preview:host"
+    "preview:host": "npm run build && npm --prefix ./frontend run preview:host",
+    "prepare": "husky"
   },
   "devDependencies": {
     "concurrently": "^9.1.0",
