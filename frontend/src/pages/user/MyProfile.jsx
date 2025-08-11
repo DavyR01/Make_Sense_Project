@@ -6,12 +6,14 @@ import Logo from "../../assets/logo-makesense.png";
 import LogoWhite from "../../assets/make_sense_white.png";
 import { useCurrentDarkContext } from "../../context/DarkContext";
 import { useCurrentUserContext } from "../../context/UserContext";
+import useApiCall from "../../hooks/useApiCall";
 import "../../css/user/myprofile.css";
 
 const backEnd = import.meta.env.VITE_BACKEND_URL;
 
 export default function MyProfile() {
-  const { user, setUser, token } = useCurrentUserContext();
+  const { user, setUser } = useCurrentUserContext();
+  const apiCall = useApiCall();
   const navigate = useNavigate();
   const { t } = useTranslation();
   const avatarRef = useRef(null);
@@ -34,101 +36,87 @@ export default function MyProfile() {
 
   // fetch user informations
   useEffect(() => {
-    const myHeader = new Headers();
-    myHeader.append("Authorization", `Bearer ${token}`);
-
-    const requestOptions = {
-      headers: myHeader,
-    };
-
-    fetch(`${backEnd}/user/bytoken`, requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
+    const fetchUserData = async () => {
+      try {
+        const response = await apiCall(`${backEnd}/user/bytoken`);
+        const result = await response.json();
         setFirstname(result.firstname);
         setLastname(result.lastname);
         setEmail(result.email);
         setCity(result.city);
         setPhone(result.phone);
-      })
-      .catch((error) => console.warn("error", error));
-  }, []);
+      } catch (error) {
+        console.warn("error", error);
+      }
+    };
+
+    fetchUserData();
+  }, [apiCall]);
 
   // fetch to submit my avatar
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (avatarRef.current.files[0]) {
-      // recupération des articles.
-      const myHeader = new Headers();
-      myHeader.append("Authorization", `Bearer ${token}`);
+      try {
+        const formData = new FormData();
+        formData.append("avatar", avatarRef.current.files[0]);
 
-      const formData = new FormData();
-      formData.append("avatar", avatarRef.current.files[0]);
-
-      const requestOptions = {
-        method: "POST",
-        headers: myHeader,
-        body: formData,
-      };
-
-      fetch(`${backEnd}/avatar`, requestOptions)
-        .then((response) => response.json())
-        .then((results) => {
-          setUser({ ...user, avatar: results.avatar });
-          notifySuccesAvatar();
-        })
-        .catch((error) => {
-          notifyErrorAvatar();
-          console.error(error);
+        const response = await apiCall(`${backEnd}/avatar`, {
+          method: "POST",
+          body: formData,
         });
+
+        const results = await response.json();
+        setUser({ ...user, avatar: results.avatar });
+        notifySuccesAvatar();
+      } catch (error) {
+        notifyErrorAvatar();
+        console.error(error);
+      }
     } else {
       notifyErrorAvatar();
     }
   };
 
   // fetch to edit my profile informations
-  function sendUserInformations() {
-    const myHeaders = new Headers();
-    myHeaders.append("Authorization", `Bearer ${token}`);
-    myHeaders.append("Content-Type", "application/json");
+  const sendUserInformations = async () => {
+    try {
+      const response = await apiCall(`${backEnd}/user/${user.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          firstname,
+          lastname,
+          email,
+          city,
+          phone,
+          user_id: user.id,
+        }),
+      });
 
-    const raw = JSON.stringify({
-      firstname,
-      lastname,
-      email,
-      city,
-      phone,
-      user_id: user.id,
-    });
+      if (response.status === 422) {
+        throw new Error("Error on profile update");
+      }
 
-    fetch(`${backEnd}/user/${user.id}`, {
-      method: "PUT",
-      redirect: "follow",
-      body: raw,
-      headers: myHeaders,
-    })
-      .then((response) => {
-        if (response.status === 422) {
-          throw new Error("Error on profile update");
-        } else {
-          return response.json();
-        }
-      })
-      .then((results) => {
-        setUser({
-          ...user,
-          firstname: results.firstname,
-          lastname: results.lastname,
-          email: results.email,
-          city: results.city,
-          phone: results.phone,
-        });
-        success();
-        setTimeout(() => {
-          navigate("/home");
-        }, 2000);
-      })
-      .catch(() => notifyErrorProfile());
-  }
+      const results = await response.json();
+      setUser({
+        ...user,
+        firstname: results.firstname,
+        lastname: results.lastname,
+        email: results.email,
+        city: results.city,
+        phone: results.phone,
+      });
+      success();
+      setTimeout(() => {
+        navigate("/home");
+      }, 2000);
+    } catch (error) {
+      notifyErrorProfile();
+    }
+  };
 
   // fetch for the status of fetch of the avatar
   useEffect(() => {

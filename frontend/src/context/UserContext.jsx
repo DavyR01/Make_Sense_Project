@@ -1,4 +1,4 @@
-import { createContext, useState, useContext, useEffect } from "react";
+import { createContext, useState, useContext } from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
 
 const CurrentUserContext = createContext();
@@ -8,8 +8,8 @@ export default CurrentUserContext;
 export function CurrentUserContextProvider({ children }) {
   const [user, setUser] = useState({});
   const [token, setToken] = useLocalStorage("tokeeen", "");
-  const backEnd = import.meta.env.VITE_BACKEND_URL;
 
+  // Fonction utilitaire pour gérer l'expiration des tokens
   const handleApiResponse = async (response) => {
     if (response.status === 401) {
       const errorData = await response.json().catch(() => ({}));
@@ -21,23 +21,6 @@ export function CurrentUserContextProvider({ children }) {
     }
     return response;
   };
-
-  useEffect(() => {
-    if (!token) return; // Ne pas faire d'appel si pas de token
-
-    const myHeader = new Headers();
-    myHeader.append("Authorization", `Bearer ${token}`);
-
-    const requestOptions = {
-      headers: myHeader,
-    };
-
-    fetch(`${backEnd}/user/bytoken`, requestOptions)
-      .then(handleApiResponse) // Vérification de l'expiration
-      .then((response) => response.json())
-      .then((result) => setUser(result))
-      .catch((error) => console.warn("error", error));
-  }, [token, handleApiResponse]);
 
   return (
     <CurrentUserContext.Provider
