@@ -41,11 +41,20 @@ export default function App() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    //  console.log("TOKEN", token);
-    if (!token) {
+    // Protection des routes privées uniquement
+    if (
+      !token &&
+      ![
+        "/",
+        "/inscription",
+        "/motdepasseoublie",
+        "/legal-notice",
+        "/help",
+      ].includes(location.pathname)
+    ) {
       navigate("/");
     }
-  }, [token]);
+  }, [token, location.pathname, navigate]);
 
   const [checked, setChecked] = useState(true);
   const handleChecked = () => {
@@ -115,7 +124,7 @@ export default function App() {
             path="/home"
             element={<HomeUser open={open} setOpen={setOpen} />}
           />
-          <Route path="/" element={<Authentification />} />
+          <Route path="/" element={<Navigate replace to="/home" />} />
           <Route path="/create-decision" element={<CreateDecision />} />
           <Route path="/my-profile" element={<MyProfile />} />
           <Route
@@ -161,6 +170,7 @@ export default function App() {
             element={<Password email={email} setEmail={setEmail} />}
           />
           <Route path="/" element={<Authentification />} />
+          <Route path="/home" element={<Navigate replace to="/" />} />
           <Route path="/help" element={<Help />} />
           <Route path="/legal-notice" element={<LegalNotice />} />
           <Route path="/inscription" element={<Inscription />} />
