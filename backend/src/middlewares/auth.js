@@ -134,23 +134,35 @@ const verifyToken = async (req, res, next) => {
       throw new Error("Authorization header has not the 'Bearer' type");
     }
 
-    //  req.payload = jwt.verify(token, getLatestSecret());
-
-    for (let index = 0; index < activeSecrets.length; index += 1) {
+    let tokenExpired = false;
+    const tokenVerified = activeSecrets.some((secret) => {
       try {
-        //   console.log("Active secrets verify token", activeSecrets);
-        //   console.log(`IN LOOP index: ${index} `);
-
-        req.payload = jwt.verify(token, activeSecrets[index].value);
-        return next();
+        req.payload = jwt.verify(token, secret.value, {
+          ignoreExpiration: false, // Force expiration check
+        });
+        return true;
       } catch (err) {
-        // ? The loop goes on !
-        console.log("The loop goes on until a secret JWT is valid!");
+        if (err.name === "TokenExpiredError") {
+          tokenExpired = true;
+          return false; // Continue to check other secrets
+        }
+        return false; // Continue to next secret
       }
+    });
+
+    if (tokenExpired) {
+      return res.status(401).json({
+        message: "Token expired",
+        code: "TOKEN_EXPIRED",
+        action: "CLEAR_TOKEN", // Signal to client to remove token
+      });
     }
 
-    return res.status(401).send({ message: "Invalid token !!!!!!" }); // ? Message personnalisé visible dans onglet Network des devtools du navigateur
-    //  throw new Error("Invalid token");
+    if (!tokenVerified) {
+      return res.status(401).json({ message: "Invalid token" });
+    }
+
+    return next();
   } catch (err) {
     console.error(err);
     return res.sendStatus(500);

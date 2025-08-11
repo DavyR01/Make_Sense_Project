@@ -10,7 +10,21 @@ export function CurrentUserContextProvider({ children }) {
   const [token, setToken] = useLocalStorage("tokeeen", "");
   const backEnd = import.meta.env.VITE_BACKEND_URL;
 
+  const handleApiResponse = async (response) => {
+    if (response.status === 401) {
+      const errorData = await response.json().catch(() => ({}));
+      if (errorData.code === "TOKEN_EXPIRED") {
+        setToken(""); // Supprime le token
+        setUser({}); // Réinitialise l'utilisateur
+        window.location.href = "/"; // Redirection
+      }
+    }
+    return response;
+  };
+
   useEffect(() => {
+    if (!token) return; // Ne pas faire d'appel si pas de token
+
     const myHeader = new Headers();
     myHeader.append("Authorization", `Bearer ${token}`);
 
@@ -19,13 +33,16 @@ export function CurrentUserContextProvider({ children }) {
     };
 
     fetch(`${backEnd}/user/bytoken`, requestOptions)
+      .then(handleApiResponse) // Vérification de l'expiration
       .then((response) => response.json())
       .then((result) => setUser(result))
       .catch((error) => console.warn("error", error));
-  }, []);
+  }, [token, handleApiResponse]);
 
   return (
-    <CurrentUserContext.Provider value={{ user, setUser, token, setToken }}>
+    <CurrentUserContext.Provider
+      value={{ user, setUser, token, setToken, handleApiResponse }}
+    >
       {children}
     </CurrentUserContext.Provider>
   );
