@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import { useCurrentUserContext } from "../context/UserContext";
 
 /**
@@ -13,21 +14,24 @@ const useApiCall = () => {
    * @param {Object} options - Options pour fetch (method, headers, body, etc.)
    * @returns {Promise<Response>} - Réponse de l'API
    */
-  const apiCall = async (url, options = {}) => {
-    // Ajouter automatiquement l'Authorization header si un token existe
-    const headers = {
-      ...options.headers,
-      ...(token && { Authorization: `Bearer ${token}` }),
-    };
+  const apiCall = useCallback(
+    async (url, options = {}) => {
+      // Ajouter automatiquement l'Authorization header si un token existe
+      const headers = {
+        ...options.headers,
+        ...(token && { Authorization: `Bearer ${token}` }),
+      };
 
-    const response = await fetch(url, {
-      ...options,
-      headers,
-    });
+      const response = await fetch(url, {
+        ...options,
+        headers,
+      });
 
-    // Gérer automatiquement l'expiration du token
-    return handleApiResponse(response);
-  };
+      // Gérer automatiquement l'expiration du token
+      return handleApiResponse(response);
+    },
+    [token, handleApiResponse]
+  );
 
   return apiCall;
 };

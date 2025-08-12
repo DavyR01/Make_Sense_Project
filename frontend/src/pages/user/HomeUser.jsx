@@ -8,6 +8,7 @@ import TimeStepperHome from "../../components/user/TimeStepperHome";
 import { useCurrentDarkContext } from "../../context/DarkContext";
 import { useCurrentUserContext } from "../../context/UserContext";
 import "../../css/user/homeUser.css";
+import useApiCall from "../../hooks/useApiCall";
 
 const backEnd = import.meta.env.VITE_BACKEND_URL;
 
@@ -16,7 +17,7 @@ export default function Home() {
   const { t } = useTranslation();
   const { user } = useCurrentUserContext();
   const [valuesDetailsDecisions, setValuesDetailsDecisions] = useState([]);
-  const { token } = useCurrentUserContext();
+  const apiCall = useApiCall();
   const { dark } = useCurrentDarkContext();
   //   const countDecisionsLoginUser = 0;
 
@@ -39,42 +40,50 @@ export default function Home() {
   // };
 
   /*   const updateArrayDecisionsAfterDelete = (id) => {
-    const indexOfValueDecision = valuesDetailsDecisions.findIndex(
-      (obj) => obj.id === id
-    );
-
-    const updatedDecisions = [...valuesDetailsDecisions];
-    updatedDecisions.splice(indexOfValueDecision, 1);
-    setValuesDetailsDecisions(updatedDecisions);
-  }; */
+     const indexOfValueDecision = valuesDetailsDecisions.findIndex(
+       (obj) => obj.id === id
+     );
+ 
+     const updatedDecisions = [...valuesDetailsDecisions];
+     updatedDecisions.splice(indexOfValueDecision, 1);
+     setValuesDetailsDecisions(updatedDecisions);
+   }; */
 
   // ! BAD PRACTICE : Modification directe du tableau
 
   /*   const updateArrayDecisionsAfterDelete = (id) => {
-    const indexOfValueDecision = valuesDetailsDecisions.findIndex(
-      (obj) => obj.id === id
-    );
-    valuesDetailsDecisions.splice(indexOfValueDecision, 1);
-    setValuesDetailsDecisions([...valuesDetailsDecisions]);
-  }; */
+     const indexOfValueDecision = valuesDetailsDecisions.findIndex(
+       (obj) => obj.id === id
+     );
+     valuesDetailsDecisions.splice(indexOfValueDecision, 1);
+     setValuesDetailsDecisions([...valuesDetailsDecisions]);
+   }; */
 
   // ? fetch all datas with LEFT JOIN on user_id of decisions from API
+  // Promises with ASYNC...AWAIT...
   useEffect(() => {
-    const myHeader = new Headers();
-    myHeader.append("Authorization", `Bearer ${token}`);
-
-    const requestOptions = {
-      headers: myHeader,
+    const fetchDecisions = async () => {
+      try {
+        const response = await apiCall(`${backEnd}/decision`);
+        const result = await response.json();
+        setValuesDetailsDecisions(result);
+      } catch (error) {
+        console.warn("error", error);
+      }
     };
 
-    fetch(`${backEnd}/decision`, requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        //   console.log(valuesDetailsDecisions);
-        setValuesDetailsDecisions(result);
-      })
-      .catch((error) => console.warn("error", error));
-  }, [token]);
+    fetchDecisions();
+  }, [apiCall]);
+
+  // Promises with THEN...CATCH...
+  // useEffect(() => {
+  //   apiCall(`${backEnd}/decision`)
+  //     .then((response) => response.json())
+  //     .then((result) => {
+  //       setValuesDetailsDecisions(result);
+  //     })
+  //     .catch((error) => console.warn("error", error));
+  // }, [apiCall]);
 
   return (
     <div
