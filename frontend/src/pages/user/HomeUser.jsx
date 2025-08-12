@@ -7,6 +7,7 @@ import DecisionCard from "../../components/user/DecisionCard";
 import TimeStepperHome from "../../components/user/TimeStepperHome";
 import { useCurrentDarkContext } from "../../context/DarkContext";
 import { useCurrentUserContext } from "../../context/UserContext";
+import useApiCall from "../../hooks/useApiCall";
 import "../../css/user/homeUser.css";
 
 const backEnd = import.meta.env.VITE_BACKEND_URL;
@@ -16,7 +17,7 @@ export default function Home() {
   const { t } = useTranslation();
   const { user } = useCurrentUserContext();
   const [valuesDetailsDecisions, setValuesDetailsDecisions] = useState([]);
-  const { token } = useCurrentUserContext();
+  const apiCall = useApiCall();
   const { dark } = useCurrentDarkContext();
   //   const countDecisionsLoginUser = 0;
 
@@ -59,22 +60,31 @@ export default function Home() {
   }; */
 
   // ? fetch all datas with LEFT JOIN on user_id of decisions from API
+  // Promises with ASYNC...AWAIT...
   useEffect(() => {
-    const myHeader = new Headers();
-    myHeader.append("Authorization", `Bearer ${token}`);
-
-    const requestOptions = {
-      headers: myHeader,
-    };
-
-    fetch(`${backEnd}/decision`, requestOptions)
-      .then((response) => response.json())
-      .then((result) => {
-        //   console.log(valuesDetailsDecisions);
+    const fetchDecisions = async () => {
+      try {
+        const response = await apiCall(`${backEnd}/decision`);
+        const result = await response.json();
         setValuesDetailsDecisions(result);
-      })
-      .catch((error) => console.warn("error", error));
-  }, [token]);
+      } catch (error) {
+        console.warn("error", error);
+      }
+    };
+    
+
+    fetchDecisions();
+  }, [apiCall]);
+
+  // Promises with THEN...CATCH...
+  // useEffect(() => {
+  //   apiCall(`${backEnd}/decision`)
+  //     .then((response) => response.json())
+  //     .then((result) => {
+  //       setValuesDetailsDecisions(result);
+  //     })
+  //     .catch((error) => console.warn("error", error));
+  // }, [apiCall]);
 
   return (
     <div
