@@ -71,7 +71,6 @@ export default function Home() {
         console.warn("error", error);
       }
     };
-    
 
     fetchDecisions();
   }, [apiCall]);
