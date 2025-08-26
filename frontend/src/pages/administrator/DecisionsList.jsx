@@ -9,11 +9,12 @@ import Paginate from "../../components/user/Paginate";
 import { useCurrentDarkContext } from "../../context/DarkContext";
 import { useCurrentUserContext } from "../../context/UserContext";
 import "../../css/administrator/decisionList.css";
+import useApiCall from "../../hooks/useApiCall";
 
 const backEnd = import.meta.env.VITE_BACKEND_URL;
 
 export default function DecisionsList() {
-  const { user, token } = useCurrentUserContext();
+  const { user } = useCurrentUserContext();
   const [valuesDetailsDecisions, setValuesDetailsDecisions] = useState([]);
 
   // Gestion pagination
@@ -28,6 +29,7 @@ export default function DecisionsList() {
   // extra
   const { dark } = useCurrentDarkContext();
   const { t } = useTranslation();
+  const apiCall = useApiCall();
 
   const convertDate = (date) => {
     const dateParse = Date.parse(`${date}`);
@@ -66,16 +68,8 @@ export default function DecisionsList() {
   }, [dark]);
 
   useEffect(() => {
-    const myHeader = new Headers();
-    myHeader.append("Authorization", `Bearer ${token}`);
-
-    const requestOptions = {
-      headers: myHeader,
-    };
-
-    fetch(
-      `${backEnd}/decision/listadminbypage?decisionPerPageAd=${decisionPerPage}&currentPageAd=${currentPage}`,
-      requestOptions
+    apiCall(
+      `${backEnd}/decision/listadminbypage?decisionPerPageAd=${decisionPerPage}&currentPageAd=${currentPage}`
     )
       .then((response) => response.json())
       .then((result) => {
@@ -84,7 +78,7 @@ export default function DecisionsList() {
         //   console.warn(result);
       })
       .catch((error) => console.warn("error", error));
-  }, [token, currentPage, decisionPerPage]);
+  }, [apiCall, currentPage, decisionPerPage]);
 
   // for alert notification error delete decision after submit
   const notify = () =>
@@ -108,15 +102,11 @@ export default function DecisionsList() {
   // };
 
   const handleDeleteDecision = () => {
-    const myHeaders = new Headers();
-    myHeaders.append("Authorization", `Bearer ${token}`);
-
     toast
       .promise(
-        fetch(`${backEnd}/decision/${idDecisionToDelete}`, {
+        apiCall(`${backEnd}/decision/${idDecisionToDelete}`, {
           method: "delete",
           redirect: "follow",
-          headers: myHeaders,
         }),
         {
           loading: "Suppression en cours",
