@@ -11,6 +11,7 @@ import Paginate from "../../components/user/Paginate";
 import TimeStepperHome from "../../components/user/TimeStepperHome";
 import { useCurrentDarkContext } from "../../context/DarkContext";
 import { useCurrentUserContext } from "../../context/UserContext";
+import useApiCall from "../../hooks/useApiCall";
 
 const backEnd = import.meta.env.VITE_BACKEND_URL;
 
@@ -20,7 +21,7 @@ export default function Decisions({ open }) {
   }
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const { user, token } = useCurrentUserContext();
+  const { user } = useCurrentUserContext();
   const { dark } = useCurrentDarkContext();
   const [valuesDetailsDecisions, setValuesDetailsDecisions] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -95,17 +96,11 @@ export default function Decisions({ open }) {
   };
 
   // fetch all datas with LEFT JOIN on user_id of decisions from API
+  const apiCall = useApiCall();
+
   useEffect(() => {
-    const myHeader = new Headers();
-    myHeader.append("Authorization", `Bearer ${token}`);
-
-    const requestOptions = {
-      headers: myHeader,
-    };
-
-    fetch(
-      `${backEnd}/decision/page?&decisionPerPageUs=${decisionPerPage}&currentPageUs=${currentPage}&statusUs=${filterByStatus}`,
-      requestOptions
+    apiCall(
+      `${backEnd}/decision/page?&decisionPerPageUs=${decisionPerPage}&currentPageUs=${currentPage}&statusUs=${filterByStatus}`
     )
       .then((response) => response.json())
       .then((result) => {
@@ -117,7 +112,7 @@ export default function Decisions({ open }) {
         setTotalDecisions(result.nbDecision.nbDecision);
       })
       .catch((error) => console.warn("error", error));
-  }, [token, currentPage, filterByStatus, decisionPerPage]);
+  }, [apiCall, currentPage, filterByStatus, decisionPerPage]);
 
   const handleChevrondownAllDecisions = () => {
     setIsOpenAllDecisions(!isOpenAllDecisions);

@@ -10,6 +10,7 @@ import AlertDeleteDecision from "../../components/user/AlertDeleteDecision";
 import { useCurrentDarkContext } from "../../context/DarkContext";
 import { useCurrentUserContext } from "../../context/UserContext";
 import "../../css/administrator/usersList.css";
+import useApiCall from "../../hooks/useApiCall";
 
 const backEnd = import.meta.env.VITE_BACKEND_URL;
 
@@ -27,6 +28,7 @@ export default function UsersList() {
   // extra
   const { dark } = useCurrentDarkContext();
   const { t } = useTranslation();
+  const apiCall = useApiCall();
 
   // for alert notification error delete user after submit
   const notify = () =>
@@ -81,19 +83,13 @@ export default function UsersList() {
   };
 
   useEffect(() => {
-    const myHeader = new Headers();
-    myHeader.append("Authorization", `Bearer ${token}`);
-
-    const requestOptions = {
-      headers: myHeader,
-    };
-    fetch(`${backEnd}/user`, requestOptions)
+    apiCall(`${backEnd}/user`)
       .then((res) => res.json())
       .then((result) => {
         setUsers(result);
       })
       .catch((err) => console.error(err));
-  }, [token]);
+  }, [apiCall]);
 
   useEffect(() => {
     if (deleteIsConfirm) {

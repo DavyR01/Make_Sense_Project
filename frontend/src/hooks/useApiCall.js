@@ -16,10 +16,11 @@ const useApiCall = () => {
    */
   const apiCall = useCallback(
     async (url, options = {}) => {
-      // Ajouter automatiquement l'Authorization header si un token existe
+      // Ajouter les headers par défaut et l'Authorization header si un token existe
       const headers = {
+        "Content-Type": "application/json",
         ...options.headers,
-        ...(token && { Authorization: `Bearer ${token}` }),
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
       };
 
       const response = await fetch(url, {

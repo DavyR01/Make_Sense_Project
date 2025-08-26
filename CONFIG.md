@@ -38,3 +38,16 @@ On se sert du package serve et on spécifie le port 5173 sur lequel le serveur f
 
 With a `vite.config.js` file, I can use CommonJS Modules & ES Modules as I wish  
 Otherwise, with a `vite.config.mjs` file, It is mandatory to use only ES Modules.
+
+## DEPLOYMENT ON VPS
+
+```
+npm ci
+npx update-browserslist-db@latest
+npm run build:prod
+npm start
+```
+
+## RESET DATABASE
+
+`npm run migrate`

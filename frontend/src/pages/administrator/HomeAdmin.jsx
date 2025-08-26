@@ -5,37 +5,33 @@ import LogoWhite from "../../assets/make_sense_white.png";
 import UsersCard from "../../components/administrator/UsersCard";
 import { useCurrentDarkContext } from "../../context/DarkContext";
 import { useCurrentUserContext } from "../../context/UserContext";
+import useApiCall from "../../hooks/useApiCall";
 
 const backEnd = import.meta.env.VITE_BACKEND_URL;
 
 export default function HomeAdmin({ open }) {
-  const { user, token } = useCurrentUserContext();
+  const apiCall = useApiCall();
+  const { user } = useCurrentUserContext();
   const { dark } = useCurrentDarkContext();
   const { t } = useTranslation();
   const [users, setUsers] = useState([]);
   const [stats, setStats] = useState([]);
 
   useEffect(() => {
-    const myHeader = new Headers();
-    myHeader.append("Authorization", `Bearer ${token}`);
-
-    const requestOptions = {
-      headers: myHeader,
-    };
-    fetch(`${backEnd}/user`, requestOptions)
+    apiCall(`${backEnd}/user`)
       .then((res) => res.json())
       .then((result) => {
         setUsers(result);
       })
       .catch((err) => console.error(err));
 
-    fetch(`${backEnd}/admin/countstats`, requestOptions)
+    fetch(`${backEnd}/admin/countstats`)
       .then((res) => res.json())
       .then((result) => {
         setStats(result);
       })
       .catch((err) => console.error(err));
-  }, [token]);
+  }, [apiCall]);
 
   return (
     <div

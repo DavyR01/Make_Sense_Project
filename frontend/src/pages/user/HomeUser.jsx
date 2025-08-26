@@ -9,6 +9,7 @@ import { useCurrentDarkContext } from "../../context/DarkContext";
 import { useCurrentUserContext } from "../../context/UserContext";
 import useApiCall from "../../hooks/useApiCall";
 import "../../css/user/homeUser.css";
+import useApiCall from "../../hooks/useApiCall";
 
 const backEnd = import.meta.env.VITE_BACKEND_URL;
 
@@ -40,24 +41,24 @@ export default function Home() {
   // };
 
   /*   const updateArrayDecisionsAfterDelete = (id) => {
-    const indexOfValueDecision = valuesDetailsDecisions.findIndex(
-      (obj) => obj.id === id
-    );
-
-    const updatedDecisions = [...valuesDetailsDecisions];
-    updatedDecisions.splice(indexOfValueDecision, 1);
-    setValuesDetailsDecisions(updatedDecisions);
-  }; */
+     const indexOfValueDecision = valuesDetailsDecisions.findIndex(
+       (obj) => obj.id === id
+     );
+ 
+     const updatedDecisions = [...valuesDetailsDecisions];
+     updatedDecisions.splice(indexOfValueDecision, 1);
+     setValuesDetailsDecisions(updatedDecisions);
+   }; */
 
   // ! BAD PRACTICE : Modification directe du tableau
 
   /*   const updateArrayDecisionsAfterDelete = (id) => {
-    const indexOfValueDecision = valuesDetailsDecisions.findIndex(
-      (obj) => obj.id === id
-    );
-    valuesDetailsDecisions.splice(indexOfValueDecision, 1);
-    setValuesDetailsDecisions([...valuesDetailsDecisions]);
-  }; */
+     const indexOfValueDecision = valuesDetailsDecisions.findIndex(
+       (obj) => obj.id === id
+     );
+     valuesDetailsDecisions.splice(indexOfValueDecision, 1);
+     setValuesDetailsDecisions([...valuesDetailsDecisions]);
+   }; */
 
   // ? fetch all datas with LEFT JOIN on user_id of decisions from API
   // Promises with ASYNC...AWAIT...
