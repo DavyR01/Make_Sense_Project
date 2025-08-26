@@ -7,13 +7,15 @@ import ModalMessage from "../../components/administrator/ModalMessage";
 import AlertDeleteDecision from "../../components/user/AlertDeleteDecision";
 import { useCurrentDarkContext } from "../../context/DarkContext";
 import { useCurrentUserContext } from "../../context/UserContext";
+import useApiCall from "../../hooks/useApiCall";
 
 const backEnd = import.meta.env.VITE_BACKEND_URL;
 
 function Messages() {
   const [messages, setMessages] = useState([]);
-  const { user, token } = useCurrentUserContext();
+  const { user } = useCurrentUserContext();
   const [openModalAlertDelete, setOpenModalAlertDelete] = useState(false);
+  const apiCall = useApiCall();
   const [showModalMessage, setShowModalMessage] = useState(false);
   const [deleteIsConfirm, setDeleteIsConfirm] = useState(false);
   const [id, setId] = useState();
@@ -21,31 +23,18 @@ function Messages() {
   const { dark } = useCurrentDarkContext();
 
   useEffect(() => {
-    const myHeader = new Headers();
-    myHeader.append("Authorization", `Bearer ${token}`);
-
-    const requestOptions = {
-      headers: myHeader,
-    };
-
-    fetch(`${backEnd}/admin/message`, requestOptions)
+    apiCall(`${backEnd}/admin/message`)
       .then((res) => res.json())
       .then((result) => {
         setMessages(result);
       })
       .catch((err) => console.error(err));
-  }, [token]);
+  }, [apiCall]);
 
   const deleteMessage = () => {
-    const myHeader = new Headers();
-    myHeader.append("Authorization", `Bearer ${token}`);
-
-    const requestOptions = {
+    apiCall(`${backEnd}/admin/message/${id}`, {
       method: "DELETE",
-      headers: myHeader,
-    };
-
-    fetch(`${backEnd}/admin/message/${id}`, requestOptions)
+    })
       .then(() => {
         setMessages(messages.filter((message) => message.id !== id));
       })
