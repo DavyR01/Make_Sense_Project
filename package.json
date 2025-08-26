@@ -33,7 +33,6 @@
     "preview:host": "npm run build && npm --prefix ./frontend run preview:host",
     "prepare": "husky",
     "deploy": "npx update-browserslist-db@latest && npm run build:prod && npm start"
-
   },
   "devDependencies": {
     "concurrently": "^9.1.0",
