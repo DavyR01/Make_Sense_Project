@@ -11,6 +11,7 @@
   "scripts": {
     "setup": "npm i && husky init && npm --prefix ./frontend i && npm --prefix ./backend i",
     "setup:prod": "npm i && npm --prefix ./frontend i && npm --prefix ./backend i && npm run build:prod",
+    "prebuild": "npx update-browserslist-db@latest",
     "build": "cd frontend/ && npm run build",
     "build:prod": "cd frontend/ && npm run build:prod",
     "build:fix": "npm run fix && cd frontend/ && npm run build",
@@ -30,7 +31,9 @@
     "update3": "ncu -u",
     "preview": "npm run build && npm --prefix ./frontend run preview",
     "preview:host": "npm run build && npm --prefix ./frontend run preview:host",
-    "prepare": "husky"
+    "prepare": "husky",
+    "deploy": "npx update-browserslist-db@latest && npm run build:prod && npm start"
+
   },
   "devDependencies": {
     "concurrently": "^9.1.0",
