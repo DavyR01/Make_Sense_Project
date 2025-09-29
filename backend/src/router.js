@@ -68,6 +68,12 @@ router.post(
   verifyPassword
 );
 
+// Route for token verification ****************************
+router.get("/api/verify-token", verifyToken, (req, res) => {
+  // Si on arrive ici, c'est que le token est valide (verifyToken a réussi)
+  res.status(200).json({ message: "Token valid", userId: req.payload.sub });
+});
+
 // Forgotten Password *******************************************
 router.post(
   "/api/forgottenpassword",
