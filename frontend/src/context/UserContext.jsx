@@ -50,7 +50,7 @@ export function CurrentUserContextProvider({ children }) {
         setToken("");
         setUser({});
         setIsTokenValid(false);
-        window.location.href = "/";
+        // window.location.href = "/";
       } else if (response.ok) {
         // Token valide
         setIsTokenValid(true);
@@ -59,7 +59,7 @@ export function CurrentUserContextProvider({ children }) {
         setToken("");
         setUser({});
         setIsTokenValid(false);
-        window.location.href = "/";
+        // window.location.href = "/";
       }
     } catch (error) {
       console.warn("Erreur lors de la vérification du token:", error);
@@ -70,11 +70,11 @@ export function CurrentUserContextProvider({ children }) {
 
   // Afficher un loader pendant la vérification du token
   if (isTokenValid === null) {
-    return (
+    return /* (
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-lg">Vérification de la session...</div>
       </div>
-    );
+    ); */
   }
 
   return (
@@ -87,4 +87,4 @@ export function CurrentUserContextProvider({ children }) {
 }
 
 export const useCurrentUserContext = () => useContext(CurrentUserContext);
-// en utilisant une fonction intermédiaire, vous encapsulez l'appel à useContext(CurrentUserContext) dans une fonction personnalisée (contrairement à l'appel direct). Nous aurons donc plus de flexibilité pour gérer les opérations personnalisées et les modifications futures du hook.
+// en utilisant une fonction intermédiaire, on encapsule l'appel à useContext(CurrentUserContext) dans une fonction personnalisée (contrairement à l'appel direct). Nous aurons donc plus de flexibilité pour gérer les opérations personnalisées.
