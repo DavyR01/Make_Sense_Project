@@ -46,10 +46,11 @@ export function CurrentUserContextProvider({ children }) {
       });
 
       if (response.status === 401) {
-        // Token invalide, suppression
+        // Token invalide, suppression + redirection
         setToken("");
         setUser({});
         setIsTokenValid(false);
+        window.location.href = "/";
       } else if (response.ok) {
         // Token valide
         setIsTokenValid(true);
@@ -58,6 +59,7 @@ export function CurrentUserContextProvider({ children }) {
         setToken("");
         setUser({});
         setIsTokenValid(false);
+        window.location.href = "/";
       }
     } catch (error) {
       console.warn("Erreur lors de la vérification du token:", error);

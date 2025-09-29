@@ -7,7 +7,7 @@ require("../config/config");
 // const config = require("../config/config");
 // console.log(config);
 
-const { /*  JWT_SECRET,  */ JWT_TIMING } = process.env;
+const { JWT_SECRET, JWT_TIMING } = process.env;
 
 //* ************** Handle secret key rotation ********************
 let activeSecrets = [];
@@ -21,19 +21,22 @@ function getLatestSecret() {
 }
 
 function initializeSecrets() {
-  const currentSecret = generateNewSecret();
-  const olderSecret = generateNewSecret();
-
+  // Utilise JWT_SECRET comme secret principal + secrets rotatifs
   activeSecrets = [
     {
+      id: `baseSecret`,
+      value: JWT_SECRET, // Secret fixe depuis .env (survit aux redémarrages)
+      expiresAt: new Date(Date.now() + 365 * 24 * 60 * 60 * 1000), // 1 an
+    },
+    {
       id: `currentSecret${Date.now()}`,
-      value: currentSecret,
-      expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // ? 30 days
+      value: generateNewSecret(),
+      expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000), // 30 days
     },
     {
       id: `oldSecret${Date.now() - 1}`,
-      value: olderSecret,
-      expiresAt: new Date(Date.now() + 15 * 24 * 60 * 60 * 1000), // ? 15 days
+      value: generateNewSecret(),
+      expiresAt: new Date(Date.now() + 15 * 24 * 60 * 60 * 1000), // 15 days
     },
   ];
   //   console.log("initialize active Secrets : ", activeSecrets);
@@ -43,7 +46,8 @@ function rotateSecrets() {
   const newSecret = generateNewSecret();
   //!   console.log("New secret : ", newSecret);
 
-  activeSecrets.unshift({
+  // Ajoute un nouveau secret rotatif (garde toujours JWT_SECRET en premier)
+  activeSecrets.splice(1, 0, {
     id: `secret${Date.now()}`,
     value: newSecret,
     expiresAt: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
@@ -51,11 +55,14 @@ function rotateSecrets() {
 
   //   console.log("active Secrets in rotate : ", activeSecrets);
 
-  // ? Remove expirated secrets
+  // ? Remove expired secrets (garde toujours JWT_SECRET)
   const now = new Date();
-  activeSecrets = activeSecrets.filter((secret) => secret.expiresAt > now);
+  const baseSecret = activeSecrets[0]; // Garde JWT_SECRET
+  const validSecrets = activeSecrets.slice(1).filter((secret) => secret.expiresAt > now);
+  
+  activeSecrets = [baseSecret, ...validSecrets];
 
-  // ? Keep only 2 last objects in array activeSecrets
+  // ? Keep only 5 secrets max (1 base + 4 rotatifs)
   if (activeSecrets.length > 5) {
     activeSecrets = activeSecrets.slice(0, 5);
   }
