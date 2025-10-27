@@ -14,6 +14,9 @@ export default defineConfig({
       "@services": path.resolve(__dirname, "src/services"),
     },
   },
+//   build: {
+//     sourcemap: true, // Génère les fichiers.map dans dist/
+//   },
 });
 
 //* Test other configuration with different .env position.
