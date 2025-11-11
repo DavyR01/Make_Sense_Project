@@ -8,9 +8,11 @@
   "author": "Davy ROBERT",
   "license": "ISC",
   "scripts": {
+   
     "dev": "nodemon index.js",
     "migrate": "node migrate.js",
-    "start": "node index.js",
+    "start": "cross-env NODE_ENV=production node index.js",
+
     "test": "echo '----- Checking Backend...' && npx prettier --debug-check . && eslint --ext .js . && echo '----- Done!'",
     "fix": "prettier --write . && eslint --fix --ext .js ."
   },
@@ -41,6 +43,7 @@
     "uuidv4": "^6.2.13"
   },
   "devDependencies": {
+    "cross-env": "^10.1.0",
     "eslint": "^8.2.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-prettier": "^9.1.0",

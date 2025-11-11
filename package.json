@@ -12,25 +12,28 @@
     "setup": "npm i && husky init && npm --prefix ./frontend i && npm --prefix ./backend i",
     "setup:prod": "npm i && npm --prefix ./frontend i && npm --prefix ./backend i && npm run build:prod",
     "prebuild": "npx update-browserslist-db@latest",
-    "build": "cd frontend/ && npm run build",
+    "build:localprod": "cd frontend/ && npm run build:localprod",
     "build:prod": "cd frontend/ && npm run build:prod",
-    "build:fix": "npm run fix && cd frontend/ && npm run build",
+    "build:fix": "npm run fix && cd frontend/ && npm run build:localprod",
+
     "dev": "cross-env NODE_ENV=development concurrently -n front,back -c green,yellow -t \"HH:mm:ss\" -p \"{name} {time}\" \"npm --prefix ./frontend run dev\" \"npm --prefix ./backend run dev\"",
-    "start": "cross-env NODE_ENV=production concurrently -n front,back -c green,yellow -t \"HH:mm:ss\" -p \"{name} {time}\" \"npm --prefix ./frontend run start\" \"npm --prefix ./backend run start\"",
     "dev:host": "concurrently -n front,back -c green,yellow -t \"HH:mm:ss\" -p \"{name} {time}\" \"npm --prefix ./frontend run dev:host\" \"npm --prefix ./backend run dev\"",
-    "dev:front": "npm --prefix ./frontend run dev",
-    "dev:back": "npm --prefix ./backend run dev",
+
+    "preview": "npm run build:localprod && npm --prefix ./frontend run preview",
+    "preview:host": "npm run build:localprod && npm --prefix ./frontend run preview:host",
+    "start": "cross-env NODE_ENV=production concurrently -n front,back -c green,yellow -t \"HH:mm:ss\" -p \"{name} {time}\" \"npm --prefix ./frontend run start\" \"npm --prefix ./backend run start\"",
+
     "test": "npm --prefix ./frontend run test && npm --prefix ./backend run test",
     "fix": "npm --prefix ./frontend run fix && npm --prefix ./backend run fix",
     "migrate": "cd backend/ && node migrate.js && cd ..",
     "go": "git add . && git commit -m ",
     "delete": "rm -rf node_modules package-lock.json && cd frontend && rm -rf node_modules package-lock.json && cd ../backend && rm -rf node_modules package-lock.json",
     "delete:dist": "cd frontend/ && rm -rf dist",
+
     "update": "concurrently -n current,backend,frontend -c green,yellow,blue \"ncu -u\" \"cd backend && ncu -u\" \"cd frontend && ncu -u\"",
     "update2": "npx npm-check-updates -u",
     "update3": "ncu -u",
-    "preview": "npm run build && npm --prefix ./frontend run preview",
-    "preview:host": "npm run build && npm --prefix ./frontend run preview:host",
+
     "prepare": "husky",
     "deploy": "npx update-browserslist-db@latest && npm run build:prod && npm start"
   },

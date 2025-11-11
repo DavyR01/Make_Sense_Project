@@ -8,11 +8,14 @@
   "scripts": {
     "dev": "vite --mode front-dev",
     "dev:host": "vite --host",
-    "build": "vite build",
+
+    "build:localprod": "vite build --mode front-dev",
     "build:prod": "vite build --mode front-prod",
-    "preview": "vite preview",
-    "preview:host": "vite preview --host",
+
+    "preview": "vite preview --port 5173",
     "start": "npx serve -s dist -l 5173",
+    "preview:host": "vite preview --host",
+    
     "test": "echo '----- Checking Frontend...' && prettier --debug-check . && eslint --ext .jsx . && echo '----- Done!'",
     "fix": "prettier --write . && eslint --fix --ext .jsx ."
   },
