@@ -39,7 +39,7 @@
     "react-quill": "^2.0.0",
     "react-router-dom": "^7.0.1",
     "react-search-autocomplete": "^8.5.2",
-    "vite": "^6.0.1"
+    "vite": "^6.4.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
