@@ -41,13 +41,29 @@ Otherwise, with a `vite.config.mjs` file, It is mandatory to use only ES Modules
 
 ## DEPLOYMENT ON VPS
 
+Faire les réglages au préalable des reverse Proxy sur Caddy à partir du VPS pour servir les fichiers statiques du dossier provenant de `npm run build:prod` 
 ```
 npm ci
 npx update-browserslist-db@latest
 npm run build:prod
-npm start
+npm start // Uniquement pour connecter le backend
 ```
 
 ## RESET DATABASE
 
 `npm run migrate`
+
+
+## DRAFTS
+
+Package.json : 
+    "start:preview": "cross-env NODE_ENV=development npm run build:localprod && concurrently -n front,back -c cyan,yellow \"npm --prefix ./frontend run preview\" \"npm --prefix ./backend run start\"",
+
+
+### Simuler un environnement de prod en local:
+Pour démarrer les serveurs front et backs indépendamment si on le souhaite :
+coté front : `npm run preview`
+coté back :` npm run dev`
+
+Pour build le front et démarrer les 2 at the same time :
+coté global : `npm run start:preview`

@@ -19,9 +19,9 @@
     "dev": "cross-env NODE_ENV=development concurrently -n front,back -c green,yellow -t \"HH:mm:ss\" -p \"{name} {time}\" \"npm --prefix ./frontend run dev\" \"npm --prefix ./backend run dev\"",
     "dev:host": "concurrently -n front,back -c green,yellow -t \"HH:mm:ss\" -p \"{name} {time}\" \"npm --prefix ./frontend run dev:host\" \"npm --prefix ./backend run dev\"",
 
-    "preview": "npm run build:localprod && npm --prefix ./frontend run preview",
+    "start": "cross-env NODE_ENV=production concurrently -n front,back -c green,yellow -t \"HH:mm:ss\" -p \"{name} {time}\" \"npm --prefix ./backend run start\"",
+    "start:preview": "cross-env NODE_ENV=development npm run build:localprod && concurrently -n front,back -c cyan,yellow \"npm --prefix ./frontend run preview\" \"npm --prefix ./backend run dev\"",
     "preview:host": "npm run build:localprod && npm --prefix ./frontend run preview:host",
-    "start": "cross-env NODE_ENV=production concurrently -n front,back -c green,yellow -t \"HH:mm:ss\" -p \"{name} {time}\" \"npm --prefix ./frontend run start\" \"npm --prefix ./backend run start\"",
 
     "test": "npm --prefix ./frontend run test && npm --prefix ./backend run test",
     "fix": "npm --prefix ./frontend run fix && npm --prefix ./backend run fix",
